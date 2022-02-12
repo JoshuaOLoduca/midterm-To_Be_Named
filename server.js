@@ -46,8 +46,13 @@ const userRoutes = require("./routes/user/index");
 const userRouter = express.Router();
 userRoutes(userRouter, db)
 
+const apiRoutes = require("./routes/api/index");
+const apiRouter = express.Router();
+apiRoutes(apiRouter, db)
+
 // Register Routers
 app.use("/", userRouter);
+app.use("/api", apiRouter);
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
