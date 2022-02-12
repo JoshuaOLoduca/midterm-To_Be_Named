@@ -17,6 +17,9 @@ module.exports = function (router, db) {
         if (result) return res.status(200).send();
         res.status(404).send("Nothing there kiddo");
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        console.log(err);
+        res.status(500).send("Something went wron on our end");
+      });
   });
 }
