@@ -10,6 +10,7 @@ module.exports = function (router, db) {
       AND owner_id = $2
     RETURNING *;
     `;
+
     db.query(deleteString, [mapId, owner_id])
       .then(response => {
         const result = response.rows[0];
