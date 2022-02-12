@@ -1,40 +1,17 @@
-// setup
+const homePage = require('./homePage');
+const login = require('./login');
+const logout = require('./logout');
+module.exports = function (router, db) {
 
-const express = require('express');
-const app = express();
-const bodyParser = require('body-parser');
+  //  render index page
+  homePage(router, db);
 
-const cookieSession = require('cookie-session');
+  // GET /users/login
+  login(router, db);
 
-app.set('view engine', 'ejs');
+  // POST /users/logout
+  logout(router, db);
 
-app.use(cookieSession({
-  name: "session",
-  keys: ['key1', 'key2'],
-}));
-
-app.use(bodyParser.urlencoded({ extended: true }));
-
-//  render index page
-app.get('/', (req, res) => {
-  res.render('index');
-});
-
-// GET /users/login
-app.get('/login/:id', (req, res) => {
-  // cookie credentials
-  //req.session.user_id = req.params.id;
-
-  // redirect to homepage
-  res.redirect('/');
-});
-
-// POST /users/logout
-app.post('/logout', (req, res) => {
-  // clear cookies
-  req.sessions = null;
-
-  // redirect to homepage
-  res.redirect('/');
-});
+  return router;
+}
 
