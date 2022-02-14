@@ -1,8 +1,8 @@
 module.exports = function(router, db) {
   // POST /users/logout
-  router.post('/logout', (req, res) => {
+  router.get('/logout', (req, res) => {
     // clear cookies
-    req.sessions = null;
+    req.session = null;
 
     // redirect to homepage
     res.redirect('/');
