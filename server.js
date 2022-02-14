@@ -42,16 +42,16 @@ app.use(express.static("public"));
 
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
-const userRoutes = require("./routes/user/index");
-const userRouter = express.Router();
-userRoutes(userRouter, db)
+const mainRoutes = require("./routes/main/index");
+const mainRouter = express.Router();
+mainRoutes(mainRouter, db)
 
 const apiRoutes = require("./routes/api/index");
 const apiRouter = express.Router();
 apiRoutes(apiRouter, db)
 
 // Register Routers
-app.use("/", userRouter);
+app.use("/", mainRouter);
 app.use("/api", apiRouter);
 
 app.listen(PORT, () => {
