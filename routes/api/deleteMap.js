@@ -20,7 +20,7 @@ module.exports = function (router, db) {
       })
       .catch(err => {
         console.log(err);
-        res.status(500).send("Something went wron on our end");
+        res.status(500).send("Something went wrong on our end");
       });
   });
 }
