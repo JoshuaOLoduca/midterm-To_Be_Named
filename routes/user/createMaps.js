@@ -2,14 +2,14 @@ module.exports = function(router, db) {
   // POST /maps/create
   router.post('/create', (req, res) => {
     const queryString = `
-    INSERT INTO maps (owner_id, title, city, description)
+    INSERT INTO maps (owner_id, city, title, description)
     VALUES ($1, $2, $3, $4)
     RETURNING id;`;
     const values = [
       req.session.user_id,
+      req.body.city,
       req.body.title,
       req.body.description,
-      req.body.location,
     ];
     // console.log(req.body);
 
