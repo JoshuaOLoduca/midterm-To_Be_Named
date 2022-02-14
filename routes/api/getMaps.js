@@ -1,5 +1,6 @@
 module.exports = function (router, db) {
-  //  render index page
+  const helper = require('./helpers')(db);
+
   router.get('/maps', (req, res) => {
     const queryString = `
     SELECT *
@@ -7,16 +8,6 @@ module.exports = function (router, db) {
     WHERE public = true;
     `;
 
-    db.query(queryString)
-      .then(response => {
-        const result = response.rows;
-        console.log(result);
-        if (result) return res.status(200).json(result);
-        res.status(500).send("Something went wrong on our end");
-      })
-      .catch(err => {
-        console.log(err);
-        res.status(500).send("Something went wrong on our end");
-      });
+    helper.tryReturnJson(res, queryString)
   });
 }

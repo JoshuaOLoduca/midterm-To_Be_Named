@@ -1,8 +1,11 @@
 module.exports = function (router, db) {
+  const helper = require('./helpers')(db);
+
   //  render index page
   router.delete('/places/:id', (req, res) => {
-    const {user_id} = req.body;
+    console.log(req.body);
     const place_id = req.params.id
+    const {user_id} = req.body;
     const deleteString = `
     DELETE
     FROM places p
@@ -19,16 +22,7 @@ module.exports = function (router, db) {
     )
     RETURNING *;
     `;
-    db.query(deleteString, [place_id, user_id])
-      .then(response => {
-        const result = response.rows[0];
-        console.log(result);
-        if (result) return res.status(200).send();
-        res.status(404).send("Nothing there kiddo");
-      })
-      .catch(err => {
-        console.log(err)
-        res.status(500).send("Something went wrong on our end");
-      });
+
+    helper.tryDeleteEntity(res, deleteString, [place_id, user_id])
   });
 }

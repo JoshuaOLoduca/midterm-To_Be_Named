@@ -1,4 +1,6 @@
 module.exports = function (router, db) {
+  const helper = require('./helpers')(db);
+
   //  render index page
   router.delete('/maps/:id', (req, res) => {
     const {owner_id} = req.body;
@@ -11,16 +13,6 @@ module.exports = function (router, db) {
     RETURNING *;
     `;
 
-    db.query(deleteString, [mapId, owner_id])
-      .then(response => {
-        const result = response.rows[0];
-        console.log(result);
-        if (result) return res.status(200).send();
-        res.status(404).send("Nothing there kiddo");
-      })
-      .catch(err => {
-        console.log(err);
-        res.status(500).send("Something went wrong on our end");
-      });
+    helper.tryDeleteEntity(res, deleteString, [mapId, owner_id])
   });
 }
