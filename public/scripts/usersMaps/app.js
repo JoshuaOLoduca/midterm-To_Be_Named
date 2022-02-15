@@ -47,8 +47,12 @@ function renderMapToScreen(mapData) {
         </content>
         <button>Edit</button>
       </section>
+
       <aside>
+        <button>Edit</button>
+        <button>Delete</button>
       </aside>
+
     </article>
   `);
 
@@ -56,8 +60,8 @@ function renderMapToScreen(mapData) {
     window.location.assign("/maps/"+mapData.id);
   })
 
-  $element.find('content').on('click', e => {
-    window.location.assign("/maps/"+mapData.id);
+  $element.find('button').on('click', e => {
+    $element.toggleClass('showEdit');
   })
 
   $mapContainer.append($element);
