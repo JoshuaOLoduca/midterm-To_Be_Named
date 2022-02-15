@@ -4,6 +4,7 @@ const logout = require('./logout');
 const createMaps = require('./createMaps');
 const allMaps = require('./maps');
 const getMapsId = require('./getMapsId')
+const favourites = require('./favourites')
 
 module.exports = function (router, db) {
 
@@ -19,6 +20,9 @@ module.exports = function (router, db) {
 
   // POST /maps/create
   createMaps(router, db);
+
+  // GET /users/favourites
+  favourites(router, db);
   return router;
 }
 

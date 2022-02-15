@@ -29,9 +29,8 @@ $.ajax({
 });
 
 function renderMaps(howManyToShowPerRender = 10) {
-  if (!allMaps.length) return;
-
   for (let i = 0; i < howManyToShowPerRender; i++) {
+    if (!allMaps.length) return;
     renderMapToScreen(allMaps.pop());
   }
 }
