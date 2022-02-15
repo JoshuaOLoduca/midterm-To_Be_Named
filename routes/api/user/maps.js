@@ -8,7 +8,8 @@ module.exports = function (router, db) {
     const queryString = `
     SELECT *
     FROM maps m
-    WHERE m.owner_id = $1;
+    WHERE m.owner_id = $1
+    ORDER BY m.id;
     `;
 
     helper.tryReturnJson(res, queryString, [ user_id ]);

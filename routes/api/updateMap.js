@@ -15,6 +15,8 @@ module.exports = function(router, db) {
     parameters.push(req.params.id);
     updateQuery += ` WHERE maps.id = $${parameters.length}`;
 
+    console.log(updateQuery);
+
     helper.tryReturnJson(res, updateQuery, parameters);
   });
 };
