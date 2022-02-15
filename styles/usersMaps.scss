@@ -1,0 +1,10 @@
+h1 {
+  display: inline-block;
+}
+#mapContainer {
+  > article {
+    > button {
+      margin-left: auto;
+    }
+  }
+}

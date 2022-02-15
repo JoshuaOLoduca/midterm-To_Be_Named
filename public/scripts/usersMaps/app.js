@@ -2,31 +2,20 @@ const allMaps = [];
 
 const $mapContainer = $('#mapContainer');
 
-let ajaxUrl = '';
+let ajaxUrl = `/api/users/${userId}/maps`;
 
-switch(renderType) {
-  case 'allMaps':
-    ajaxUrl = '/api/maps';
-    break;
-  case 'favourites':
-    ajaxUrl = `/api/users/${userId}/maps/favourites`;
-    break;
-  case 'collaborator':
-    ajaxUrl = `/api/users/${userId}/maps/collaborate`;
-    break;
-}
 
 $.ajax({
   method: "GET",
   url: ajaxUrl
 })
 .done(function( msg ) {
+  console.log(ajaxUrl);
   msg.forEach(element => {
     allMaps.unshift(element);
   });
-
   renderMaps();
-});
+})
 
 function renderMaps(howManyToShowPerRender = 10) {
   for (let i = 0; i < howManyToShowPerRender; i++) {
@@ -55,10 +44,11 @@ function renderMapToScreen(mapData) {
       </header>
       <p>${mapData.description}</p>
     </content>
+    <button>Edit</button>
     </article>
   `);
 
-  $element.on('click', e => {
+  $element.find('content').on('click', e => {
     window.location.assign("/maps/"+mapData.id);
   })
 
