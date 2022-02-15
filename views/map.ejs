@@ -14,7 +14,9 @@
   integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
   crossorigin=""/>
 
-
+  <script>
+    const places = <%- JSON.stringify(places) %>;
+  </script>
   <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
   integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
   crossorigin="" defer></script>
@@ -30,24 +32,25 @@
   </nav>
 
   <!-- <div class="mapList"> -->
-
+    <container>
     <div id="buttons">
-      <form method="POST" action ="/api/maps/:id">
+      <form method="POST">
         <button type="submit" class="btn"><i class="fa-solid fa-plus"></i></button>
       </form>
-      <form method="POST">
-        <button type="submit" class="btn"><i class="fa-solid fa-heart"></i></button>
+      <form method="POST" action ="/api/maps/3">
+        <button type="submit" class="btn"><i class="fa-solid fa-bookmark"></i></i></button>
       </form>
       <form method="POST">
         <button type="submit" class="btn"><i class="fa-solid fa-pen-to-square"></i></button>
       </form>
     </div>
-
+    <%= JSON.stringify(places) %>
+  </container>
   <!-- </div> -->
     <div id='map'></div>
   <article>
-    <%= JSON.stringify(map) %>
-    <%= JSON.stringify(places) %>
+    <!-- <%= JSON.stringify(map) %> -->
+
     <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Accusamus magnam voluptatem cupiditate quibusdam inventore laboriosam ullam vitae error ducimus ex laborum corrupti, perferendis reprehenderit soluta obcaecati perspiciatis veritatis earum nemo?</p>
   </article>
   <%= %>
