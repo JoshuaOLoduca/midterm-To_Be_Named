@@ -62,7 +62,6 @@ function renderMapToScreen(mapData) {
 
   $element.find('section button').on('click', e => {
     $element.find('aside').toggle('fast');
-    // $element.toggleClass('showEdit');
   })
 
   $mapContainer.append($element);
