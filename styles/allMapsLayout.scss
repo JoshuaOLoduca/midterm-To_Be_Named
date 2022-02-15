@@ -1,0 +1,29 @@
+body {
+  flex-direction: column;
+}
+
+#mapContainer {
+  > article {
+    margin: 2rem;
+    display: flex;
+    background-color: grey;
+    > content > header {
+      margin-bottom: 2rem;
+      > h2 {
+        margin-bottom: .4rem;
+      }
+      > h4 {
+        margin-top: .4rem;
+        color: rgb(53, 53, 53);
+      }
+    }
+    > img {
+      margin: 1rem;
+      max-width: 15rem;
+    }
+  }
+}
+
+#loadMoar {
+  padding: 2rem 4rem;
+}

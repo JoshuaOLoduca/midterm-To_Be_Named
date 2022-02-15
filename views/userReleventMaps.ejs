@@ -10,6 +10,18 @@
   <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
   <link rel="stylesheet" href="/styles/maps.css" type="text/css"/>
 
+  <% if (renderType === 'allMaps') { %>
+    <link rel="stylesheet" href="/styles/allMapsLayout.css" type="text/css"/>
+  <% } %>
+
+  <% if (renderType === 'favourites') { %>
+    <link rel="stylesheet" href="/styles/userRelMaps/favourites.css" type="text/css"/>
+  <% } %>
+
+  <% if (renderType === 'collaborator') { %>
+    <link rel="stylesheet" href="/styles/userRelMaps/collaborator.css" type="text/css"/>
+  <% } %>
+
   <script>
     const renderType = '<%= renderType %>';
     const userId = '<%= renderType.userId %>';
@@ -35,6 +47,6 @@
     <% } %>
   </h1>
 
-  <article id="mapContainer"></article>
+  <div id="mapContainer"></div>
   <button id="loadMoar">Can I haz maps</button>
  </body>
