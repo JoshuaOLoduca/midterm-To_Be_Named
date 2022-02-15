@@ -5,6 +5,7 @@ const createMaps = require('./createMaps');
 const allMaps = require('./maps');
 const getMapsId = require('./getMapsId')
 const favourites = require('./favourites')
+const canEdit = require('./canEdit')
 
 module.exports = function (router, db) {
 
@@ -23,6 +24,9 @@ module.exports = function (router, db) {
 
   // GET /users/favourites
   favourites(router, db);
+
+  // GET /users/collaborate
+  canEdit(router, db);
   return router;
 }
 
