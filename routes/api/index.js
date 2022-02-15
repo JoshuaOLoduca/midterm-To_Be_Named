@@ -6,6 +6,7 @@ const userFavourites = require('./user/favourites');
 const userMaps = require('./user/maps');
 const updateMap = require('./updateMap');
 const addPlace = require('./addPlaceToMap');
+const postFavourites = require('./user/postFavourites');
 
 module.exports = function (router, db) {
 
@@ -14,6 +15,7 @@ module.exports = function (router, db) {
   getMaps(router, db);
   updateMap(router, db);
   addPlace(router, db);
+  postFavourites(router, db);
 
   // User stuff
   userCollaborateAccess(router, db);
