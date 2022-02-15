@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Home Page</title>
+
+  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+  <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/main.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/userRelMapsLayout.css" type="text/css"/>
+  <link rel="stylesheet" href="/styles/usersMaps.css" type="text/css"/>
+
+
+  <script>
+    const userId = '<%= userId %>';
+  </script>
+
+  <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+  <!-- <script type="text/javascript" src="/scripts/app.js"></script> -->
+  <script type="text/javascript" src="/scripts/usersMaps/app.js" defer></script>
+</head>
+
+<body>
+  <button>ADD NEW MAP</button>
+  <h1>List of My Maps</h1>
+  <div id="mapContainer">
+  </div>
+</body>
+
+</html>
