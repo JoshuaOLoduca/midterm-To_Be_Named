@@ -1,17 +1,24 @@
 const allMaps = [];
+let currentMapEditId = null;
 
 const $mapContainer = $('#mapContainer');
+const $popUpContainer = $('#pop-up-background');
+
+$popUpContainer.on('click', e => {
+  if(e.target !== $popUpContainer[0]) return;
+  currentMapEditId = null;
+  $popUpContainer.toggleClass('displayFlex');
+})
 
 let ajaxUrl = `/api/users/${userId}/maps`;
-
 
 $.ajax({
   method: "GET",
   url: ajaxUrl
 })
-.done(function( msg ) {
+.done(function( content ) {
   console.log(ajaxUrl);
-  msg.forEach(element => {
+  content.forEach(element => {
     allMaps.unshift(element);
   });
   renderMaps();
@@ -49,8 +56,8 @@ function renderMapToScreen(mapData) {
       </section>
 
       <aside>
-        <button>Edit</button>
-        <button>Delete</button>
+        <button class="editBtn">Edit</button>
+        <button class="deleteBtn">Delete</button>
       </aside>
 
     </article>
@@ -64,7 +71,34 @@ function renderMapToScreen(mapData) {
     $element.find('aside').toggle('fast');
   })
 
+  $element.find('aside .editBtn').on('click', e => {
+    updateEditPopup(mapData);
+    $popUpContainer.toggleClass('displayFlex');
+  })
+
   $mapContainer.append($element);
+}
+
+function updateEditPopup(mapData) {
+  const formInputs = $popUpContainer.find('form input')
+  currentMapEditId = mapData.id;
+
+  formInputs.each(function() {
+    switch(this.id) {
+      case 'title':
+        $(this).val(mapData.title)
+        break;
+      case 'city':
+        $(this).val(mapData.city)
+        break;
+      case 'description':
+        $(this).val(mapData.description)
+        break;
+      case 'cover_img':
+        $(this).val(mapData.cover_img)
+        break;
+    }
+  })
 }
 
 $('#loadMoar').on('click', e => {
