@@ -108,24 +108,24 @@ function renderMapToScreen(mapData) {
 
 
   // Navigated to map page
-  $element.find('content').on('click', e => {
+  $element.on('click','content', e => {
     window.location.assign("/maps/"+mapData.id);
   })
 
   // Show Edit Buttons
-  $element.find('section button').on('click', e => {
+  $element.on('click','section button', e => {
     $element.find('aside').toggle('fast');
   })
 
   // Edit Map Button
-  $element.find('aside .editBtn').on('click', e => {
+  $element.on('click','aside .editBtn', e => {
     updateEditPopup(mapData);
     currentMapElement = $element;
     $popUpContainer.toggleClass('displayFlex');
   })
 
   // Delete Button
-  $element.find('aside .deleteBtn').on('click', e => {
+  $element.on('click','aside .deleteBtn', e => {
     $.ajax({
       method: "DELETE",
       url: `/api/maps/${mapData.id}`,
