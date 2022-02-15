@@ -36,17 +36,25 @@ function renderMaps(howManyToShowPerRender = 10) {
 function renderMapToScreen(mapData) {
   const $element = $(`
     <article>
-    <img alt='cover image for place collection' src='${mapData.cover_img}'/>
-    <content>
-      <header>
-        <h2>${mapData.title}</h2>
-        <h4>${mapData.city}</h4>
-      </header>
-      <p>${mapData.description}</p>
-    </content>
-    <button>Edit</button>
+      <section>
+        <img alt='cover image for place collection' src='${mapData.cover_img}'/>
+        <content>
+          <header>
+            <h2>${mapData.title}</h2>
+            <h4>${mapData.city}</h4>
+          </header>
+          <p>${mapData.description}</p>
+        </content>
+        <button>Edit</button>
+      </section>
+      <aside>
+      </aside>
     </article>
   `);
+
+  $element.find('content').on('click', e => {
+    window.location.assign("/maps/"+mapData.id);
+  })
 
   $element.find('content').on('click', e => {
     window.location.assign("/maps/"+mapData.id);

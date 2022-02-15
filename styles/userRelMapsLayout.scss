@@ -3,7 +3,7 @@ body {
 }
 
 #mapContainer {
-  > article {
+  > article > section {
     margin: 2rem;
     display: flex;
     background-color: grey;
