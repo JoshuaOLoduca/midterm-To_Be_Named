@@ -3,8 +3,53 @@ let currentMapEditId = null;
 let currentMapElement = null;
 
 const $mapContainer = $('#mapContainer');
-const $popUpContainer = $('#pop-up-background');
+const $editMapPopUpContainer = $('#pop-up-background-edit-map');
+const $addMapPopUpContainer = $('#pop-up-background-add-map');
 const $updateMapForm = $('#updateMapForm');
+const $addMapForm = $('#addMapForm');
+const $addMapBtn = $('#addMapBtn');
+
+$addMapBtn.on('click', e => $addMapPopUpContainer.toggleClass('displayFlex'));
+
+
+$addMapPopUpContainer.on('click', e => {
+  if(e.target !== $addMapPopUpContainer[0]) return;
+  currentMapEditId = null;
+  currentMapElement = null;
+  $addMapPopUpContainer.toggleClass('displayFlex');
+})
+
+$editMapPopUpContainer.on('click', e => {
+  if(e.target !== $editMapPopUpContainer[0]) return;
+  currentMapEditId = null;
+  currentMapElement = null;
+  $editMapPopUpContainer.toggleClass('displayFlex');
+})
+
+$addMapForm.submit(function(e) {
+  e.preventDefault();
+  const inputs = $(this).serializeArray();
+  let values = {}
+
+  for (const i in inputs) {
+    const key = inputs[i].name;
+    const value = inputs[i].value;
+    values[key] = value;
+  }
+
+  $.ajax({
+    method: "POST",
+    url: `/create`,
+    data: values
+  })
+  .done(function( content ) {
+    allMaps.unshift(content);
+    renderMaps();
+    $addMapPopUpContainer.toggleClass('displayFlex');
+  });
+
+
+})
 
 $updateMapForm.submit(function(e) {
   e.preventDefault();
@@ -45,13 +90,6 @@ $updateMapForm.submit(function(e) {
   })
 
 
-})
-
-$popUpContainer.on('click', e => {
-  if(e.target !== $popUpContainer[0]) return;
-  currentMapEditId = null;
-  currentMapElement = null;
-  $popUpContainer.toggleClass('displayFlex');
 })
 
 let ajaxUrl = `/api/users/${userId}/maps`;
@@ -121,7 +159,7 @@ function renderMapToScreen(mapData) {
   $element.on('click','aside .editBtn', e => {
     updateEditPopup(mapData);
     currentMapElement = $element;
-    $popUpContainer.toggleClass('displayFlex');
+    $editMapPopUpContainer.toggleClass('displayFlex');
   })
 
   // Delete Button
@@ -140,7 +178,7 @@ function renderMapToScreen(mapData) {
 }
 
 function updateEditPopup(mapData) {
-  const formInputs = $popUpContainer.find('form input')
+  const formInputs = $editMapPopUpContainer.find('form input')
   currentMapEditId = mapData.id;
 
   formInputs.each(function() {

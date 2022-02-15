@@ -21,8 +21,8 @@
 </head>
 
 <body>
-  <div id="pop-up-background" class="pop-up-background">
-    <div id="pop-up">
+  <div id="pop-up-background-edit-map" class="pop-up-background">
+    <div class="pop-up">
       <section>
         <h2>Edit Map Details</h2>
         <form id="updateMapForm" action="">
@@ -49,7 +49,32 @@
       </section>
     </div>
   </div>
-  <button>ADD NEW MAP</button>
+
+  <div id="pop-up-background-add-map" class="pop-up-background">
+    <div class="pop-up">
+      <section>
+        <h2>Add Map</h2>
+        <form id="addMapForm" action="">
+          <label for="title">Title:</label>
+          <input type="text" name="title" id="title">
+
+          <label for="city">City:</label>
+          <input type="text" name="city" id="city">
+
+          <label for="description">Description:</label>
+          <input type="text" name="description" id="description">
+
+          <label for="cover_img">Link to cover photo:</label>
+          <input type="text" name="cover_img" id="cover_img">
+
+          <button type="submit">Add</button>
+        </form>
+      </section>
+    </div>
+  </div>
+
+
+  <button id="addMapBtn">ADD NEW MAP</button>
   <h1>List of My Maps</h1>
   <div id="mapContainer"></div>
 </body>
