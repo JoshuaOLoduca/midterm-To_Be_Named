@@ -34,6 +34,7 @@ $addMapForm.submit(function(e) {
   for (const i in inputs) {
     const key = inputs[i].name;
     const value = inputs[i].value;
+    if (value == '') return;
     values[key] = value;
   }
 
@@ -47,8 +48,6 @@ $addMapForm.submit(function(e) {
     renderMaps();
     $addMapPopUpContainer.toggleClass('displayFlex');
   });
-
-
 })
 
 $updateMapForm.submit(function(e) {
