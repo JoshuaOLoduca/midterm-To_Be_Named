@@ -39,11 +39,11 @@ $addMapForm.submit(function(e) {
 
   $.ajax({
     method: "POST",
-    url: `/create`,
+    url: `/api/maps`,
     data: values
   })
   .done(function( content ) {
-    allMaps.unshift(content);
+    allMaps.push(content);
     renderMaps();
     $addMapPopUpContainer.toggleClass('displayFlex');
   });
@@ -100,7 +100,7 @@ $.ajax({
 })
 .done(function( content ) {
   content.forEach(element => {
-    allMaps.unshift(element);
+    allMaps.push(element);
   });
   renderMaps();
 })
@@ -108,7 +108,7 @@ $.ajax({
 function renderMaps(howManyToShowPerRender = 10) {
   for (let i = 0; i < howManyToShowPerRender; i++) {
     if (!allMaps.length) return;
-    renderMapToScreen(allMaps.pop());
+    renderMapToScreen(allMaps.shift());
   }
 }
 

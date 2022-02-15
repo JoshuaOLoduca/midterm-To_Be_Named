@@ -1,6 +1,6 @@
 module.exports = function(router, db) {
   // POST /maps/create
-  router.post('/create', (req, res) => {
+  router.post('/maps', (req, res) => {
     const queryString = `
     INSERT INTO maps (owner_id, city, title, description, cover_img)
     VALUES ($1, $2, $3, $4, $5)
