@@ -18,7 +18,7 @@ for (const place of places) {
   L.marker([place.latitude, place.longitude]).addTo(map)
 }
 
-function createElementPlaces() {
+function createElementPlaces(places) {
   const $element = $(`
     <article>
     <img alt='cover image for place collection' src='${places.img_url}'/>
@@ -36,7 +36,7 @@ function createElementPlaces() {
 
   return $element
 }
-$('#mapDetails').append(createElementPlaces)
+
 
 
 
@@ -49,7 +49,7 @@ const renderPlaces =(places) => {
   }
 }
 
-
+renderPlaces(places)
 
 
 
