@@ -41,7 +41,6 @@ $addCollaboratorForm.submit(function(e) {
     }
   })
   .done(function( collaborator ) {
-    console.log(collaborator);
     collaboratorsTable().update(collaborator);
   });
 })
@@ -87,7 +86,6 @@ $updateMapForm.submit(function(e) {
     data: values
   })
   .done(function( content ) {
-    console.log(currentMapElement);
     currentMapElement.html(`
       <section>
         <img alt='cover image for place collection' src='${values.cover_img}'/>
@@ -230,7 +228,6 @@ function updateEditPopup(mapData) {
 function collaboratorsTable() {
 
   function update(collaborators) {
-    console.log(collaborators)
 
     for (const collaborator of collaborators) {
       let names = $(`

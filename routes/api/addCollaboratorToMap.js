@@ -30,5 +30,6 @@ module.exports = function(router, db){
 
       helper.tryReturnJson(res, queryString, moarParams)
     })
+    .catch(e => console.log(e))
   });
 }
