@@ -1,6 +1,28 @@
 body {
   flex-direction: column;
 }
+.addPopUp {
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  backdrop-filter: blur(6px);
+
+  height: 100%;
+  width: 100%;
+  z-index: 99900090;
+  align-items: center;
+  justify-content: center;
+}
+
+.poppyUp {
+
+
+  background-color: rgb(219, 219, 219);
+  width: 50%;
+}
+
  #map {
   display: inline-block;
   height: 30rem;
@@ -81,3 +103,5 @@ article {
 img {
   width: 100%;
 }
+
+

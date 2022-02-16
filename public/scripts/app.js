@@ -1,6 +1,9 @@
 // Client facing scripts here
+
+// location for the map in the html
 const $mapDetails = $('#mapDetails');
-var map = L.map('map').setView([45.434895, -73.683872], 13);
+// default setview
+var map = L.map('map').setView([places[0].latitude, places[0].longitude], 13);
 
 
 L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
