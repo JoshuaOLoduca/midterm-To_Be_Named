@@ -30,16 +30,13 @@ function createElementPlaces(places) {
     </content>
     </article>
   `);
-  // $element.on('click', e => {
-  //   window.location.assign("/maps/"+places.id);
-  // })
+
+  $element.on('click', e => {
+    map.flyTo([places.latitude, places.longitude], 15);
+  })
 
   return $element
 }
-
-
-
-
 
 
 const renderPlaces =(places) => {
@@ -50,6 +47,7 @@ const renderPlaces =(places) => {
 }
 
 renderPlaces(places)
+
 
 
 

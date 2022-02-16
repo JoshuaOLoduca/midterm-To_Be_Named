@@ -70,10 +70,14 @@ span {
 
 article {
   display: inline-block;
-  width: 33%;
+  width: 38%;
   flex-shrink: 0;
   border: 1px solid;
   padding: 1rem;
   margin-right: 2rem;
   margin-bottom: 1rem;
+}
+
+img {
+  width: 100%;
 }
