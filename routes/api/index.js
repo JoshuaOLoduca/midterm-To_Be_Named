@@ -8,6 +8,7 @@ const updateMap = require('./updateMap');
 const addPlace = require('./addPlaceToMap');
 const createMap = require('./createMap');
 const getCollaborators = require('./getCollaborators');
+const deleteCollaborator = require('./deleteCollaborator');
 
 module.exports = function (router, db) {
 
@@ -17,6 +18,7 @@ module.exports = function (router, db) {
   updateMap(router, db);
   addPlace(router, db);
   getCollaborators(router, db);
+  deleteCollaborator(router, db);
 
   // POST api/maps/create
   createMap(router, db);

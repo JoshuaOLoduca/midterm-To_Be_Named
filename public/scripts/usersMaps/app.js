@@ -8,6 +8,8 @@ const $addMapPopUpContainer = $('#pop-up-background-add-map');
 const $updateMapForm = $('#updateMapForm');
 const $addMapForm = $('#addMapForm');
 const $addMapBtn = $('#addMapBtn');
+const $collaboratorsTable = $('#collaborators');
+
 
 $addMapBtn.on('click', e => $addMapPopUpContainer.toggleClass('displayFlex'));
 
@@ -178,13 +180,14 @@ function renderMapToScreen(mapData) {
 function updateEditPopup(mapData) {
   const formInputs = $editMapPopUpContainer.find('form input')
   currentMapEditId = mapData.id;
+  collaboratorsTable().reset();
 
   $.ajax({
     method: "get",
     url: `/api/maps/${mapData.id}/collaborators`
   })
   .done(function(result) {
-    console.log(result);
+    collaboratorsTable().update(result);
   });
 
   formInputs.each(function() {
@@ -204,6 +207,56 @@ function updateEditPopup(mapData) {
     }
   })
 }
+
+function collaboratorsTable() {
+
+  function update(collaborators) {
+    console.log(collaborators)
+
+    for (const collaborator of collaborators) {
+      let names = $(`
+      <tr>
+        <td>${collaborator.name}</td>
+        <td>
+        <button>Remove</button>
+        </td>
+      </tr>
+      `);
+
+      names.on('click', 'button', function() {
+        $.ajax({
+          method: "DELETE",
+          url: `/api/maps/${collaborator.map_id}/collaborators`,
+          data: {toRemoveId: collaborator.user_id}
+        })
+        .done(function( content ) {
+          names.remove();
+        })
+      })
+
+      appendElement(names)
+    }
+  }
+
+  function reset() {
+    $collaboratorsTable.empty();
+    $collaboratorsTable.append($(`
+    <tr>
+      <th>Name</th>
+      <th>Edit</th>
+    </tr>`))
+  }
+
+  function appendElement($elm ) {
+    $collaboratorsTable.append($elm )
+  }
+
+  return{reset, update};
+
+}
+
+
+
 
 $('#loadMoar').on('click', e => {
   renderMaps();
