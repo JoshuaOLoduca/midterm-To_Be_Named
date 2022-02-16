@@ -7,7 +7,7 @@ const userMaps = require('./user/maps');
 const updateMap = require('./updateMap');
 const addPlace = require('./addPlaceToMap');
 const postFavourites = require('./user/postFavourites');
-
+const isFavourites = require('./user/isFavourites')
 const createMap = require('./createMap');
 const getCollaborators = require('./getCollaborators');
 const deleteCollaborator = require('./deleteCollaborator');
@@ -25,6 +25,7 @@ module.exports = function (router, db) {
   getCollaborators(router, db);
   deleteCollaborator(router, db);
   addCollaboratorToMap(router, db);
+  isFavourites(router,db);
 
   // POST api/maps/create
   createMap(router, db);
