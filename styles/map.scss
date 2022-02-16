@@ -2,7 +2,7 @@ body {
   flex-direction: column;
 }
 .addPopUp {
-  display: flex;
+  display: none;
   position: absolute;
   top: 0;
   left: 0;
@@ -14,6 +14,10 @@ body {
   z-index: 99900090;
   align-items: center;
   justify-content: center;
+}
+
+.displayFlex {
+ display: flex !important;
 }
 
 .poppyUp {

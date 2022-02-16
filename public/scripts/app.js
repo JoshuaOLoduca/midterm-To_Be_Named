@@ -1,9 +1,10 @@
 // Client facing scripts here
 
 
-
+const $addPopUp = $('.addPopUp');
 const $poppyUp = $('.poppyUp');
 const $popUpForm = $('#popUpForm');
+const $addPlacesBtn = $('#addPlacesBtn');
 
 // location for the map in the html
 const $mapDetails = $('#mapDetails');
@@ -121,4 +122,27 @@ $popUpForm.submit(function(e) {
 
   });
 })
+
+
+
+
+$addPlacesBtn.on('click', e => {
+$addPopUp.toggleClass('displayFlex')
+})
+
+
+
+
+
+
+
+
+// $addMapBtn.on('click', e => $addMapPopUpContainer.toggleClass('displayFlex'));
+
+// $addMapPopUpContainer.on('click', e => {
+//   if(e.target !== $addMapPopUpContainer[0]) return;
+//   currentMapEditId = null;
+//   currentMapElement = null;
+//   $addMapPopUpContainer.toggleClass('displayFlex');
+// })
 

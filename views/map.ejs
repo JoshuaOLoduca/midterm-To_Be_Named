@@ -30,9 +30,9 @@
 </head>
 
 <body>
-  <div class="addPopUp">
+  <div class="addPopUp displayFlex">
     <div class="poppyUp">
-      <form method="POST" action="/maps/:id/place" id="popUpForm">
+      <form method="POST" id="popUpForm">
         <label for="longitude">Longitude:</label><br>
         <input type="number" id="lng" name="longitude" min="-180" max="180" ><br>
         <label for="latitude">Latitude:</label><br>
@@ -59,7 +59,7 @@
       <span>
         <h2>title</h2>
       </span>
-        <button type="submit" class="btn"><i class="fa-solid fa-plus"></i></button>
+        <button type="submit" id="addPlacesBtn" class="btn"><i class="fa-solid fa-plus"></i></button>
 
       <form method="POST" action ="/api/maps/3">
         <button type="submit" class="btn"><i class="fa-solid fa-bookmark"></i></i></button>
