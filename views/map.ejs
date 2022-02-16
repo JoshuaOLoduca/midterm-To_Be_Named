@@ -16,7 +16,8 @@
 
   <script>
     const places = <%- JSON.stringify(places) %>;
-    // const map = <%- JSON.stringify(map) %>;
+    const myMap = <%- JSON.stringify(map) %>;
+
   </script>
   <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
   integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
@@ -31,7 +32,19 @@
 <body>
   <div class="addPopUp">
     <div class="poppyUp">
-      <form>
+      <form method="POST" action="/maps/:id/place" id="popUpForm">
+        <label for="longitude">Longitude:</label><br>
+        <input type="number" id="lng" name="longitude" min="-180" max="180" ><br>
+        <label for="latitude">Latitude:</label><br>
+        <input type="number" id="lat" name="latitude" min="-90" max="90"><br>
+        <label for="title">Title:</label><br>
+        <input type="text" id="title" name="title"><br>
+        <label for="description">Description:</label><br>
+        <input type="text" id="description" name="description"><br>
+        <label for="imgURL">Image URL:</label><br>
+        <input type="url" id="imgURL" name="img_url"><br>
+
+        <button type="submit">Add Place</button>
 
       </form>
     </div>

@@ -1,5 +1,10 @@
 // Client facing scripts here
 
+
+
+const $poppyUp = $('.poppyUp');
+const $popUpForm = $('#popUpForm');
+
 // location for the map in the html
 const $mapDetails = $('#mapDetails');
 // default setview
@@ -92,5 +97,28 @@ map.on('click', onMapClick);
 // map.on('click', onMapClick);
 
 
+// add places to map
+console.log(myMap);
+$popUpForm.submit(function(e) {
+  e.preventDefault();
+  const inputs = $(this).serializeArray();
+  let values = {}
 
+  for (const i in inputs) {
+    const key = inputs[i].name;
+    const value = inputs[i].value;
+    if (value == '') return;
+    values[key] = value;
+  }
+
+  $.ajax({
+    method: "POST",
+    url: `/api/maps/${myMap.id}/place`,
+    data: values
+  })
+  .done(function( content ) {
+    renderPlaces(content);
+
+  });
+})
 

@@ -17,10 +17,21 @@ body {
 }
 
 .poppyUp {
-
-
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30%;
+  height: 40%;
   background-color: rgb(219, 219, 219);
-  width: 50%;
+
+}
+
+form > button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0.5rem auto;
+  padding: 0.3;
 }
 
  #map {
