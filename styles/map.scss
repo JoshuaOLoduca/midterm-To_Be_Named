@@ -43,16 +43,13 @@ body {
   cursor: not-allowed;
 }
 
-  .fav {
-
-  }
-
-
 container {
+  display: flex;
   border: 0.2rem solid;
   padding: 1rem;
   width: 90%;
   margin-bottom: 1.5rem;
+  flex-direction: column;
   }
 
 span {
@@ -60,3 +57,23 @@ span {
   margin-right: auto;
 
   }
+
+.placesDetails {
+  display:flex ;
+  flex-direction: row;
+}
+
+#mapDetails {
+  display: flex;
+  overflow-x: scroll;
+}
+
+article {
+  display: inline-block;
+  width: 33%;
+  flex-shrink: 0;
+  border: 1px solid;
+  padding: 1rem;
+  margin-right: 2rem;
+  margin-bottom: 1rem;
+}
