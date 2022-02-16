@@ -3,23 +3,26 @@ body {
 }
 
 #mapContainer {
+  width: 75%;
   > article {
-    margin: 2rem;
-    display: flex;
-    background-color: grey;
-    > content > header {
-      margin-bottom: 2rem;
-      > h2 {
-        margin-bottom: .4rem;
+    > section {
+      margin: 2rem;
+      display: flex;
+      background-color: grey;
+      > content > header {
+        margin-bottom: 2rem;
+        > h2 {
+          margin-bottom: .4rem;
+        }
+        > h4 {
+          margin-top: .4rem;
+          color: rgb(53, 53, 53);
+        }
       }
-      > h4 {
-        margin-top: .4rem;
-        color: rgb(53, 53, 53);
+      > img {
+        margin: 1rem;
+        max-width: 15rem;
       }
-    }
-    > img {
-      margin: 1rem;
-      max-width: 15rem;
     }
   }
 }

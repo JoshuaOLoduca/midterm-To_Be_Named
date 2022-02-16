@@ -6,6 +6,8 @@ module.exports = function(router, db) {
     let updateQuery = `UPDATE maps SET `;
     const parameters = [];
 
+    if (!req.body) res.status(400).send('No info in body');
+
     for (const key in req.body) {
       parameters.push(req.body[key]);
       updateQuery += `
@@ -14,6 +16,8 @@ module.exports = function(router, db) {
     updateQuery = updateQuery.slice(0, -1);
     parameters.push(req.params.id);
     updateQuery += ` WHERE maps.id = $${parameters.length}`;
+
+    console.log(updateQuery);
 
     helper.tryReturnJson(res, updateQuery, parameters);
   });

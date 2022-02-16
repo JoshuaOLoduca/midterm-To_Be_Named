@@ -3,8 +3,69 @@ h1 {
 }
 #mapContainer {
   > article {
-    > button {
-      margin-left: auto;
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
+    > section {
+      width: 100%;
+      > button {
+        margin-left: auto;
+      }
+    }
+
+    > aside {
+      display: none;
+      flex-direction: column;
+
+      > button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 3rem;
+        margin: 1rem;
+        padding: 2rem;
+      }
+    }
+
+  }
+
+}
+
+.displayFlex {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+.pop-up-background {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  backdrop-filter: blur(6px);
+
+  height: 100%;
+  width: 100%;
+}
+
+.pop-up {
+  background-color: #fff;
+  width: 50%;
+
+
+  form {
+    display: flex;
+    flex-direction: column;
+    font-size: 2rem;
+
+    padding: 1rem 2rem;
+
+    input{
+      &:nth-child(2n) {
+        margin-bottom: 2rem;
+      }
     }
   }
 }
