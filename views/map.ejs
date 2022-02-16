@@ -16,6 +16,7 @@
 
   <script>
     const places = <%- JSON.stringify(places) %>;
+    // const map = <%- JSON.stringify(map) %>;
   </script>
   <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
   integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
@@ -49,13 +50,14 @@
       </form>
     </div>
     <div id="mapDetails">
-      <%= JSON.stringify(places) %>
+      <!-- <%= JSON.stringify(map) %>
+      <%= JSON.stringify(places) %> -->
     </div>
   </container>
   <!-- </div> -->
     <div id='map'></div>
   <article>
-    <!-- <%= JSON.stringify(map) %> -->
+
 
     <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Accusamus magnam voluptatem cupiditate quibusdam inventore laboriosam ullam vitae error ducimus ex laborum corrupti, perferendis reprehenderit soluta obcaecati perspiciatis veritatis earum nemo?</p>
   </article>

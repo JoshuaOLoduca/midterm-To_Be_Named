@@ -1,6 +1,7 @@
 // Client facing scripts here
-
+const $mapDetails = $('#mapDetails');
 var map = L.map('map').setView([45.434895, -73.683872], 13);
+
 
 L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -16,6 +17,45 @@ console.log(places)
 for (const place of places) {
   L.marker([place.latitude, place.longitude]).addTo(map)
 }
+
+function createElementPlaces() {
+  const $element = $(`
+    <article>
+    <img alt='cover image for place collection' src='${places.img_url}'/>
+    <content>
+      <header>
+        <h2>${places.title}</h2>
+      </header>
+      <p>${places.description}</p>
+    </content>
+    </article>
+  `);
+  // $element.on('click', e => {
+  //   window.location.assign("/maps/"+places.id);
+  // })
+
+  return $element
+}
+$('#mapDetails').append(createElementPlaces)
+
+
+
+
+
+const renderPlaces =(places) => {
+  for (const place of places) {
+    const elementPlace = createElementPlaces(place);
+    $('#mapDetails').append(elementPlace)
+  }
+}
+
+
+
+
+
+
+
+
 // var marker = L.marker([45.434895, -73.683872]).addTo(map);
 
 
@@ -53,4 +93,5 @@ function onMapClick(e) {
 }
 
 map.on('click', onMapClick);
+
 
