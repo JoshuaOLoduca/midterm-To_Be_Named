@@ -11,7 +11,6 @@ const $addMapBtn = $('#addMapBtn');
 
 $addMapBtn.on('click', e => $addMapPopUpContainer.toggleClass('displayFlex'));
 
-
 $addMapPopUpContainer.on('click', e => {
   if(e.target !== $addMapPopUpContainer[0]) return;
   currentMapEditId = null;
@@ -179,6 +178,14 @@ function renderMapToScreen(mapData) {
 function updateEditPopup(mapData) {
   const formInputs = $editMapPopUpContainer.find('form input')
   currentMapEditId = mapData.id;
+
+  $.ajax({
+    method: "get",
+    url: `/api/maps/${mapData.id}/collaborators`
+  })
+  .done(function(result) {
+    console.log(result);
+  });
 
   formInputs.each(function() {
     switch(this.id) {

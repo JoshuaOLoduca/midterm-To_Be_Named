@@ -7,6 +7,7 @@ const userMaps = require('./user/maps');
 const updateMap = require('./updateMap');
 const addPlace = require('./addPlaceToMap');
 const createMap = require('./createMap');
+const getCollaborators = require('./getCollaborators');
 
 module.exports = function (router, db) {
 
@@ -15,6 +16,7 @@ module.exports = function (router, db) {
   getMaps(router, db);
   updateMap(router, db);
   addPlace(router, db);
+  getCollaborators(router, db);
 
   // POST api/maps/create
   createMap(router, db);
