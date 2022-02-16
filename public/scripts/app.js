@@ -126,11 +126,12 @@ $popUpForm.submit(function(e) {
 
 
 
-$addPlacesBtn.on('click', e => {
-$addPopUp.toggleClass('displayFlex')
+$addPlacesBtn.on('click', e => $addPopUp.toggleClass('displayFlex'));
+
+$addPopUp.on('click', e => {
+  if(e.target !== $addPopUp[0]) return;
+  $addPopUp.toggleClass('displayFlex')
 })
-
-
 
 
 
