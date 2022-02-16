@@ -9,6 +9,7 @@ const $updateMapForm = $('#updateMapForm');
 const $addMapForm = $('#addMapForm');
 const $addMapBtn = $('#addMapBtn');
 const $collaboratorsTable = $('#collaborators');
+const $addCollaboratorForm = $('#addCollaboratorForm');
 
 
 $addMapBtn.on('click', e => $addMapPopUpContainer.toggleClass('displayFlex'));
@@ -25,6 +26,24 @@ $editMapPopUpContainer.on('click', e => {
   currentMapEditId = null;
   currentMapElement = null;
   $editMapPopUpContainer.toggleClass('displayFlex');
+})
+
+$addCollaboratorForm.submit(function(e) {
+  e.preventDefault();
+  const inputs = $(this).serializeArray();
+
+  $.ajax({
+    method: "POST",
+    url: `/api/maps/${currentMapEditId}/collaborators`,
+    data: {
+      id: inputs[0].value,
+      map_id: currentMapEditId
+    }
+  })
+  .done(function( collaborator ) {
+    console.log(collaborator);
+    collaboratorsTable().update(collaborator);
+  });
 })
 
 $addMapForm.submit(function(e) {
@@ -229,7 +248,7 @@ function collaboratorsTable() {
           url: `/api/maps/${collaborator.map_id}/collaborators`,
           data: {toRemoveId: collaborator.user_id}
         })
-        .done(function( content ) {
+        .done(function() {
           names.remove();
         })
       })
