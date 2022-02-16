@@ -7,7 +7,9 @@ body {
   width: 80%;
   }
 #buttons {
-  display:flex
+  display:flex;
+  justify-content: flex-end;
+  gap: 1rem
 }
 
 .btn {
@@ -26,7 +28,7 @@ body {
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
-  margin: 1rem;
+  padding: 1rem 2rem;
 }
 
 .btn:not(:disabled):hover,

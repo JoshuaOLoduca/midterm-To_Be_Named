@@ -33,7 +33,13 @@
 
   <!-- <div class="mapList"> -->
     <container>
+    <div>
+      <h2>title</h2>
+    </div>
     <div id="buttons">
+      <span>
+        <h2>title</h2>
+      </span>
       <form method="POST">
         <button type="submit" class="btn"><i class="fa-solid fa-plus"></i></button>
       </form>
@@ -44,7 +50,9 @@
         <button type="submit" class="btn"><i class="fa-solid fa-pen-to-square"></i></button>
       </form>
     </div>
-    <%= JSON.stringify(places) %>
+    <div id="mapDetails">
+      <%= JSON.stringify(places) %>
+    </div>
   </container>
   <!-- </div> -->
     <div id='map'></div>
