@@ -234,7 +234,7 @@ function collaboratorsTable() {
       <tr>
         <td>${collaborator.name}</td>
         <td>
-        <button>Remove</button>
+        <button class='deleteBtn'>Remove</button>
         </td>
       </tr>
       `);
