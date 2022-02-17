@@ -1,11 +1,10 @@
 module.exports = function (router, db) {
-  const helper = require('./helpers')(db);
+  const helper = require('../../helpers')(db);
 
   //  render index page
   router.delete('/places/:id', (req, res) => {
-    console.log(req.body);
     const place_id = req.params.id
-    const {user_id} = req.body;
+    const {user_id} = req.session.user_id;
     const deleteString = `
     DELETE
     FROM places p

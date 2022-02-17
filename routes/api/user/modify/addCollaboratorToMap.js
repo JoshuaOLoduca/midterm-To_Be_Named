@@ -1,7 +1,10 @@
 module.exports = function(router, db){
-  const helper = require('./helpers')(db);
+  const helper = require('../../helpers')(db);
 
   router.post('/maps/:id/collaborators', (req, res) => {
+
+    // to be used to verify editing rights
+    const user_id = req.session.user_id;
 
     const insertString = `
     INSERT INTO collaborators (user_id, map_id)

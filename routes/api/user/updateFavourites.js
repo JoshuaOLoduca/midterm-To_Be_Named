@@ -3,7 +3,7 @@ module.exports = function(router, db) {
 
   router.delete('/user/favourites', (req, res) => {
     const map_id = req.body.id;
-    const {user_id} = req.session;
+    const user_id = req.session.user_id;
 
 
     const insertString = `
