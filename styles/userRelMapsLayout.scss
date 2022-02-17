@@ -30,22 +30,23 @@ button {
       &:hover {
         background-color: $colour-dark-blue-gray;
       }
-      
-      margin: 2rem;
+
+      margin: $rem-small;
       display: flex;
       background-color: $colour-dark-blue-gray-tint-4;
       > content > header {
-        margin-bottom: 2rem;
+        margin-bottom: $rem-small;
         > h2 {
-          margin-bottom: .4rem;
+          margin-bottom: $rem-very-x7-small;
         }
         > h4 {
-          margin-top: .4rem;
+          margin-top: $rem-very-x7-small;
           color: rgb(53, 53, 53);
         }
       }
       > img {
-        margin: 1rem;
+        margin: $rem-very-x2-small;
+        border-radius: $rem-very-x4-small;
         max-width: 15rem;
       }
     }
@@ -53,5 +54,5 @@ button {
 }
 
 #loadMoar {
-  padding: 2rem 4rem;
+  padding: $rem-small $rem-large;
 }

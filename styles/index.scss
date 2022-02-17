@@ -10,6 +10,7 @@
   margin-top: $rem-large;
   padding: $rem-very-small;
 
+  border-radius: $rem-very-x7-small;
 
   > h2 {
     margin: 0;
@@ -48,6 +49,8 @@ main {
   overflow-x: scroll;
   padding: 0 $rem-medium;
   > article {
+    border-radius: $rem-very-x7-small;
+
     min-width: 33%;
     padding: $rem-very-small 0;
     margin: $rem-very-small 0;
@@ -74,6 +77,7 @@ main {
 
       img {
         padding: $rem-very-x4-small $rem-very-x7-small;
+        border-radius: $rem-very-x2-small;
       }
 
       content {
