@@ -11,12 +11,17 @@ const $editBtn = $('#editBtn');
 const $editPopUp = $('.editPopUp');
 const $editPoppyUp = $('.editPoppyUp');
 const $editForm = $('#editForm')
-
+let map;
 
 // location for the map in the html
 const $mapDetails = $('#mapDetails');
 // default setview
-var map = L.map('map').setView([places[0].latitude, places[0].longitude], 13);
+if (places.length) {
+  map = L.map('map').setView([places[0].latitude, places[0].longitude], 13);
+} else {
+  map = L.map('map').setView([ 0 ,0 ], 13);
+}
+
 
 
 L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
@@ -58,6 +63,7 @@ function createElementPlaces(places) {
 
   $element.on('click', "img" , e => {
     map.flyTo([places.latitude, places.longitude], 12);
+
   })
 
   return $element
@@ -100,7 +106,7 @@ $popUpForm.submit(function(e) {
     if (value == '') return;
     values[key] = value;
   }
-
+  L.marker([values.latitude, values.longitude]).addTo(map)
   $.ajax({
     method: "POST",
     url: `/api/maps/${myMap.id}/place`,
@@ -112,18 +118,26 @@ $popUpForm.submit(function(e) {
   });
 })
 
+
+$addPlacesBtn.on('click', e => $addPopUp.toggleClass('displayFlex'));
+
+$addPopUp.on('click', e => {
+  if(e.target !== $addPopUp[0]) return;
+  $addPopUp.toggleClass('displayFlex')
+})
+
+
+
 $editForm.submit(function(e) {
   const inputs = $(this).serializeArray();
   let values = {}
   values.place = currentPlaceEditId
-console.log("form:", currentPlaceEditId);
   for (const i in inputs) {
     const key = inputs[i].name;
     const value = inputs[i].value;
-    if (value == '') returnl;
+    if (value == '') return;
     values[key] = value;
   }
-
   $.ajax({
     method: "PATCH",
     url: `/api/maps/${myMap.id}/place`,
@@ -136,12 +150,7 @@ console.log("form:", currentPlaceEditId);
 
 
 // add places button
-$addPlacesBtn.on('click', e => $addPopUp.toggleClass('displayFlex'));
 
-$addPopUp.on('click', e => {
-  if(e.target !== $addPopUp[0]) return;
-  $addPopUp.toggleClass('displayFlex')
-})
 
 // edit button for places
 
