@@ -1,14 +1,39 @@
+@use 'globals' as *;
+
 body {
   flex-direction: column;
 }
 
+h1 {
+  margin-bottom: 0;
+  margin-top: $rem-large;
+}
+
+button {
+  background-color: $colour-mustard;
+  border-radius: $rem-very-x4-small;
+  border: none;
+  border: solid 1px black;
+  transition: all .25s;
+
+  &:hover {
+    background-color: $colour-mustard-shade-4;
+  }
+}
+
 #mapContainer {
-  width: 75%;
+  width: 90%;
   > article {
     > section {
+      border-radius: $rem-very-x4-small;
+      transition: all 0.5s;
+      &:hover {
+        background-color: $colour-dark-blue-gray;
+      }
+      
       margin: 2rem;
       display: flex;
-      background-color: grey;
+      background-color: $colour-dark-blue-gray-tint-4;
       > content > header {
         margin-bottom: 2rem;
         > h2 {
