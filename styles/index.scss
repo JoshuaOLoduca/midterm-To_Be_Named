@@ -50,7 +50,7 @@ main {
   padding: 0 $rem-medium;
   > article {
     min-width: 33%;
-    padding: $rem-very-small;
+    padding: $rem-very-small 0;
     margin: $rem-very-small 0;
     margin-right: $rem-medium;
 
@@ -61,6 +61,36 @@ main {
 
     transition: all 1s;
 
+    h4, h2 {
+      margin: 0;
+    }
+
+    h4 {
+      color: rgb(44, 44, 44);
+    }
+    section {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+
+      img {
+        padding: $rem-very-x4-small $rem-very-x7-small;
+      }
+
+      content {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 0 $rem-very-small;
+
+        p {
+          margin: 0;
+          padding-bottom: $rem-small;
+        }
+      }
+    }
+
     &:hover {
       background-color: $colour-dark-blue-gray-tint-4;
       box-shadow:
@@ -69,7 +99,6 @@ main {
         $rem-small
         $rem-very-x4-small
         rgba(0, 0, 0, 0.178);
-
     }
 
     &:last-child {
@@ -80,9 +109,6 @@ main {
       > img {
         width: 100%;
       }
-    }
-    > h2 {
-      margin: 0;
     }
   }
 }
