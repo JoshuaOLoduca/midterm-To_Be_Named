@@ -1,38 +1,78 @@
-@use 'globals';
+@use 'globals' as *;
 
 #most-liked,
 #most-viewed {
   display: flex;
   align-items: center;
   flex-direction: column;
+
   width: 100%;
   margin-top: $rem-large;
+  padding: $rem-medium 0;
+
+
   > h2 {
     margin-bottom: $rem-very-small;
-    margin-top: $rem-small;
+    margin-top: 0;
   }
+  background-color: $colour-deep-champagne;
 }
 
 body {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  vertical-align: center;
+  > header {
+    background-image: url("../imgs/hero.jpg");
+    background-size: cover;
+    background-position: center;
+    height: 33vh;
+    width: 100%;
+    color: #fff;
+  }
 }
 
 main {
   width: 100%;
+  padding: 0 $rem-medium;
 }
 
 .map-container {
-  width: 80%;
+  width: 90%;
   display: flex;
   overflow-x: scroll;
+  padding: 0 $rem-medium;
   > article {
-    // flex: 0 0 50px;
     min-width: 33%;
-    margin-right: $rem-huge;
+    padding: $rem-very-small;
+    margin: $rem-very-small 0;
+    margin-right: $rem-large;
+
+    background-color: $colour-dark-blue-gray;
+    box-shadow: 0 0 $rem-very-small rgba(0, 0, 0, 0.144);
+
+    word-wrap: break-word;
+
+    transition: all 1s;
+
+    &:hover {
+      background-color: $colour-dark-blue-gray-tint-4;
+      box-shadow:
+        0
+        $rem-very-small
+        $rem-small
+        $rem-very-x4-small
+        rgba(0, 0, 0, 0.178);
+
+    }
+
     &:last-child {
       margin-right: 0;
     }
+
     > section {
       > img {
         width: 100%;
