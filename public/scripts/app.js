@@ -6,6 +6,9 @@ const $poppyUp = $('.poppyUp');
 const $popUpForm = $('#popUpForm');
 const $addPlacesBtn = $('#addPlacesBtn');
 const $bookmarkBtn = $('#bookmarkBtn');
+const $editBtn = $('#editBtn');
+const $editPopUp = $('.editPopUp');
+const $editPoppyUp = ('.editPoppyUp');
 
 // location for the map in the html
 const $mapDetails = $('#mapDetails');
@@ -29,6 +32,22 @@ for (const place of places) {
 
 function createElementPlaces(places) {
   const $element = $(`
+   <div class="editPopUp">
+    <div class="editPoppyUp">
+      <form method="PATCH" id="editForm">
+        <label for="longitude">Longitude:</label><br>
+        <input type="number" id="lng" name="longitude" min="-180" max="180" ><br>
+        <label for="latitude">Latitude:</label><br>
+        <input type="number" id="lat" name="latitude" min="-90" max="90"><br>
+        <label for="title">Title:</label><br>
+        <input type="text" id="title" name="title"><br>
+        <label for="description">Description:</label><br>
+        <input type="text" id="description" name="description"><br>
+        <label for="imgURL">Image URL:</label><br>
+        <input type="url" id="imgURL" name="img_url"><br>
+      </form>
+    </div>
+  </div>
     <article>
     <img alt='cover image for place collection' src='${places.img_url}'/>
     <content>
@@ -37,13 +56,16 @@ function createElementPlaces(places) {
       </header>
       <p>${places.description}</p>
     </content>
+
+      <button type="submit" id="editBtn" class="btn"><i class="fa-solid fa-pen-to-square"></i></button>
+
     </article>
   `);
 
-  $element.on('click', e => {
+
+  $element.on('click', "img" , e => {
     map.flyTo([places.latitude, places.longitude], 12);
   })
-
   return $element
 }
 
@@ -69,34 +91,6 @@ function onMapClick(e) {
 }
 
 map.on('click', onMapClick);
-
-
-
-// var marker = L.marker([45.434895, -73.683872]).addTo(map);
-
-// var circle = L.circle([51.508, -0.11], {
-//   color: 'red',
-//   fillColor: '#f03',
-//   fillOpacity: 0.5,
-//   radius: 500
-// }).addTo(map);
-
-// var polygon = L.polygon([
-//   [51.509, -0.08],
-//   [51.503, -0.06],
-//   [51.51, -0.047]
-// ]).addTo(map);
-
-// marker.bindPopup("<b>Hello world!</b><br>I am a popup.").openPopup();
-// circle.bindPopup("I am a circle.");
-// polygon.bindPopup("I am a polygon.");
-
-
-// function onMapClick(e) {
-//   alert("You clicked the map at " + e.latlng);
-// }
-
-// map.on('click', onMapClick);
 
 
 // add places to map
@@ -126,12 +120,20 @@ $popUpForm.submit(function(e) {
 
 
 
-
+// add places button
 $addPlacesBtn.on('click', e => $addPopUp.toggleClass('displayFlex'));
 
 $addPopUp.on('click', e => {
   if(e.target !== $addPopUp[0]) return;
   $addPopUp.toggleClass('displayFlex')
+})
+
+// edit button for places
+$editBtn.on('click', e => $editPopUp.toggleClass('displayFlex'));
+
+$editPopUp.on('click', e => {
+  if(e.target !== $editPopUp[0]) return;
+  $editPopUp.toggleClass('displayFlex')
 })
 
 

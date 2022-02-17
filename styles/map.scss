@@ -20,6 +20,7 @@ body {
  display: flex !important;
 }
 
+
 .poppyUp {
   display: flex;
   justify-content: center;
@@ -29,6 +30,32 @@ body {
   background-color: rgb(219, 219, 219);
 
 }
+
+.editPopUp {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  backdrop-filter: blur(6px);
+
+  height: 100%;
+  width: 100%;
+  z-index: 999000909;
+  align-items: center;
+  justify-content: center;
+}
+
+.editPoppyUp {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30%;
+  height: 40%;
+  background-color: rgb(219, 219, 219);
+
+}
+
 #titleRow {
   display:flex;
   justify-content: flex-end;
