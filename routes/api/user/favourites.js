@@ -8,7 +8,7 @@ module.exports = function (router, db) {
     const queryString = `
     SELECT m.*
     FROM maps m
-    JOIN user_likes ul ON m.id = ul.map_id
+    JOIN user_favourites ul ON m.id = ul.map_id
     WHERE ul.user_id = $1;
     `;
 

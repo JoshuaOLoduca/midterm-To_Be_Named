@@ -5,6 +5,7 @@ const $addPopUp = $('.addPopUp');
 const $poppyUp = $('.poppyUp');
 const $popUpForm = $('#popUpForm');
 const $addPlacesBtn = $('#addPlacesBtn');
+const $bookmarkBtn = $('#bookmarkBtn');
 
 // location for the map in the html
 const $mapDetails = $('#mapDetails');
@@ -136,14 +137,28 @@ $addPopUp.on('click', e => {
 
 
 
+$.ajax({
+  method: "POST",
+  url: `/api/user/isFavourites`,
+  data: {id: myMap.id},
+})
+.done(function(data) {
+  if(data.length) {
+    $bookmarkBtn.toggleClass('green');
+  }
+  console.log(data);
+})
 
 
-// $addMapBtn.on('click', e => $addMapPopUpContainer.toggleClass('displayFlex'));
-
-// $addMapPopUpContainer.on('click', e => {
-//   if(e.target !== $addMapPopUpContainer[0]) return;
-//   currentMapEditId = null;
-//   currentMapElement = null;
-//   $addMapPopUpContainer.toggleClass('displayFlex');
+// $.ajax({
+//   method: "GET",
+//   url: ajaxUrl
 // })
+// .done(function( content ) {
+//   content.forEach(element => {
+//     allMaps.push(element);
+//   });
+//   renderMaps();
+// })
+
 
