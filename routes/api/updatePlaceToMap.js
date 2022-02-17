@@ -31,7 +31,7 @@ module.exports = function(router, db){
       req.body.description,
       req.body.img_url,
       map_id,
-      req.body.places
+      req.body.place
     ]
 
     console.log('myParams: ', params)

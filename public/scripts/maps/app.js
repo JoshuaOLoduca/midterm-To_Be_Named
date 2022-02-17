@@ -1,5 +1,6 @@
 // Client facing scripts here
 
+let currentPlaceEditId = null;
 
 const $addPopUp = $('.addPopUp');
 const $poppyUp = $('.poppyUp');
@@ -49,7 +50,11 @@ function createElementPlaces(places) {
   </article>
   `);
 
-  $element.on('click','button', e => $editPopUp.toggleClass('displayFlex'));
+  $element.on('click','button', e => {
+    currentPlaceEditId = places.id
+    console.log("places:", currentPlaceEditId);
+    $editPopUp.toggleClass('displayFlex')
+  });
 
   $element.on('click', "img" , e => {
     map.flyTo([places.latitude, places.longitude], 12);
@@ -108,10 +113,10 @@ $popUpForm.submit(function(e) {
 })
 
 $editForm.submit(function(e) {
-  e.preventDefault();
   const inputs = $(this).serializeArray();
   let values = {}
-
+  values.place = currentPlaceEditId
+console.log("form:", currentPlaceEditId);
   for (const i in inputs) {
     const key = inputs[i].name;
     const value = inputs[i].value;
