@@ -155,16 +155,23 @@ $.ajax({
 updateFaveBtn();
 
 $bookmarkBtn.on('click', e => {
-
-  $.ajax({
-    method: "DELETE",
-    url: `/api/user/favourites`,
-    data: {id: myMap.id},
-  })
-  .done(function(data) {
-  updateFaveBtn();
-
-})
-
-
+  if($bookmarkBtn.hasClass('green')) {
+    $.ajax({
+      method: "DELETE",
+      url: `/api/user/favourites`,
+      data: {id: myMap.id},
+    })
+    .done(function(data) {
+      updateFaveBtn();
+    })
+  } else {
+    $.ajax({
+      method: "POST",
+      url:  `/api/user/favourites`,
+      data: {id: myMap.id},
+    })
+    .done(function(data) {
+      updateFaveBtn();
+    })
+  }
 })
