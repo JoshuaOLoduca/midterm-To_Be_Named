@@ -10,4 +10,28 @@ module.exports = function (router, db) {
 
     helper.tryReturnJson(res, queryString)
   });
+
+  router.get('/maps/mostViewed', (req, res) => {
+    const queryString = `
+    SELECT *
+    FROM maps
+    WHERE public = true
+    ORDER BY views DESC;
+    `;
+
+    helper.tryReturnJson(res, queryString)
+  });
+
+  router.get('/maps/mostLiked', (req, res) => {
+    const queryString = `
+    SELECT m.*
+    FROM maps m
+    JOIN user_favourites uf ON uf.map_id = m.id
+    WHERE public = true
+    GROUP BY m.id
+    ORDER BY COUNT(uf) DESC;
+    `;
+
+    helper.tryReturnJson(res, queryString)
+  });
 }
