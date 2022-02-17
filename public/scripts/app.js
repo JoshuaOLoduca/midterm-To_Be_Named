@@ -8,7 +8,9 @@ const $addPlacesBtn = $('#addPlacesBtn');
 const $bookmarkBtn = $('#bookmarkBtn');
 const $editBtn = $('#editBtn');
 const $editPopUp = $('.editPopUp');
-const $editPoppyUp = ('.editPoppyUp');
+const $editPoppyUp = $('.editPoppyUp');
+const $editForm = $('#editForm')
+
 
 // location for the map in the html
 const $mapDetails = $('#mapDetails');
@@ -32,40 +34,27 @@ for (const place of places) {
 
 function createElementPlaces(places) {
   const $element = $(`
-   <div class="editPopUp">
-    <div class="editPoppyUp">
-      <form method="PATCH" id="editForm">
-        <label for="longitude">Longitude:</label><br>
-        <input type="number" id="lng" name="longitude" min="-180" max="180" ><br>
-        <label for="latitude">Latitude:</label><br>
-        <input type="number" id="lat" name="latitude" min="-90" max="90"><br>
-        <label for="title">Title:</label><br>
-        <input type="text" id="title" name="title"><br>
-        <label for="description">Description:</label><br>
-        <input type="text" id="description" name="description"><br>
-        <label for="imgURL">Image URL:</label><br>
-        <input type="url" id="imgURL" name="img_url"><br>
-      </form>
-    </div>
-  </div>
-    <article>
-    <img alt='cover image for place collection' src='${places.img_url}'/>
-    <content>
-      <header>
-        <h2>${places.title}</h2>
-      </header>
-      <p>${places.description}</p>
-    </content>
 
-      <button type="submit" id="editBtn" class="btn"><i class="fa-solid fa-pen-to-square"></i></button>
+  <article>
+  <img alt='cover image for place collection' src='${places.img_url}'/>
+  <content>
+  <header>
+  <h2>${places.title}</h2>
+  </header>
+  <p>${places.description}</p>
+  </content>
 
-    </article>
+  <button type="submit" class="btn"><i class="fa-solid fa-pen-to-square"></i></button>
+
+  </article>
   `);
 
+  $element.on('click','button', e => $editPopUp.toggleClass('displayFlex'));
 
   $element.on('click', "img" , e => {
     map.flyTo([places.latitude, places.longitude], 12);
   })
+
   return $element
 }
 
@@ -118,6 +107,28 @@ $popUpForm.submit(function(e) {
   });
 })
 
+$editForm.submit(function(e) {
+  e.preventDefault();
+  const inputs = $(this).serializeArray();
+  let values = {}
+
+  for (const i in inputs) {
+    const key = inputs[i].name;
+    const value = inputs[i].value;
+    if (value == '') returnl;
+    values[key] = value;
+  }
+
+  $.ajax({
+    method: "PATCH",
+    url: `/api/maps/${myMap.id}/place`,
+    data: values
+  })
+  .done(function( content ) {
+    console.log('what this?: ', content)
+    renderPlaces(content)
+  })
+})
 
 
 // add places button
@@ -129,7 +140,6 @@ $addPopUp.on('click', e => {
 })
 
 // edit button for places
-$editBtn.on('click', e => $editPopUp.toggleClass('displayFlex'));
 
 $editPopUp.on('click', e => {
   if(e.target !== $editPopUp[0]) return;
