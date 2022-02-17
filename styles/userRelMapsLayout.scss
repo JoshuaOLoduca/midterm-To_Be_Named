@@ -24,6 +24,7 @@ button {
 #mapContainer {
   width: 90%;
   > article {
+    margin: $rem-small;
     > section {
       border-radius: $rem-very-x4-small;
       transition: all 0.5s;
@@ -31,7 +32,6 @@ button {
         background-color: $colour-dark-blue-gray;
       }
 
-      margin: $rem-small;
       display: flex;
       background-color: $colour-dark-blue-gray-tint-4;
       > content > header {
