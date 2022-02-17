@@ -25,7 +25,14 @@ main {
   display: flex;
   overflow-x: scroll;
   > article {
-    margin: 0 3.6rem;
+    // flex: 0 0 50px;
+    min-width: 33%;
+    margin: 0 2.8rem;
+    > section {
+      > img {
+        width: 100%;
+      }
+    }
     > h2 {
       margin: 0;
     }
