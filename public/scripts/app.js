@@ -1,6 +1,6 @@
 // Client facing scripts here
 
-let currentPlaceEditId = null;
+
 const $addPopUp = $('.addPopUp');
 const $poppyUp = $('.poppyUp');
 const $popUpForm = $('#popUpForm');
@@ -49,24 +49,14 @@ function createElementPlaces(places) {
   </article>
   `);
 
-
-
-  $element.on('click','button', e => {
-    currentPlaceEditId = places.id
-    $editPopUp.toggleClass('displayFlex')
-  });
+  $element.on('click','button', e => $editPopUp.toggleClass('displayFlex'));
 
   $element.on('click', "img" , e => {
-    console.log(places)
     map.flyTo([places.latitude, places.longitude], 12);
   })
 
   return $element
 }
-
-
-console.log(currentPlaceEditId)
-
 
 
 const renderPlaces =(places) => {
@@ -93,6 +83,7 @@ map.on('click', onMapClick);
 
 
 // add places to map
+console.log(myMap);
 $popUpForm.submit(function(e) {
   e.preventDefault();
   const inputs = $(this).serializeArray();
@@ -116,6 +107,28 @@ $popUpForm.submit(function(e) {
   });
 })
 
+$editForm.submit(function(e) {
+  e.preventDefault();
+  const inputs = $(this).serializeArray();
+  let values = {}
+
+  for (const i in inputs) {
+    const key = inputs[i].name;
+    const value = inputs[i].value;
+    if (value == '') returnl;
+    values[key] = value;
+  }
+
+  $.ajax({
+    method: "PATCH",
+    url: `/api/maps/${myMap.id}/place`,
+    data: values
+  })
+  .done(function( content ) {
+    console.log('what this?: ', content)
+    renderPlaces(content)
+  })
+})
 
 
 // add places button
@@ -173,26 +186,4 @@ $bookmarkBtn.on('click', e => {
       updateFaveBtn();
     })
   }
-})
-
-$editForm.submit(function(e) {
-
-  const inputs = $(this).serializeArray();
-  let values = {}
-  values.places = currentPlaceEditId
-  for (const i in inputs) {
-    const key = inputs[i].name;
-    const value = inputs[i].value;
-    if (value == '') return;
-    values[key] = value;
-  }
-
-  $.ajax({
-    method: "PATCH",
-    url: `/api/maps/${myMap.id}/place`,
-    data: values
-  })
-  .done(function( content ) {
-    renderPlaces(content)
-  })
 })
