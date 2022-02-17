@@ -1,3 +1,6 @@
+@use 'globals' as *;
+
+
 body {
   flex-direction: column;
 }
@@ -79,8 +82,8 @@ body {
 
  #map {
   display: inline-block;
-  height: 30rem;
-  width: 80%;
+  height: 50rem;
+  width: 90%;
   }
 
 
@@ -120,6 +123,7 @@ body {
 }
 
 container {
+
   display: flex;
   border: 0.2rem solid;
   padding: 1rem;
@@ -145,17 +149,20 @@ span {
 }
 
 article {
-  display: inline-block;
-  width: 38%;
-  flex-shrink: 0;
-  border: 1px solid;
-  padding: 1rem;
-  margin-right: 2rem;
-  margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    width: 38%;
+    flex-shrink: 0;
+    border: 1px solid;
+    padding: 1rem;
+    margin-right: 2rem;
+    margin-bottom: 1rem;
+    align-items: center;
+    background-color: $colour-midnight-green-eagle-tint-4;
 }
 
 img {
-  width: 100%;
+  width: 50%;
 }
 
 

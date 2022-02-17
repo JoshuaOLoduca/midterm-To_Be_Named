@@ -1,20 +1,26 @@
 @use 'globals' as *;
 
+
+
 nav {
+  border: $rem-very-x7-small solid $colour-midnight-green-eagle ;
   display:flex;
   align-items: center;
   flex-direction: row;
-  padding: 1rem;
+  padding: 2rem;
   width: 100%;
   height: 8rem;
   display: flex;
   justify-content: flex-end;
-  background-color: $colour-midnight-green-eagle-tint-4;
+  background-color: #24737F;
   position: sticky;
   top: 0;
+
 }
 
-span{
+nav > span{
+
+  font-family: 'Anton', sans-serif;
   margin-right: auto;
   font-size: $rem-medium;
 }
