@@ -22,7 +22,7 @@
   <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
   integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
   crossorigin="" defer></script>
-  <script type="text/javascript" src="/scripts/app.js" defer></script>
+  <script type="text/javascript" src="/scripts/maps/app.js" defer></script>
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
 
 
@@ -68,8 +68,8 @@
     </div>
   </div>
 
-  <nav>
-  </nav>
+    <%- include('partials/_header', {userId}) %>
+
 
   <!-- <div class="mapList"> -->
     <container>

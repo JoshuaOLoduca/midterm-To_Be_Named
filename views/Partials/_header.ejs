@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="/styles/nav.css" type="text/css"/>
+    <link rel="stylesheet" href="/styles/main.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+     <script type="text/javascript" src="/scripts/nav/app.js" defer></script>
+    
+</head>
+<header class="nav">
+
+
+    <span>Wiki-Maps</span>
+
+  <div>
+    <% if (userId) { %>
+      <button type="submit" id="favBtn" class="btn"><i class="fa-solid fa-star"></i></button>
+      <button type="submit" class="btn" id="logout">Logout</button>
+
+  <%  } else { %>
+    <button type="submit" id="login" class="btn">Login</button>
+    <button type="submit" class="btn">Signup</button>
+ <% } %>
+</div>
+</header>
+</html>

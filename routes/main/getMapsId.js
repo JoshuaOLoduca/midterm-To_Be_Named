@@ -26,7 +26,8 @@ module.exports = function (router, db) {
           if (!mapDetails) throw new Error('uhoh');
 
           updateMapViews(id);
-          res.render('map', {map: mapDetails, places: moarResult});
+          res.render('map', {map: mapDetails, places: moarResult, userId: req.session.user_id});
+
         })
       })
       .catch((err) => { if (err) {
