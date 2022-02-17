@@ -6,7 +6,6 @@ module.exports = function (router, db) {
     const user_id = req.session.user_id
     const map_id = req.body.id
 
-
     const queryString = `
     SELECT *
     FROM user_favourites

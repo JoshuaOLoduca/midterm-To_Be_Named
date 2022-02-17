@@ -60,7 +60,7 @@ function renderMapToScreen(mapData) {
     </article>
   `);
 
-  $element.on('click', e => {
+  $element.on('click', 'section', e => {
     window.location.assign("/maps/"+mapData.id);
   })
 

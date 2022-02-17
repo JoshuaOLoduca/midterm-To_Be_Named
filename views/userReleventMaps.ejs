@@ -4,15 +4,8 @@
 <head>
   <title>Home Page</title>
 
-  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
-  <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
-  <link rel="stylesheet" href="/styles/main.css" type="text/css" />
-  <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
-  <link rel="stylesheet" href="/styles/maps.css" type="text/css"/>
-  <link rel="stylesheet" href="/styles/nav.css" type="text/css"/>
+  <%- include('partials/_stylesAndScripts') %>
   <link rel="stylesheet" href="/styles/userRelMapsLayout.css" type="text/css"/>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
 
   <% if (renderType === 'allMaps') { %>
     <link rel="stylesheet" href="/styles/allMaps.css" type="text/css"/>
@@ -31,8 +24,6 @@
     const userId = '<%= userId %>';
   </script>
 
-
-  <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
   <script type="text/javascript" src="/scripts/userRelMaps/app.js" defer></script>
 </head>
 
@@ -44,7 +35,7 @@
     <% } %>
 
     <% if (renderType === 'favourites') { %>
-      favourites
+      My Favourites
     <% } %>
 
     <% if (renderType === 'collaborator') { %>

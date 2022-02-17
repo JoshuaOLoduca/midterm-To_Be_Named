@@ -1,9 +1,9 @@
 module.exports = function (router, db) {
-  const helper = require('./helpers')(db);
+  const helper = require('../../helpers')(db);
 
   //  render index page
   router.delete('/maps/:id', (req, res) => {
-    const {owner_id} = req.body;
+    const {owner_id} = req.session.user_id;
     const mapId = req.params.id
     const deleteString = `
     DELETE

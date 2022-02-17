@@ -1,10 +1,12 @@
 module.exports = function (router, db) {
-  const helper = require('./helpers')(db);
+  const helper = require('../../helpers')(db);
 
   router.delete('/maps/:id/collaborators', (req, res) => {
     // const userId = req.session.user_id;
     const userToRemove = req.body.toRemoveId;
     const mapId = req.params.id;
+    // to be used to verify editing rights
+    const owner_id = req.session.user_id;
 
     const queryString = `
     DELETE

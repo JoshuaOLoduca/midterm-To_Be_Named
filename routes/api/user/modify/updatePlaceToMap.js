@@ -1,7 +1,9 @@
 module.exports = function(router, db){
-  const helper = require('./helpers')(db);
+  const helper = require('../../helpers')(db);
 
   router.post('/maps/:id/place', (req, res) => {
+    // to be used to verify editing rights
+    const user_id = req.session.user_id;
     const queryString = `
     INSERT INTO places (longitude, latitude, title, description, img_url, map_id)
     VALUES ($1, $2, $3, $4, $5, $6)

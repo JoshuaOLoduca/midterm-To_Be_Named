@@ -11,116 +11,116 @@ const $addMapBtn = $('#addMapBtn');
 const $collaboratorsTable = $('#collaborators');
 const $addCollaboratorForm = $('#addCollaboratorForm');
 
+// Execute Functions
+registerOnEvents();
+registerFormHandling()
+updatePage();
 
-$addMapBtn.on('click', e => $addMapPopUpContainer.toggleClass('displayFlex'));
-
-$addMapPopUpContainer.on('click', e => {
-  if(e.target !== $addMapPopUpContainer[0]) return;
-  currentMapEditId = null;
-  currentMapElement = null;
-  $addMapPopUpContainer.toggleClass('displayFlex');
-})
-
-$editMapPopUpContainer.on('click', e => {
-  if(e.target !== $editMapPopUpContainer[0]) return;
-  currentMapEditId = null;
-  currentMapElement = null;
-  $editMapPopUpContainer.toggleClass('displayFlex');
-})
-
-$addCollaboratorForm.submit(function(e) {
-  e.preventDefault();
-  const inputs = $(this).serializeArray();
-
-  $.ajax({
-    method: "POST",
-    url: `/api/maps/${currentMapEditId}/collaborators`,
-    data: {
-      id: inputs[0].value,
-      map_id: currentMapEditId
-    }
-  })
-  .done(function( collaborator ) {
-    collaboratorsTable().update(collaborator);
-  });
-})
-
-$addMapForm.submit(function(e) {
-  e.preventDefault();
-  const inputs = $(this).serializeArray();
-  let values = {}
-
-  for (const i in inputs) {
-    const key = inputs[i].name;
-    const value = inputs[i].value;
-    if (value == '') return;
-    values[key] = value;
-  }
-
-  $.ajax({
-    method: "POST",
-    url: `/api/maps`,
-    data: values
-  })
-  .done(function( content ) {
-    allMaps.push(content);
+function registerOnEvents() {
+// ///////////////
+// On Button Clicks
+// ///////////////
+  $('#loadMoar').on('click', e => {
     renderMaps();
+  })
+  $addMapBtn.on('click', e => $addMapPopUpContainer.toggleClass('displayFlex'));
+  $addMapPopUpContainer.on('click', e => {
+    if(e.target !== $addMapPopUpContainer[0]) return;
+    currentMapEditId = null;
+    currentMapElement = null;
     $addMapPopUpContainer.toggleClass('displayFlex');
-  });
-})
+  })
 
-$updateMapForm.submit(function(e) {
-  e.preventDefault();
-  const inputs = $(this).serializeArray();
-  let values = {}
+  $editMapPopUpContainer.on('click', e => {
+    if(e.target !== $editMapPopUpContainer[0]) return;
+    currentMapEditId = null;
+    currentMapElement = null;
+    $editMapPopUpContainer.toggleClass('displayFlex');
+  })
+}
 
-  for (const i in inputs) {
-    const key = inputs[i].name;
-    const value = inputs[i].value;
-    values[key] = value;
-  }
+function registerFormHandling() {
+  // ///////////////
+  // Form Submits
+  // ///////////////
+  $addCollaboratorForm.submit(function(e) {
+    e.preventDefault();
+    const inputs = $(this).serializeArray();
+
+    $.ajax({
+      method: "POST",
+      url: `/api/maps/${currentMapEditId}/collaborators`,
+      data: {
+        id: inputs[0].value,
+        map_id: currentMapEditId
+      }
+    })
+    .done(function( collaborator ) {
+      collaboratorsTable().update(collaborator);
+    });
+  })
+
+  $addMapForm.submit(function(e) {
+    e.preventDefault();
+    const inputs = $(this).serializeArray();
+    let values = {}
+
+    for (const i in inputs) {
+      const key = inputs[i].name;
+      const value = inputs[i].value;
+      if (value == '') return;
+      values[key] = value;
+    }
+
+    $.ajax({
+      method: "POST",
+      url: `/api/maps`,
+      data: values
+    })
+    .done(function( content ) {
+      allMaps.push(content);
+      renderMaps();
+      $addMapPopUpContainer.toggleClass('displayFlex');
+    });
+  })
+
+  $updateMapForm.submit(function(e) {
+    e.preventDefault();
+    const inputs = $(this).serializeArray();
+    let values = {}
+
+    for (const i in inputs) {
+      const key = inputs[i].name;
+      const value = inputs[i].value;
+      values[key] = value;
+    }
+
+    $.ajax({
+      method: "PATCH",
+      url: `/api/maps/${currentMapEditId}`,
+      data: values
+    })
+    .done(function( content ) {
+      currentMapElement.html(makeElement(values));
+    })
+  })
+}
+
+
+function updatePage() {
+  let ajaxUrl = `/api/users/${userId}/maps`;
 
   $.ajax({
-    method: "PATCH",
-    url: `/api/maps/${currentMapEditId}`,
-    data: values
+    method: "GET",
+    url: ajaxUrl
   })
   .done(function( content ) {
-    currentMapElement.html(`
-      <section>
-        <img alt='cover image for place collection' src='${values.cover_img}'/>
-        <content>
-          <header>
-            <h2>${values.title}</h2>
-            <h4>${values.city}</h4>
-          </header>
-          <p>${values.description}</p>
-        </content>
-        <button>Edit</button>
-      </section>
-
-      <aside>
-        <button class="editBtn">Edit</button>
-        <button class="deleteBtn">Delete</button>
-      </aside>
-  `);
+    content.forEach(element => {
+      allMaps.push(element);
+    });
+    renderMaps();
   })
-
-
-})
-
-let ajaxUrl = `/api/users/${userId}/maps`;
-
-$.ajax({
-  method: "GET",
-  url: ajaxUrl
-})
-.done(function( content ) {
-  content.forEach(element => {
-    allMaps.push(element);
-  });
-  renderMaps();
-})
+}
 
 function renderMaps(howManyToShowPerRender = 10) {
   for (let i = 0; i < howManyToShowPerRender; i++) {
@@ -138,37 +138,37 @@ function renderMaps(howManyToShowPerRender = 10) {
 // owner_id:
 // public:
 
+function makeElement(mapData) {
+  return `
+  <section>
+    <img alt='cover image for place collection' src='${mapData.cover_img}'/>
+    <content>
+      <header>
+        <h2>${mapData.title}</h2>
+        <h4>${mapData.city}</h4>
+      </header>
+      <p>${mapData.description}</p>
+    </content>
+  </section>
+  <button>Edit</button>
+
+  <aside>
+    <button class="editBtn">Edit</button>
+    <button class="deleteBtn">Delete</button>
+  </aside>
+`;
+}
+
 function renderMapToScreen(mapData) {
-  const $element = $(`
-    <article>
-      <section>
-        <img alt='cover image for place collection' src='${mapData.cover_img}'/>
-        <content>
-          <header>
-            <h2>${mapData.title}</h2>
-            <h4>${mapData.city}</h4>
-          </header>
-          <p>${mapData.description}</p>
-        </content>
-        <button>Edit</button>
-      </section>
-
-      <aside>
-        <button class="editBtn">Edit</button>
-        <button class="deleteBtn">Delete</button>
-      </aside>
-
-    </article>
-  `);
-
+  const $element = $(`<article>${makeElement(mapData)}</article>`);
 
   // Navigated to map page
-  $element.on('click','content', e => {
+  $element.on('click','section', e => {
     window.location.assign("/maps/"+mapData.id);
   })
 
   // Show Edit Buttons
-  $element.on('click','section button', e => {
+  $element.on('click','> button', e => {
     $element.find('aside').toggle('fast');
   })
 
@@ -225,6 +225,10 @@ function updateEditPopup(mapData) {
   })
 }
 
+
+// ///////////////
+// Table 'Object' manager
+// ///////////////
 function collaboratorsTable() {
 
   function update(collaborators) {
@@ -270,10 +274,3 @@ function collaboratorsTable() {
   return{reset, update};
 
 }
-
-
-
-
-$('#loadMoar').on('click', e => {
-  renderMaps();
-})
