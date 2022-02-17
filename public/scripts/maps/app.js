@@ -125,7 +125,6 @@ $editForm.submit(function(e) {
     data: values
   })
   .done(function( content ) {
-    console.log('what this?: ', content)
     renderPlaces(content)
   })
 })
