@@ -6,10 +6,10 @@
   align-items: center;
   flex-direction: column;
   width: 100%;
-  margin-top: 3.6rem;
+  margin-top: $rem-large;
   > h2 {
-    margin-bottom: 1rem;
-    margin-top: 2rem;
+    margin-bottom: $rem-very-small;
+    margin-top: $rem-small;
   }
 }
 
@@ -29,7 +29,7 @@ main {
   > article {
     // flex: 0 0 50px;
     min-width: 33%;
-    margin-right: 5.6rem;
+    margin-right: $rem-huge;
     &:last-child {
       margin-right: 0;
     }
