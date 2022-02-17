@@ -136,7 +136,7 @@ $addPopUp.on('click', e => {
 
 
 
-
+function updateFaveBtn(){
 $.ajax({
   method: "POST",
   url: `/api/user/isFavourites`,
@@ -144,21 +144,27 @@ $.ajax({
 })
 .done(function(data) {
   if(data.length) {
-    $bookmarkBtn.toggleClass('green');
+    $bookmarkBtn.addClass('green');
+  } else {
+    $bookmarkBtn.removeClass('green');
   }
-  console.log(data);
+})
+}
+
+// execute function
+updateFaveBtn();
+
+$bookmarkBtn.on('click', e => {
+
+  $.ajax({
+    method: "DELETE",
+    url: `/api/user/favourites`,
+    data: {id: myMap.id},
+  })
+  .done(function(data) {
+  updateFaveBtn();
+
 })
 
 
-// $.ajax({
-//   method: "GET",
-//   url: ajaxUrl
-// })
-// .done(function( content ) {
-//   content.forEach(element => {
-//     allMaps.push(element);
-//   });
-//   renderMaps();
-// })
-
-
+})
