@@ -15,7 +15,7 @@ function loadMostLiked() {
   })
   .done(function(data) {
     data.forEach(element => mostLikedMaps.push(element));
-    renderMaps($mostLikedDiv, mostLikedMaps, mapData => `<h2>Likes: ${mapData.likes}<h2>`);
+    renderMaps($mostLikedDiv, mostLikedMaps, mapData => `<h2>Likes: ${mapData.likes}</h2>`);
   });
 }
 
@@ -26,7 +26,7 @@ function loadMostViewed() {
   })
   .done(function(data) {
     data.forEach(element => mostViewedMaps.push(element));
-    renderMaps($mostViewedDiv, mostViewedMaps, mapData => `<h2>Views: ${mapData.views}<h2>`);
+    renderMaps($mostViewedDiv, mostViewedMaps, mapData => `<h2>Views: ${mapData.views}</h2>`);
   });
 }
 
