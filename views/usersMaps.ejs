@@ -8,8 +8,11 @@
   <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
   <link rel="stylesheet" href="/styles/main.css" type="text/css" />
   <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/nav.css" type="text/css" />
   <link rel="stylesheet" href="/styles/userRelMapsLayout.css" type="text/css"/>
   <link rel="stylesheet" href="/styles/usersMaps.css" type="text/css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 
 
   <script>
@@ -21,6 +24,8 @@
 </head>
 
 <body>
+  <%- include('partials/_header', {userId}) %>
+
   <div id="pop-up-background-edit-map" class="pop-up-background">
     <div class="pop-up">
       <section>
