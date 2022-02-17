@@ -4,6 +4,17 @@
   align-items: center;
   flex-direction: column;
   width: 100%;
+  > h2 {
+    margin-bottom: .8rem;
+  }
+}
+
+#most-viewed {
+  margin-top: 3.6rem;
+}
+
+h2 {
+  margin: 0;
 }
 
 body {
@@ -19,4 +30,13 @@ main {
   width: 80%;
   display: flex;
   overflow-x: scroll;
+
+  article {
+    width: 33%;
+    margin-right: 7.2rem;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
 }
