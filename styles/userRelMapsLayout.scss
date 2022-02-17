@@ -1,26 +1,52 @@
+@use 'globals' as *;
+
 body {
   flex-direction: column;
 }
 
+h1 {
+  margin-bottom: 0;
+  margin-top: $rem-large;
+}
+
+button {
+  background-color: $colour-mustard;
+  border-radius: $rem-very-x4-small;
+  border: none;
+  border: solid 1px black;
+  transition: all .25s;
+
+  &:hover {
+    background-color: $colour-mustard-shade-4;
+  }
+}
+
 #mapContainer {
-  width: 75%;
+  width: 90%;
   > article {
+    margin: $rem-small;
     > section {
-      margin: 2rem;
+      border-radius: $rem-very-x4-small;
+      transition: all 0.5s;
+      &:hover {
+        background-color: $colour-dark-blue-gray;
+      }
+
       display: flex;
-      background-color: grey;
+      background-color: $colour-dark-blue-gray-tint-4;
       > content > header {
-        margin-bottom: 2rem;
+        margin-bottom: $rem-small;
         > h2 {
-          margin-bottom: .4rem;
+          margin-bottom: $rem-very-x7-small;
         }
         > h4 {
-          margin-top: .4rem;
+          margin-top: $rem-very-x7-small;
           color: rgb(53, 53, 53);
         }
       }
       > img {
-        margin: 1rem;
+        margin: $rem-very-x2-small;
+        border-radius: $rem-very-x4-small;
         max-width: 15rem;
       }
     }
@@ -28,5 +54,5 @@ body {
 }
 
 #loadMoar {
-  padding: 2rem 4rem;
+  padding: $rem-small $rem-large;
 }

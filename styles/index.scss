@@ -1,43 +1,117 @@
+@use 'globals' as *;
+
 #most-liked,
 #most-viewed {
   display: flex;
   align-items: center;
   flex-direction: column;
+
   width: 100%;
-  margin-top: 3.6rem;
+  margin-top: $rem-large;
+  padding: $rem-very-small;
+
+  border-radius: $rem-very-x7-small;
+
   > h2 {
-    margin-bottom: 1rem;
-    margin-top: 2rem;
+    margin: 0;
   }
+  background-color: $colour-deep-champagne;
 }
 
 body {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  vertical-align: center;
+  > header {
+    background-image: linear-gradient(
+      rgba(34, 34, 34, 0.4),
+      rgba(34, 34, 34, 0.3)
+    ), url("../imgs/hero.jpg");
+    background-size: cover;
+    background-position: center;
+    height: 33vh;
+    width: 100%;
+    color: #fff;
+  }
 }
 
 main {
   width: 100%;
+  padding: 0 $rem-medium;
 }
 
 .map-container {
-  width: 80%;
+  width: 100%;
   display: flex;
   overflow-x: scroll;
+  padding: 0 $rem-medium;
   > article {
-    // flex: 0 0 50px;
+    border-radius: $rem-very-x7-small;
+
     min-width: 33%;
-    margin-right: 5.6rem;
+    padding: $rem-very-small 0;
+    margin: $rem-very-small 0;
+    margin-right: $rem-medium;
+
+    background-color: $colour-midnight-green-eagle-tint-4;
+    box-shadow: 0 0 $rem-very-small rgba(0, 0, 0, 0.144);
+
+    word-wrap: break-word;
+
+    transition: all .5s;
+
+    h4, h2 {
+      margin: 0;
+    }
+
+    h4 {
+      color: rgb(44, 44, 44);
+    }
+    section {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+
+      img {
+        padding: $rem-very-x4-small $rem-very-x7-small;
+        border-radius: $rem-very-x2-small;
+      }
+
+      content {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 0 $rem-very-small;
+
+        p {
+          margin: 0;
+          padding-bottom: $rem-small;
+        }
+      }
+    }
+
+    &:hover {
+      background-color: $colour-dark-blue-gray-tint-4;
+      box-shadow:
+        0
+        $rem-very-small
+        $rem-small
+        $rem-very-x4-small
+        rgba(0, 0, 0, 0.178);
+    }
+
     &:last-child {
       margin-right: 0;
     }
+
     > section {
       > img {
         width: 100%;
       }
-    }
-    > h2 {
-      margin: 0;
     }
   }
 }
