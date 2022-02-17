@@ -8,7 +8,7 @@
 
   width: 100%;
   margin-top: $rem-large;
-  padding: $rem-medium 0;
+  padding: $rem-very-small;
 
 
   > h2 {
@@ -26,7 +26,10 @@ body {
   text-align: center;
   vertical-align: center;
   > header {
-    background-image: url("../imgs/hero.jpg");
+    background-image: linear-gradient(
+      rgba(34, 34, 34, 0.4),
+      rgba(34, 34, 34, 0.3)
+    ), url("../imgs/hero.jpg");
     background-size: cover;
     background-position: center;
     height: 33vh;
@@ -41,7 +44,7 @@ main {
 }
 
 .map-container {
-  width: 90%;
+  width: 100%;
   display: flex;
   overflow-x: scroll;
   padding: 0 $rem-medium;
@@ -49,9 +52,9 @@ main {
     min-width: 33%;
     padding: $rem-very-small;
     margin: $rem-very-small 0;
-    margin-right: $rem-large;
+    margin-right: $rem-medium;
 
-    background-color: $colour-dark-blue-gray;
+    background-color: $colour-midnight-green-eagle-tint-4;
     box-shadow: 0 0 $rem-very-small rgba(0, 0, 0, 0.144);
 
     word-wrap: break-word;
