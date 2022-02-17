@@ -27,7 +27,10 @@ main {
   > article {
     // flex: 0 0 50px;
     min-width: 33%;
-    margin: 0 2.8rem;
+    margin-right: 5.6rem;
+    &:last-child {
+      margin-right: 0;
+    }
     > section {
       > img {
         width: 100%;

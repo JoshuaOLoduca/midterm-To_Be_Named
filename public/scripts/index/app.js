@@ -5,8 +5,7 @@ const $mostViewedDiv = $('#most-viewed')
 
 const mostLikedMaps = [];
 const mostViewedMaps = [];
-loadMostLiked()
-loadMostViewed()
+updatePage()
 
 function loadMostLiked() {
   $.ajax({
@@ -39,7 +38,7 @@ function renderMaps($element, listOfMaps, special, howManyToShow = 10) {
 
 
 function renderMap($containerElement, mapData, special) {
-  const $element = `
+  const $element = $(`
   <article>
       ${special(mapData)}
       <section>
@@ -53,7 +52,22 @@ function renderMap($containerElement, mapData, special) {
         </content>
       </section>
     </article>
-  `;
+  `);
+
+  $element.on('click','img', e => {
+    window.location.assign("/maps/"+mapData.id);
+  })
 
   $containerElement.find('.map-container').append($element);
+}
+
+function updatePage() {
+  $mostLikedDiv.find('.map-container').empty();
+  $mostViewedDiv.find('.map-container').empty();
+
+  mostLikedMaps.length = 0;
+  mostViewedMaps.length = 0;
+  console.log(mostLikedMaps);
+  loadMostLiked()
+  loadMostViewed()
 }
