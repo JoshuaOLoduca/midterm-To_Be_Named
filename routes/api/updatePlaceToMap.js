@@ -21,7 +21,8 @@ module.exports = function(router, db){
 
   router.patch('/maps/:id/place', (req, res) => {
 
-    const map_id = req.body.id;
+    const map_id = req.params.id;
+    console.log('this is req body : ', req.body)
     console.log('mapid: ', map_id)
     const params = [
       req.body.longitude,
@@ -29,18 +30,19 @@ module.exports = function(router, db){
       req.body.title,
       req.body.description,
       req.body.img_url,
-      map_id
+      map_id,
+      req.body.places
     ]
 
+    console.log('myParams: ', params)
     const updateString = `
     UPDATE places
     SET longitude = $1,
     latitude = $2,
     title = $3,
     description = $4,
-    img_url = $5,
-    map_id = $6
-    WHERE places.id = 501;`
+    img_url = $5
+    WHERE map_id = $6 AND places.id = $7;`
 
     helper.tryReturnJson(res, updateString, params)
   })
