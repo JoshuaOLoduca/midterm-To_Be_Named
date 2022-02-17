@@ -14,6 +14,7 @@ CREATE TABLE maps (
   title VARCHAR(255) NOT NULL,
   description VARCHAR(255) NOT NULL,
   cover_img VARCHAR(255) NOT NULL,
+  views INTEGER DEFAULT 0,
   public BOOLEAN DEFAULT TRUE
 );
 
