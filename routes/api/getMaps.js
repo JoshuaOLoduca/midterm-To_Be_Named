@@ -24,7 +24,7 @@ module.exports = function (router, db) {
 
   router.get('/maps/mostLiked', (req, res) => {
     const queryString = `
-    SELECT m.*
+    SELECT m.*, COUNT(uf) as likes
     FROM maps m
     JOIN user_favourites uf ON uf.map_id = m.id
     WHERE public = true
