@@ -27,10 +27,13 @@ button {
     margin: $rem-small;
     > section {
       border-radius: $rem-very-x4-small;
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
       transition: all 0.5s;
       &:hover {
         background-color: $colour-dark-blue-gray;
       }
+
 
       display: flex;
       background-color: $colour-dark-blue-gray-tint-4;

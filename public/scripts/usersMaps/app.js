@@ -150,8 +150,8 @@ function renderMapToScreen(mapData) {
           </header>
           <p>${mapData.description}</p>
         </content>
+        </section>
         <button>Edit</button>
-      </section>
 
       <aside>
         <button class="editBtn">Edit</button>
@@ -163,12 +163,12 @@ function renderMapToScreen(mapData) {
 
 
   // Navigated to map page
-  $element.on('click','content', e => {
+  $element.on('click','section', e => {
     window.location.assign("/maps/"+mapData.id);
   })
 
   // Show Edit Buttons
-  $element.on('click','section button', e => {
+  $element.on('click','> button', e => {
     $element.find('aside').toggle('fast');
   })
 

@@ -54,7 +54,7 @@ function renderMap($containerElement, mapData, special) {
     </article>
   `);
 
-  $element.on('click','img', e => {
+  $element.on('click','section', e => {
     window.location.assign("/maps/"+mapData.id);
   })
 
