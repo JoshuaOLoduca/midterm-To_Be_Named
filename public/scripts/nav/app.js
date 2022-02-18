@@ -21,6 +21,7 @@ $login.on('click', e => {
 
 // click fave button to redirect to users favourites
 $favBtn.on('click', e => window.location.href='/users/favourites');
+$('#colBtn').on('click', e => window.location.href='/users/collaborate');
 
 
 // redirect to index
