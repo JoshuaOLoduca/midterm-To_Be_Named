@@ -94,7 +94,7 @@ VALUES
 (3, 1),
 (3, 18),
 (4, 20),
-(4, 12);
+(4, 12)
 
 INSERT INTO places (latitude,longitude,title,description,img_url,map_id)
 VALUES
@@ -119,6 +119,7 @@ VALUES
 (46.37200932, 2.61600599, 'Poulet', 'I think this is chicken', 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Poulet_de_chair.jpg/440px-Poulet_de_chair.jpg', 21),
 (46.37425971, 2.68452996, 'Fromage', 'Cheesy restaurant somewhere in France', 'https://www.healthyeating.org/images/default-source/home-0.0/nutrition-topics-2.0/milk-dairy/2-1-3-1dairyfoods_cheese_detailfeature.jpg?sfvrsn=a580dd8c_4', 21),
 (46.38464338, 2.70477218, 'Le Petit Prince', 'Book or restaurant?', 'https://upload.wikimedia.org/wikipedia/en/0/05/Littleprince.JPG', 21);
+
 
 INSERT INTO places (latitude,longitude,title,description,img_url,map_id)
 VALUES
