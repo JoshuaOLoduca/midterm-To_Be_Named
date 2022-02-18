@@ -91,12 +91,13 @@ VALUES
 (3, 1),
 (3, 18),
 (4, 20),
-(4, 12);
+(4, 12)
 
 INSERT INTO places (latitude,longitude,title,description,img_url,map_id)
 VALUES (43.647690, -79.386436, 'Minami Toronto','cool restaurant', 'https://lh5.googleusercontent.com/p/AF1QipPsQJ0VVWENf5JFRidIigmbotj5ZlJqhMFlVxBS=w90-h90-n-k-no', 1),
 (43.646470, -79.396890, 'Figo Toronto', 'soccer player name', 'https://lh5.googleusercontent.com/p/AF1QipMqLbbk3n4IeRZlndlZAPoHrHKQD1jc1aL9-5b-=w90-h90-n-k-no', 1),
 (43.648520, -79.395880, 'Aloette Restaurant', 'sounds italia', 'https://lh5.googleusercontent.com/p/AF1QipOedfVO3erki6JjrKvEArQACysFG0pesXiMk3zu=w90-h90-n-k-no',1),
 (43.648610, -79.390860, 'MARKED restaurant', 'marked for death' , 'https://lh5.googleusercontent.com/p/AF1QipOsKLJxMsVVhtUarSslUdNfXkQuv3VKccEvsdHA=w90-h90-n-k-no',1);
-
+(43.654149, -79.397721, 'Cute Cat', 'might be aggro', 'https://th-thumbnailer.cdn-si-edu.com/bZAar59Bdm95b057iESytYmmAjI=/1400x1050/filters:focal(594x274:595x275)/https://tf-cmsv2-smithsonianmag-media.s3.amazonaws.com/filer/95/db/95db799b-fddf-4fde-91f3-77024442b92d/egypt_kitty_social.jpg', 2),
+(43.656199, -79.415660, 'Man Cat', 'Manly Cat', 'https://upload.wikimedia.org/wikipedia/en/thumb/9/94/StalkingCat.jpg/220px-StalkingCat.jpg,', 2);
 
