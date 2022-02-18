@@ -1,6 +1,8 @@
 module.exports = function(router, db) {
   const helper = require('../../helpers')(db);
 
+  // Takes in body of data
+  // and adds collaborator to map
   router.post('/maps/:id/collaborators', (req, res) => {
 
     // Initialize vars
@@ -31,24 +33,32 @@ module.exports = function(router, db) {
         map_id
       ];
 
+      // Trying to insert collaborator for a map to database
       db.query(insertString, params)
         .then(result => {
+          // Initialize more Vars
           const queryString = `
-        SELECT user_id, name, map_id
-        FROM collaborators c
-        JOIN users u ON u.id = c.user_id
-        WHERE map_id = $2 AND u.id = $1
-        GROUP BY user_id, name, map_id;
-        `;
-
+            SELECT user_id, name, map_id
+            FROM collaborators c
+            JOIN users u ON u.id = c.user_id
+            WHERE map_id = $2 AND u.id = $1
+            GROUP BY user_id, name, map_id;
+            `;
           const moarParams = [
             result.rows[0].user_id,
             req.body.map_id,
           ];
 
+          // Returns user_id, their name and map_id
+          // Of newly inserted collaborator
           helper.tryReturnJson(res, queryString, moarParams);
         })
-        .catch(e => console.log(e));
+        // Run this if we have an error on the server
+        // and let client know we had an oopsie
+        .catch(e => {
+          console.log(e);
+          res.status(500).send('Something went wrong on our end');
+        });
     }
 
   });
