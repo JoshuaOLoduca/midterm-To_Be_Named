@@ -4,6 +4,9 @@ h1 {
   display: inline-block;
 }
 #mapContainer {
+  img {
+    width: 100%;
+  }
   > article {
     justify-content: space-between;
     display: flex;

@@ -31,6 +31,7 @@ module.exports = function (db) {
     return db.query(checkRightsQuery, params)
     .then(response => {
       const result = response.rows;
+      console.log(params, checkRightsQuery)
       if (!result.length) return res.status(403).send('You dont have rights')
       return result;
     })

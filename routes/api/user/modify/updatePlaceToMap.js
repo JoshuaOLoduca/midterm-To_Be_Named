@@ -6,10 +6,13 @@ module.exports = function(router, db){
     const map_id = req.params.id;
 
     const checkRightsQuery = `
-    SELECT *
+    SELECT c.user_id, c.map_id
+    FROM collaborators c
+    WHERE c.map_id = $2 AND c.user_id = $1
+    UNION
+    SELECT m.owner_id, m.id
     FROM maps m
-    JOIN collaborators c ON c.map_id = m.id
-    WHERE m.id = $2 AND (m.owner_id = $1 OR c.user_id = $1)
+    WHERE m.id = $2 AND m.owner_id = $1;
     `;
 
     helper.checkRights(res, checkRightsQuery, [user_id, map_id])
@@ -45,10 +48,13 @@ module.exports = function(router, db){
     const user_id = req.session.user_id;
 
     const checkRightsQuery = `
-    SELECT *
+    SELECT c.user_id, c.map_id
+    FROM collaborators c
+    WHERE c.map_id = $2 AND c.user_id = $1
+    UNION
+    SELECT m.owner_id, m.id
     FROM maps m
-    JOIN collaborators c ON c.map_id = m.id
-    WHERE m.id = $2 AND (m.owner_id = $1 OR c.user_id = $1)
+    WHERE m.id = $2 AND m.owner_id = $1;
     `;
 
     helper.checkRights(res, checkRightsQuery, [user_id, map_id])
