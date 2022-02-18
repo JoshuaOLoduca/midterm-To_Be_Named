@@ -3,7 +3,7 @@ module.exports = function (router, db) {
   router.get('/maps/:id', (req, res) => {
 
     const id = req.params.id
-
+    const user_id = req.session.user_id || 0;
     const mapQueryString = `
     SELECT *
     FROM maps
@@ -26,7 +26,7 @@ module.exports = function (router, db) {
           if (!mapDetails) throw new Error('uhoh');
 
           updateMapViews(id);
-          res.render('map', {map: mapDetails, places: moarResult, userId: req.session.user_id});
+          res.render('map', {map: mapDetails, places: moarResult, userId: user_id});
 
         })
       })

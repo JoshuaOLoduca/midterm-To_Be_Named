@@ -7,7 +7,6 @@ const $poppyUp = $('.poppyUp');
 const $popUpForm = $('#popUpForm');
 const $addPlacesBtn = $('#addPlacesBtn');
 const $bookmarkBtn = $('#bookmarkBtn');
-const $editBtn = $('#editBtn');
 const $editPopUp = $('.editPopUp');
 const $editPoppyUp = $('.editPoppyUp');
 const $editForm = $('#editForm')
@@ -38,35 +37,37 @@ for (const place of places) {
   L.marker([place.latitude, place.longitude]).addTo(map)
 }
 
+
+
 function createElementPlaces(places) {
-  const $element = $(`
 
-  <article>
-  <img alt='cover image for place collection' src='${places.img_url}'/>
-  <content>
-  <header>
-  <h2>${places.title}</h2>
-  </header>
-  <p>${places.description}</p>
-  </content>
+    const $element = $(`
 
-  <button type="submit" class="btn"><i class="fa-solid fa-pen-to-square"></i></button>
+    <article>
+    <img alt='cover image for place collection' src='${places.img_url}'/>
+    <content>
+    <header>
+    <h2>${places.title}</h2>
+    </header>
+    <p>${places.description}</p>
+    </content>
 
-  </article>
-  `);
+    <button type="submit" class="btn editBtn"><i class="fa-solid fa-pen-to-square"></i></button>
 
-  $element.on('click','button', e => {
-    currentPlaceEditId = places.id
-    console.log("places:", currentPlaceEditId);
-    $editPopUp.toggleClass('displayFlex')
-  });
+    </article>
+    `);
+    $element.on('click','button', e => {
+      currentPlaceEditId = places.id
+      console.log("places:", currentPlaceEditId);
+      $editPopUp.toggleClass('displayFlex')
+    });
 
-  $element.on('click', "img" , e => {
-    map.flyTo([places.latitude, places.longitude], 12);
+    $element.on('click', "img" , e => {
+      map.flyTo([places.latitude, places.longitude], 12);
 
-  })
+    })
 
-  return $element
+    return $element
 }
 
 
@@ -78,6 +79,7 @@ const renderPlaces =(places) => {
 }
 
 renderPlaces(places)
+
 
 
 // popup for where we clicka
@@ -94,7 +96,6 @@ map.on('click', onMapClick);
 
 
 // add places to map
-console.log(myMap);
 $popUpForm.submit(function(e) {
   e.preventDefault();
   const inputs = $(this).serializeArray();
@@ -160,7 +161,6 @@ $editPopUp.on('click', e => {
 })
 
 
-
 function updateFaveBtn(){
 $.ajax({
   method: "POST",
@@ -200,3 +200,21 @@ $bookmarkBtn.on('click', e => {
     })
   }
 })
+
+
+$.ajax({
+  method: 'POST',
+  url: '/api/user/isCollaborator',
+  data: {id: myMap.id}
+})
+.done(function(data) {
+  console.log(data)
+  if(!data.length) {
+    $addPlacesBtn.remove()
+    $('.editBtn').remove()
+  }
+})
+
+if (!userId) {
+  $bookmarkBtn.remove()
+}

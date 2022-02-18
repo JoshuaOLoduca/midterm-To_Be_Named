@@ -12,7 +12,7 @@ const createMap = require('./user/modify/createMap');
 const getCollaborators = require('./getCollaborators');
 const deleteCollaborator = require('./user/modify/deleteCollaborator');
 const addCollaboratorToMap = require('./user/modify/addCollaboratorToMap');
-
+const isCollaborator = require('./user/isCollaborator');
 
 module.exports = function (router, db) {
 
@@ -67,6 +67,9 @@ module.exports = function (router, db) {
 
   // POST api/maps/create
   createMap(router, db);
+
+  //checks if user is a collaborator
+  isCollaborator(router, db);
 
 
   // User stuff
