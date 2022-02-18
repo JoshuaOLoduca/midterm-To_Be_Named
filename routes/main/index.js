@@ -9,14 +9,21 @@ const usersCreatedMaps = require('./usersCreatedMaps');
 
 module.exports = function(router, db) {
 
-  //  render index page
+  // All routes here renders a page
+
+  // GET /
   homePage(router, db);
+
+  // GET /maps/:id
   getMapsId(router, db);
+
   // GET /users/login
   login(router, db);
+
+  // GET /maps
   allMaps(router, db);
 
-  // POST /users/logout
+  // GET /users/logout
   logout(router, db);
 
   // GET /users/favourites
