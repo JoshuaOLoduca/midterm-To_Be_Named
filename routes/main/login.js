@@ -4,7 +4,7 @@ module.exports = function(router, db) {
   // then redirects them to main page
   router.get('/login/:id', (req, res) => {
     // Set cookie to :id in url
-      // Done for deving purpose
+    // Done for deving purpose
     req.session.user_id = req.params.id;
 
     // redirect to main page

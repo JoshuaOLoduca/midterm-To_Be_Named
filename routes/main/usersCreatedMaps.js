@@ -12,7 +12,7 @@ module.exports = function(router, db) {
     const templateVars = { userId };
 
     // Render users map page with vars
-      // then send it to client
+    // then send it to client
     res.render('usersMaps', templateVars);
   });
 };

@@ -4,7 +4,7 @@ const $favBtn = $('#favBtn');
 const $logout = $('#logout');
 const $pubMaps = $('#pubMaps');
 const $userMaps = $('#userMappino');
-const $logo = $('#logo')
+const $logo = $('#logo');
 
 // on login button click
 // redirect user to their maps after getting cookie
@@ -15,7 +15,7 @@ $login.on('click', e => {
     url: `/login/1`,
   })
     // When I get my login cookie
-      // Redirect to myMaps page
+  // Redirect to myMaps page
     .done(function() {
       window.location.href = '/users/myMaps';
     });
@@ -41,9 +41,9 @@ $logout.on('click', e => {
 });
 
 // On public maps click
-  // Redirect user to list of all maps
-$pubMaps.on('click', e => window.location.href='/maps');
+// Redirect user to list of all maps
+$pubMaps.on('click', e => window.location.href = '/maps');
 
-$userMaps.on('click', e => window.location.href='/users/mymaps')
+$userMaps.on('click', e => window.location.href = '/users/mymaps');
 
-$logo.on('click', e => window.location.href='/')
+$logo.on('click', e => window.location.href = '/');

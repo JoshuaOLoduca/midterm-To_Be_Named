@@ -74,7 +74,7 @@ function registerFormHandling() {
       url: `/api/maps/${currentMapEditId}/collaborators`,
       data: {
         // Gets value of first input
-          // (There is only 1)
+        // (There is only 1)
         id: inputs[0].value,
         map_id: currentMapEditId
       }
@@ -159,7 +159,7 @@ function updatePage() {
     method: "GET",
     url: ajaxUrl
   })
-  .done(function(content) {
+    .done(function(content) {
       // Push maps to array
       content.forEach(element => {
         allMaps.push(element);
@@ -256,7 +256,7 @@ function renderMapToScreen(mapData) {
 }
 
 // Updates popup input fields to be that of the map
-  // We are editing
+// We are editing
 function updateEditPopup(mapData) {
 
   // Get for inputs

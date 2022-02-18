@@ -1,7 +1,7 @@
 
 // Initialize variables globally
-  // So we have some sort of memory
-    // (should use closures)
+// So we have some sort of memory
+// (should use closures)
 const allMaps = [];
 const $mapContainer = $('#mapContainer');
 let ajaxUrl = '';
@@ -59,7 +59,7 @@ function renderMaps(howManyToShowPerRender = 10) {
 // Prep map as dom element and render it to screen
 function renderMapToScreen(mapData) {
   // Jquery dom prep
-    // Insert relevent data
+  // Insert relevent data
   const $element = $(`
     <article>
       <section>
@@ -76,13 +76,13 @@ function renderMapToScreen(mapData) {
   `);
 
   // Register onlick of tile
-    // send user to that maps page
+  // send user to that maps page
   $element.on('click', 'section', e => {
     window.location.assign("/maps/" + mapData.id);
   });
 
   // Add map element to container
-    // This renders it to the page
+  // This renders it to the page
   $mapContainer.append($element);
 }
 

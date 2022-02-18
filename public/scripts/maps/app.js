@@ -132,7 +132,7 @@ $popUpForm.submit(function(e) {
   let values = {};
 
   // loop though array and add them to values
-    // as key/pair object entries
+  // as key/pair object entries
   for (const i in inputs) {
     const key = inputs[i].name;
     const value = inputs[i].value;
@@ -197,7 +197,7 @@ $editForm.submit(function(e) {
     data: values
   })
     // Render place to map ?
-      // I sure hopes it removed the old one
+  // I sure hopes it removed the old one
     .done(function(content) {
       renderPlaces(content);
     });
@@ -268,7 +268,7 @@ $bookmarkBtn.on('click', e => {
         updateFaveBtn();
       });
   }
-})
+});
 
 
 $.ajax({
@@ -276,14 +276,14 @@ $.ajax({
   url: '/api/user/isCollaborator',
   data: {id: myMap.id}
 })
-.done(function(data) {
-  console.log(data)
-  if(!data.length) {
-    $addPlacesBtn.remove()
-    $('.editBtn').remove()
-  }
-})
+  .done(function(data) {
+    console.log(data);
+    if (!data.length) {
+      $addPlacesBtn.remove();
+      $('.editBtn').remove();
+    }
+  });
 
 if (!userId) {
-  $bookmarkBtn.remove()
+  $bookmarkBtn.remove();
 }

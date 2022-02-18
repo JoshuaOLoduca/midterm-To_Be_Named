@@ -2,8 +2,8 @@ module.exports = function(router, db) {
 
   // GET /maps
   // Redirects user to all maps page
-    // User then ajax requests for all public maps
-    // and inserts them into page
+  // User then ajax requests for all public maps
+  // and inserts them into page
   router.get('/maps', (req, res) => {
 
     // Initialize Vars

@@ -3,7 +3,7 @@ module.exports = function(router, db) {
   // Renders page for a specific map
   router.get('/maps/:id', (req, res) => {
     // Initialize Vars
-    const id = req.params.id
+    const id = req.params.id;
     const user_id = req.session.user_id || 0;
 
 

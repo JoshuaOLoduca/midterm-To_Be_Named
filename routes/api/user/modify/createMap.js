@@ -47,7 +47,7 @@ module.exports = function(router, db) {
           res.status(200).json(result.rows[0]);
         })
         // Otherwise, send error to client
-          // (Maybe we shouldnt do that)
+      // (Maybe we shouldnt do that)
         .catch((err) => {
           console.log(err);
           res.json({ error: err.message});

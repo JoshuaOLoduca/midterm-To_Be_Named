@@ -26,7 +26,7 @@ module.exports = function(router, db) {
     function updateMap() {
       const parameters = [];
       // Initializing query string
-        // Loob though each key in body
+      // Loob though each key in body
       for (const key in req.body) {
         // Push value to array
         parameters.push(req.body[key]);

@@ -5,7 +5,7 @@ module.exports = function(router, db) {
     const userId = req.session.user_id;
 
     // Prepare user Id to be sent to EJS
-      // so the nav bar renders right
+    // so the nav bar renders right
     const templatevars = { userId };
 
     // Render / and send it to client

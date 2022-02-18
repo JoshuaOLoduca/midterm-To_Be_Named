@@ -15,7 +15,7 @@ module.exports = function(router, db) {
     };
 
     // Render users maps they can collaborate on
-      // (Most of this is done with javascript on the client side)
+    // (Most of this is done with javascript on the client side)
     res.render('userReleventMaps', templateVars);
   });
 };

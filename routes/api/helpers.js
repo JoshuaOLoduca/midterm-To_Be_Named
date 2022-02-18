@@ -24,7 +24,7 @@ module.exports = function(db) {
 
   // Try to delete from Database
   // And Handle the request appropriately
-    // QUERY MUST CONTAIN 'RETURNING *;'
+  // QUERY MUST CONTAIN 'RETURNING *;'
   function tryDeleteEntity(res, deleteString, params) {
     db.query(deleteString, params)
       // On Success
@@ -54,7 +54,7 @@ module.exports = function(db) {
         // There is nothing in result, then user doesnt have access
         if (!result.length) throw new Error('You dont have rights');
         // Otherwise, return result
-          // Just returning so we are returning a promise
+        // Just returning so we are returning a promise
         return result;
       })
       // Catch Server errors

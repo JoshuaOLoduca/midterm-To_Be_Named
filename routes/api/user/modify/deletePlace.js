@@ -28,7 +28,7 @@ module.exports = function(router, db) {
     // Deletes place
     function deletePlace() {
       // Initializing delete query
-        // (Yeah, we sorta double check to see if they have rights. not efficient)
+      // (Yeah, we sorta double check to see if they have rights. not efficient)
       const deleteString = `
       DELETE
       FROM places p

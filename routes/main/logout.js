@@ -3,7 +3,7 @@ module.exports = function(router, db) {
   // Deletes cookie and redirects to main page
   router.get('/logout', (req, res) => {
     // clear cookies
-      // AKA logs em out
+    // AKA logs em out
     req.session = null;
 
     // redirect to main page

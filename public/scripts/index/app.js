@@ -5,8 +5,8 @@ const $mostLikedDiv = $('#most-liked');
 const $mostViewedDiv = $('#most-viewed');
 
 // Initialize array
-  // Global so we have persistant memory
-    // (Should be a closure)
+// Global so we have persistant memory
+// (Should be a closure)
 const mostLikedMaps = [];
 const mostViewedMaps = [];
 
@@ -14,7 +14,7 @@ const mostViewedMaps = [];
 updatePage();
 
 // Gets maps sorted by favourites
-  // and renders them to page
+// and renders them to page
 function loadMostLiked() {
 
   // Send request for data
@@ -33,7 +33,7 @@ function loadMostLiked() {
 }
 
 // Get maps sorted by views
-  // And render them to page
+// And render them to page
 function loadMostViewed() {
 
   // Send request for data

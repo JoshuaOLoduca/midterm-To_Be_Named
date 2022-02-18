@@ -23,7 +23,7 @@ module.exports = function(router, db) {
   router.post('/user/favourites', (req, res) => {
     // Initialize Vars
     const map_id = req.body.id;
-      // Getting user info from encrypted cookie.
+    // Getting user info from encrypted cookie.
     // So no one can exploit this and delete
     // others favourites
     // (unless our key gets cracked)
