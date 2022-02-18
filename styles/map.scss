@@ -62,6 +62,9 @@ body {
 #editForm, #popUpForm {
     display: flex;
     flex-direction: column;
+    width: 80%;
+    height: 80%;
+    font-size: $rem-small;
 }
 
 
