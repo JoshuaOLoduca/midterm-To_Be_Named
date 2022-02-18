@@ -5,10 +5,12 @@
 
   <div>
     <% if (userId) { %>
+      <button type="submit" id="pubMaps" class="btn"><i class="fa-solid fa-map"></i></button>
       <button type="submit" id="favBtn" class="btn"><i class="fa-solid fa-star"></i></button>
       <button type="submit" class="btn" id="logout">Logout</button>
 
   <%  } else { %>
+    <button type="submit" id="pubMaps" class="btn"><i class="fa-solid fa-map"></i></button>
     <button type="submit" id="login" class="btn">Login</button>
     <button type="submit" class="btn">Signup</button>
  <% } %>
