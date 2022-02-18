@@ -2,34 +2,60 @@
 <html lang="en">
 
 <head>
-  <title>Home Page</title>
+  <title>
+    <!-- Depending on render type -->
+    <!-- Change Title -->
+    <% if (renderType === 'allMaps') { %>
+      Public Maps
+    <% } %>
 
+    <% if (renderType === 'favourites') { %>
+      My Favourites
+    <% } %>
+
+    <% if (renderType === 'collaborator') { %>
+      Contribute to Maps
+    <% } %>
+  </title>
+
+  <!-- Styles and Scripts -->
   <%- include('partials/_stylesAndScripts') %>
+
+  <!-- userRelMapsLayout.scss -->
   <link rel="stylesheet" href="/styles/userRelMapsLayout.css" type="text/css"/>
 
+  <!-- Change styling based on render type -->
   <% if (renderType === 'allMaps') { %>
+    <!-- allMaps.scss -->
     <link rel="stylesheet" href="/styles/allMaps.css" type="text/css"/>
   <% } %>
 
   <% if (renderType === 'favourites') { %>
+    <!-- favourites.scss -->
     <link rel="stylesheet" href="/styles/favourites.css" type="text/css"/>
   <% } %>
 
   <% if (renderType === 'collaborator') { %>
+    <!-- collaborator.scss -->
     <link rel="stylesheet" href="/styles/collaborator.css" type="text/css"/>
   <% } %>
 
+  <!-- Pass EJS template vars to front end -->
   <script>
     const renderType = '<%= renderType %>';
     const userId = '<%= userId %>';
   </script>
 
+  <!-- userRelMaps.js -->
+  <!-- Is script for frontend -->
   <script type="text/javascript" src="/scripts/userRelMaps/app.js" defer></script>
 </head>
 
  <body>
+   <!-- Navbar -->
   <%- include('partials/_header', {userId}) %>
   <h1>
+    <!-- Change header based on render type -->
     <% if (renderType === 'allMaps') { %>
       Public Maps
     <% } %>
@@ -43,6 +69,9 @@
     <% } %>
   </h1>
 
+  <!-- Container for map -->
   <div id="mapContainer"></div>
+
+  <!-- Button to load more maps -->
   <button id="loadMoar">Can I haz maps</button>
  </body>
