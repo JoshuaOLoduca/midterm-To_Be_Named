@@ -93,4 +93,10 @@ VALUES
 (4, 20),
 (4, 12);
 
+INSERT INTO places (latitude,longitude,title,description,img_url,map_id)
+VALUES (43.647690, -79.386436, 'Minami Toronto','cool restaurant', 'https://lh5.googleusercontent.com/p/AF1QipPsQJ0VVWENf5JFRidIigmbotj5ZlJqhMFlVxBS=w90-h90-n-k-no', 1),
+(43.646470, -79.396890, 'Figo Toronto', 'soccer player name', 'https://lh5.googleusercontent.com/p/AF1QipMqLbbk3n4IeRZlndlZAPoHrHKQD1jc1aL9-5b-=w90-h90-n-k-no', 1),
+(43.648520, -79.395880, 'Aloette Restaurant', 'sounds italia', 'https://lh5.googleusercontent.com/p/AF1QipOedfVO3erki6JjrKvEArQACysFG0pesXiMk3zu=w90-h90-n-k-no',1),
+(43.648610, -79.390860, 'MARKED restaurant', 'marked for death' , 'https://lh5.googleusercontent.com/p/AF1QipOsKLJxMsVVhtUarSslUdNfXkQuv3VKccEvsdHA=w90-h90-n-k-no',1);
+
 
