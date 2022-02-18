@@ -4,17 +4,26 @@ module.exports = function (router, db) {
   router.delete('/maps/:id/collaborators', (req, res) => {
     // const userId = req.session.user_id;
     const userToRemove = req.body.toRemoveId;
-    const mapId = req.params.id;
+    const map_id = req.params.id;
     // to be used to verify editing rights
-    const owner_id = req.session.user_id;
+    const user_id = req.session.user_id;
 
-    const queryString = `
-    DELETE
-    FROM collaborators
-    WHERE map_id = $1 AND user_id = $2
-    RETURNING *;
-    `;
+    helper.checkIfOwner(res, user_id, map_id)
+    .then(() => deleteCollaborator())
+    .catch(err => {
+      console.log(err);
+      res.status(500).send('Something went wrong on our end')
+    });
 
-    helper.tryDeleteEntity(res, queryString, [mapId, userToRemove])
+    function deleteCollaborator() {
+      const queryString = `
+      DELETE
+      FROM collaborators
+      WHERE map_id = $1 AND user_id = $2
+      RETURNING *;
+      `;
+
+      helper.tryDeleteEntity(res, queryString, [map_id, userToRemove])
+    }
   });
 }
