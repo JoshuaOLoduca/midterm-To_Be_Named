@@ -78,6 +78,8 @@ main {
       img {
         padding: $rem-very-x4-small $rem-very-x7-small;
         border-radius: $rem-very-x2-small;
+        width: 100%;
+        max-height: 25vh;
       }
 
       content {
