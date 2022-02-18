@@ -7,18 +7,12 @@ module.exports = function(router, db){
     const map_id = req.body.map_id;
     const userToAdd = req.body.id;
 
-    const checkRightsQuery = `
-    SELECT m.owner_id
-    FROM maps m
-    WHERE m.owner_id = $1 AND m.id = $2;
-    `;
-
-    db.query(checkRightsQuery, [user_id, map_id])
-    .then(response => {
-      const result = response.rows;
-      if (!result.length) return res.status(403).send('You dont have rights')
-      addCollaboratorToMap();
-    })
+    helper.checkIfOwner(res, user_id, map_id)
+    .then(() => addCollaboratorToMap())
+    .catch(err => {
+      console.log(err);
+      res.status(500).send('Something went wrong on our end')
+    });
 
     function addCollaboratorToMap() {
       const insertString = `
