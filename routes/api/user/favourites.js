@@ -1,4 +1,4 @@
-module.exports = function (router, db) {
+module.exports = function(router, db) {
   const helper = require('../helpers')(db);
 
   router.get('/users/:user_id/maps/favourites', (req, res) => {
@@ -14,4 +14,4 @@ module.exports = function (router, db) {
 
     helper.tryReturnJson(res, queryString, [ user_id ]);
   });
-}
+};

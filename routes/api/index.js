@@ -7,14 +7,14 @@ const userMaps = require('./user/maps');
 const updateMap = require('./user/modify/updateMap');
 const addPlace = require('./user/modify/updatePlaceToMap');
 const postFavourites = require('./user/modify/updateFavourites');
-const isFavourites = require('./user/isFavourites')
+const isFavourites = require('./user/isFavourites');
 const createMap = require('./user/modify/createMap');
 const getCollaborators = require('./getCollaborators');
 const deleteCollaborator = require('./user/modify/deleteCollaborator');
 const addCollaboratorToMap = require('./user/modify/addCollaboratorToMap');
 
 
-module.exports = function (router, db) {
+module.exports = function(router, db) {
 
   // DELETE /maps/:id
   // Deletes map
@@ -75,5 +75,5 @@ module.exports = function (router, db) {
   userMaps(router, db);
 
   return router;
-}
+};
 

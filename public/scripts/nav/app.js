@@ -11,14 +11,14 @@ $login.on('click', e => {
     method: "GET",
     url: `/login/1`,
   })
-  .done(function( ) {
-    window.location.href='/users/myMaps';
-  })
-})
+    .done(function() {
+      window.location.href = '/users/myMaps';
+    });
+});
 
 
 // click fave button to redirect to users favourites
-$favBtn.on('click', e => window.location.href='/users/favourites');
+$favBtn.on('click', e => window.location.href = '/users/favourites');
 
 
 // redirect to index
@@ -28,9 +28,9 @@ $logout.on('click', e => {
     method: "GET",
     url: `/logout`,
   })
-  .done(function() {
-    window.location.href='/';
-  })
-})
+    .done(function() {
+      window.location.href = '/';
+    });
+});
 
-$pubMaps.on('click', e => window.location.href='/maps');
+$pubMaps.on('click', e => window.location.href = '/maps');

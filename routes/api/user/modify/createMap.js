@@ -13,11 +13,11 @@ module.exports = function(router, db) {
     `;
 
     helper.checkRights(res, checkUserIsRegistered, [user_id])
-    .then(() => createMap())
-    .catch(err => {
-      console.log(err);
-      res.status(500).send('Something went wrong on our end')
-    });
+      .then(() => createMap())
+      .catch(err => {
+        console.log(err);
+        res.status(500).send('Something went wrong on our end');
+      });
 
     function createMap() {
       const queryString = `

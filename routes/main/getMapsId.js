@@ -1,8 +1,8 @@
-module.exports = function (router, db) {
+module.exports = function(router, db) {
 
   router.get('/maps/:id', (req, res) => {
 
-    const id = req.params.id
+    const id = req.params.id;
 
     const mapQueryString = `
     SELECT *
@@ -18,21 +18,22 @@ module.exports = function (router, db) {
 
     db.query(mapQueryString, [id])
       .then((response) => {
-        const mapDetails = response.rows[0]
+        const mapDetails = response.rows[0];
 
         db.query(mapPlacesQueryString, [mapDetails.id])
-        .then(moreResponse => {
-          const moarResult = moreResponse.rows;
-          if (!mapDetails) throw new Error('uhoh');
+          .then(moreResponse => {
+            const moarResult = moreResponse.rows;
+            if (!mapDetails) throw new Error('uhoh');
 
-          updateMapViews(id);
-          res.render('map', {map: mapDetails, places: moarResult, userId: req.session.user_id});
+            updateMapViews(id);
+            res.render('map', {map: mapDetails, places: moarResult, userId: req.session.user_id});
 
-        })
+          });
       })
-      .catch((err) => { if (err) {
-        res.status(404).send('wrong stuff');
-      }
+      .catch((err) => {
+        if (err) {
+          res.status(404).send('wrong stuff');
+        }
       });
   });
 
@@ -43,13 +44,13 @@ module.exports = function (router, db) {
       WHERE id = $1
       RETURNING id, views;
     `, [mapId])
-    .then(response => {
-      const result = response.rows[0];
-      console.log(result);
-    })
-    .catch(err => {
-      console.log(err);
-    });
+      .then(response => {
+        const result = response.rows[0];
+        console.log(result);
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
 };
 

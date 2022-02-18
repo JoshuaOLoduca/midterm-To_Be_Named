@@ -1,9 +1,9 @@
-module.exports = function (router, db) {
+module.exports = function(router, db) {
   const helper = require('../../helpers')(db);
 
   //  render index page
   router.delete('/places/:id', (req, res) => {
-    const place_id = req.params.id
+    const place_id = req.params.id;
     const user_id = req.session.user_id;
 
     const checkRightsQuery = `
@@ -15,11 +15,11 @@ module.exports = function (router, db) {
     `;
 
     helper.checkRights(res, checkRightsQuery, [user_id, place_id])
-    .then(() => deletePlace())
-    .catch(err => {
-      console.log(err);
-      res.status(500).send('Something went wrong on our end')
-    });
+      .then(() => deletePlace())
+      .catch(err => {
+        console.log(err);
+        res.status(500).send('Something went wrong on our end');
+      });
 
     function deletePlace() {
       const deleteString = `
@@ -39,7 +39,7 @@ module.exports = function (router, db) {
         RETURNING *;
         `;
 
-        helper.tryDeleteEntity(res, deleteString, [place_id, user_id])
-      }
+      helper.tryDeleteEntity(res, deleteString, [place_id, user_id]);
+    }
   });
-}
+};

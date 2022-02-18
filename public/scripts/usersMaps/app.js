@@ -13,7 +13,7 @@ const $addCollaboratorForm = $('#addCollaboratorForm');
 
 // Execute Functions
 registerOnEvents();
-registerFormHandling()
+registerFormHandling();
 updatePage();
 
 function registerOnEvents() {
@@ -22,21 +22,21 @@ function registerOnEvents() {
 // ///////////////
   $('#loadMoar').on('click', e => {
     renderMaps();
-  })
+  });
   $addMapBtn.on('click', e => $addMapPopUpContainer.toggleClass('displayFlex'));
   $addMapPopUpContainer.on('click', e => {
-    if(e.target !== $addMapPopUpContainer[0]) return;
+    if (e.target !== $addMapPopUpContainer[0]) return;
     currentMapEditId = null;
     currentMapElement = null;
     $addMapPopUpContainer.toggleClass('displayFlex');
-  })
+  });
 
   $editMapPopUpContainer.on('click', e => {
-    if(e.target !== $editMapPopUpContainer[0]) return;
+    if (e.target !== $editMapPopUpContainer[0]) return;
     currentMapEditId = null;
     currentMapElement = null;
     $editMapPopUpContainer.toggleClass('displayFlex');
-  })
+  });
 }
 
 function registerFormHandling() {
@@ -55,15 +55,15 @@ function registerFormHandling() {
         map_id: currentMapEditId
       }
     })
-    .done(function( collaborator ) {
-      collaboratorsTable().update(collaborator);
-    });
-  })
+      .done(function(collaborator) {
+        collaboratorsTable().update(collaborator);
+      });
+  });
 
   $addMapForm.submit(function(e) {
     e.preventDefault();
     const inputs = $(this).serializeArray();
-    let values = {}
+    let values = {};
 
     for (const i in inputs) {
       const key = inputs[i].name;
@@ -77,17 +77,17 @@ function registerFormHandling() {
       url: `/api/maps`,
       data: values
     })
-    .done(function( content ) {
-      allMaps.push(content);
-      renderMaps();
-      $addMapPopUpContainer.toggleClass('displayFlex');
-    });
-  })
+      .done(function(content) {
+        allMaps.push(content);
+        renderMaps();
+        $addMapPopUpContainer.toggleClass('displayFlex');
+      });
+  });
 
   $updateMapForm.submit(function(e) {
     e.preventDefault();
     const inputs = $(this).serializeArray();
-    let values = {}
+    let values = {};
 
     for (const i in inputs) {
       const key = inputs[i].name;
@@ -100,10 +100,10 @@ function registerFormHandling() {
       url: `/api/maps/${currentMapEditId}`,
       data: values
     })
-    .done(function( content ) {
-      currentMapElement.html(makeElement(values));
-    })
-  })
+      .done(function(content) {
+        currentMapElement.html(makeElement(values));
+      });
+  });
 }
 
 
@@ -114,12 +114,12 @@ function updatePage() {
     method: "GET",
     url: ajaxUrl
   })
-  .done(function( content ) {
-    content.forEach(element => {
-      allMaps.push(element);
+    .done(function(content) {
+      content.forEach(element => {
+        allMaps.push(element);
+      });
+      renderMaps();
     });
-    renderMaps();
-  })
 }
 
 function renderMaps(howManyToShowPerRender = 10) {
@@ -164,20 +164,20 @@ function renderMapToScreen(mapData) {
 
   // Navigated to map page
   $element.on('click','section', e => {
-    window.location.assign("/maps/"+mapData.id);
-  })
+    window.location.assign("/maps/" + mapData.id);
+  });
 
   // Show Edit Buttons
   $element.on('click','> button', e => {
     $element.find('aside').toggle('fast');
-  })
+  });
 
   // Edit Map Button
   $element.on('click','aside .editBtn', e => {
     updateEditPopup(mapData);
     currentMapElement = $element;
     $editMapPopUpContainer.toggleClass('displayFlex');
-  })
+  });
 
   // Delete Button
   $element.on('click','aside .deleteBtn', e => {
@@ -186,16 +186,16 @@ function renderMapToScreen(mapData) {
       url: `/api/maps/${mapData.id}`,
       data: {owner_id: userId}
     })
-    .done(function() {
-      $element.remove();
-    })
-  })
+      .done(function() {
+        $element.remove();
+      });
+  });
 
   $mapContainer.append($element);
 }
 
 function updateEditPopup(mapData) {
-  const formInputs = $editMapPopUpContainer.find('form input')
+  const formInputs = $editMapPopUpContainer.find('form input');
   currentMapEditId = mapData.id;
   collaboratorsTable().reset();
 
@@ -203,26 +203,26 @@ function updateEditPopup(mapData) {
     method: "get",
     url: `/api/maps/${mapData.id}/collaborators`
   })
-  .done(function(result) {
-    collaboratorsTable().update(result);
-  });
+    .done(function(result) {
+      collaboratorsTable().update(result);
+    });
 
   formInputs.each(function() {
-    switch(this.id) {
-      case 'title':
-        $(this).val(mapData.title)
-        break;
-      case 'city':
-        $(this).val(mapData.city)
-        break;
-      case 'description':
-        $(this).val(mapData.description)
-        break;
-      case 'cover_img':
-        $(this).val(mapData.cover_img)
-        break;
+    switch (this.id) {
+    case 'title':
+      $(this).val(mapData.title);
+      break;
+    case 'city':
+      $(this).val(mapData.city);
+      break;
+    case 'description':
+      $(this).val(mapData.description);
+      break;
+    case 'cover_img':
+      $(this).val(mapData.cover_img);
+      break;
     }
-  })
+  });
 }
 
 
@@ -249,12 +249,12 @@ function collaboratorsTable() {
           url: `/api/maps/${collaborator.map_id}/collaborators`,
           data: {toRemoveId: collaborator.user_id}
         })
-        .done(function() {
-          names.remove();
-        })
-      })
+          .done(function() {
+            names.remove();
+          });
+      });
 
-      appendElement(names)
+      appendElement(names);
     }
   }
 
@@ -264,13 +264,13 @@ function collaboratorsTable() {
     <tr>
       <th>Name</th>
       <th>Edit</th>
-    </tr>`))
+    </tr>`));
   }
 
-  function appendElement($elm ) {
-    $collaboratorsTable.append($elm )
+  function appendElement($elm) {
+    $collaboratorsTable.append($elm);
   }
 
-  return{reset, update};
+  return {reset, update};
 
 }

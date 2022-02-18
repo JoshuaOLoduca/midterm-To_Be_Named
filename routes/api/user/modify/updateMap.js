@@ -12,11 +12,11 @@ module.exports = function(router, db) {
     const parameters = [];
 
     helper.checkIfOwner(res, user_id, map_id)
-    .then(() => updateMap())
-    .catch(err => {
-      console.log(err);
-      res.status(500).send('Something went wrong on our end')
-    });
+      .then(() => updateMap())
+      .catch(err => {
+        console.log(err);
+        res.status(500).send('Something went wrong on our end');
+      });
 
     function updateMap() {
       for (const key in req.body) {

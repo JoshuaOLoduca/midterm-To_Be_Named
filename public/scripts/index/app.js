@@ -1,21 +1,21 @@
-console.log('Bugle Rick')
+console.log('Bugle Rick');
 
-const $mostLikedDiv = $('#most-liked')
-const $mostViewedDiv = $('#most-viewed')
+const $mostLikedDiv = $('#most-liked');
+const $mostViewedDiv = $('#most-viewed');
 
 const mostLikedMaps = [];
 const mostViewedMaps = [];
-updatePage()
+updatePage();
 
 function loadMostLiked() {
   $.ajax({
     method: 'GET',
     url: '/api/maps/mostLiked',
   })
-  .done(function(data) {
-    data.forEach(element => mostLikedMaps.push(element));
-    renderMaps($mostLikedDiv, mostLikedMaps, mapData => `<h2>Likes: ${mapData.likes}</h2>`);
-  });
+    .done(function(data) {
+      data.forEach(element => mostLikedMaps.push(element));
+      renderMaps($mostLikedDiv, mostLikedMaps, mapData => `<h2>Likes: ${mapData.likes}</h2>`);
+    });
 }
 
 function loadMostViewed() {
@@ -23,15 +23,15 @@ function loadMostViewed() {
     method: 'GET',
     url: '/api/maps/mostViewed',
   })
-  .done(function(data) {
-    data.forEach(element => mostViewedMaps.push(element));
-    renderMaps($mostViewedDiv, mostViewedMaps, mapData => `<h2>Views: ${mapData.views}</h2>`);
-  });
+    .done(function(data) {
+      data.forEach(element => mostViewedMaps.push(element));
+      renderMaps($mostViewedDiv, mostViewedMaps, mapData => `<h2>Views: ${mapData.views}</h2>`);
+    });
 }
 
 function renderMaps($element, listOfMaps, special, howManyToShow = 10) {
-  for(let i = 0; i < howManyToShow; i++) {
-    if(!listOfMaps.length) return;
+  for (let i = 0; i < howManyToShow; i++) {
+    if (!listOfMaps.length) return;
     renderMap($element, listOfMaps.shift(), special);
   }
 }
@@ -55,8 +55,8 @@ function renderMap($containerElement, mapData, special) {
   `);
 
   $element.on('click','section', e => {
-    window.location.assign("/maps/"+mapData.id);
-  })
+    window.location.assign("/maps/" + mapData.id);
+  });
 
   $containerElement.find('.map-container').append($element);
 }
@@ -68,6 +68,6 @@ function updatePage() {
   mostLikedMaps.length = 0;
   mostViewedMaps.length = 0;
   console.log(mostLikedMaps);
-  loadMostLiked()
-  loadMostViewed()
+  loadMostLiked();
+  loadMostViewed();
 }

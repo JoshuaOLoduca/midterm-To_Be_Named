@@ -1,4 +1,4 @@
-module.exports = function (router, db) {
+module.exports = function(router, db) {
   const helper = require('../../helpers')(db);
 
   router.delete('/maps/:id/collaborators', (req, res) => {
@@ -9,11 +9,11 @@ module.exports = function (router, db) {
     const user_id = req.session.user_id;
 
     helper.checkIfOwner(res, user_id, map_id)
-    .then(() => deleteCollaborator())
-    .catch(err => {
-      console.log(err);
-      res.status(500).send('Something went wrong on our end')
-    });
+      .then(() => deleteCollaborator())
+      .catch(err => {
+        console.log(err);
+        res.status(500).send('Something went wrong on our end');
+      });
 
     function deleteCollaborator() {
       const queryString = `
@@ -23,7 +23,7 @@ module.exports = function (router, db) {
       RETURNING *;
       `;
 
-      helper.tryDeleteEntity(res, queryString, [map_id, userToRemove])
+      helper.tryDeleteEntity(res, queryString, [map_id, userToRemove]);
     }
   });
-}
+};

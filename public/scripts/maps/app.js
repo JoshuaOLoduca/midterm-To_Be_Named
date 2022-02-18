@@ -10,7 +10,7 @@ const $bookmarkBtn = $('#bookmarkBtn');
 const $editBtn = $('#editBtn');
 const $editPopUp = $('.editPopUp');
 const $editPoppyUp = $('.editPoppyUp');
-const $editForm = $('#editForm')
+const $editForm = $('#editForm');
 let map;
 
 // location for the map in the html
@@ -25,17 +25,17 @@ if (places.length) {
 
 
 L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
-    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-    maxZoom: 18,
-    id: 'mapbox/streets-v11',
-    tileSize: 512,
-    zoomOffset: -1,
-    accessToken: 'pk.eyJ1IjoiZ2xhdm92aWNhIiwiYSI6ImNrem9hMjFuYzBkd3EydW13OGU5bzlid3kifQ.C_IQD6mnpvTVu5GosTyrJQ'
+  attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+  maxZoom: 18,
+  id: 'mapbox/streets-v11',
+  tileSize: 512,
+  zoomOffset: -1,
+  accessToken: 'pk.eyJ1IjoiZ2xhdm92aWNhIiwiYSI6ImNrem9hMjFuYzBkd3EydW13OGU5bzlid3kifQ.C_IQD6mnpvTVu5GosTyrJQ'
 }).addTo(map);
 
 
 for (const place of places) {
-  L.marker([place.latitude, place.longitude]).addTo(map)
+  L.marker([place.latitude, place.longitude]).addTo(map);
 }
 
 function createElementPlaces(places) {
@@ -56,38 +56,38 @@ function createElementPlaces(places) {
   `);
 
   $element.on('click','button', e => {
-    currentPlaceEditId = places.id
+    currentPlaceEditId = places.id;
     console.log("places:", currentPlaceEditId);
-    $editPopUp.toggleClass('displayFlex')
+    $editPopUp.toggleClass('displayFlex');
   });
 
   $element.on('click', "img" , e => {
     map.flyTo([places.latitude, places.longitude], 12);
 
-  })
+  });
 
-  return $element
+  return $element;
 }
 
 
-const renderPlaces =(places) => {
+const renderPlaces = (places) => {
   for (const place of places) {
     const elementPlace = createElementPlaces(place);
-    $('#mapDetails').append(elementPlace)
+    $('#mapDetails').append(elementPlace);
   }
-}
+};
 
-renderPlaces(places)
+renderPlaces(places);
 
 
 // popup for where we clicka
-var popup = L.popup();
+let popup = L.popup();
 
 function onMapClick(e) {
-    popup
-        .setLatLng(e.latlng)
-        .setContent("You clicked the map at " + e.latlng.toString())
-        .openOn(map);
+  popup
+    .setLatLng(e.latlng)
+    .setContent("You clicked the map at " + e.latlng.toString())
+    .openOn(map);
 }
 
 map.on('click', onMapClick);
@@ -98,7 +98,7 @@ console.log(myMap);
 $popUpForm.submit(function(e) {
   e.preventDefault();
   const inputs = $(this).serializeArray();
-  let values = {}
+  let values = {};
 
   for (const i in inputs) {
     const key = inputs[i].name;
@@ -106,32 +106,32 @@ $popUpForm.submit(function(e) {
     if (value == '') return;
     values[key] = value;
   }
-  L.marker([values.latitude, values.longitude]).addTo(map)
+  L.marker([values.latitude, values.longitude]).addTo(map);
   $.ajax({
     method: "POST",
     url: `/api/maps/${myMap.id}/place`,
     data: values
   })
-  .done(function( content ) {
-    renderPlaces(content);
+    .done(function(content) {
+      renderPlaces(content);
 
-  });
-})
+    });
+});
 
 
 $addPlacesBtn.on('click', e => $addPopUp.toggleClass('displayFlex'));
 
 $addPopUp.on('click', e => {
-  if(e.target !== $addPopUp[0]) return;
-  $addPopUp.toggleClass('displayFlex')
-})
+  if (e.target !== $addPopUp[0]) return;
+  $addPopUp.toggleClass('displayFlex');
+});
 
 
 
 $editForm.submit(function(e) {
   const inputs = $(this).serializeArray();
-  let values = {}
-  values.place = currentPlaceEditId
+  let values = {};
+  values.place = currentPlaceEditId;
   for (const i in inputs) {
     const key = inputs[i].name;
     const value = inputs[i].value;
@@ -143,10 +143,10 @@ $editForm.submit(function(e) {
     url: `/api/maps/${myMap.id}/place`,
     data: values
   })
-  .done(function( content ) {
-    renderPlaces(content)
-  })
-})
+    .done(function(content) {
+      renderPlaces(content);
+    });
+});
 
 
 // add places button
@@ -155,48 +155,48 @@ $editForm.submit(function(e) {
 // edit button for places
 
 $editPopUp.on('click', e => {
-  if(e.target !== $editPopUp[0]) return;
-  $editPopUp.toggleClass('displayFlex')
-})
+  if (e.target !== $editPopUp[0]) return;
+  $editPopUp.toggleClass('displayFlex');
+});
 
 
 
-function updateFaveBtn(){
-$.ajax({
-  method: "POST",
-  url: `/api/user/isFavourites`,
-  data: {id: myMap.id},
-})
-.done(function(data) {
-  if(data.length) {
-    $bookmarkBtn.addClass('green');
-  } else {
-    $bookmarkBtn.removeClass('green');
-  }
-})
+function updateFaveBtn() {
+  $.ajax({
+    method: "POST",
+    url: `/api/user/isFavourites`,
+    data: {id: myMap.id},
+  })
+    .done(function(data) {
+      if (data.length) {
+        $bookmarkBtn.addClass('green');
+      } else {
+        $bookmarkBtn.removeClass('green');
+      }
+    });
 }
 
 // execute function
 updateFaveBtn();
 
 $bookmarkBtn.on('click', e => {
-  if($bookmarkBtn.hasClass('green')) {
+  if ($bookmarkBtn.hasClass('green')) {
     $.ajax({
       method: "DELETE",
       url: `/api/user/favourites`,
       data: {id: myMap.id},
     })
-    .done(function(data) {
-      updateFaveBtn();
-    })
+      .done(function(data) {
+        updateFaveBtn();
+      });
   } else {
     $.ajax({
       method: "POST",
       url:  `/api/user/favourites`,
       data: {id: myMap.id},
     })
-    .done(function(data) {
-      updateFaveBtn();
-    })
+      .done(function(data) {
+        updateFaveBtn();
+      });
   }
-})
+});

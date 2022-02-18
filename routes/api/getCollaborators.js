@@ -1,4 +1,4 @@
-module.exports = function (router, db) {
+module.exports = function(router, db) {
   const helper = require('./helpers')(db);
 
   router.get('/maps/:id/collaborators', (req, res) => {
@@ -13,6 +13,6 @@ module.exports = function (router, db) {
     GROUP BY user_id, name, map_id;
     `;
 
-    helper.tryReturnJson(res, queryString, [mapId, userId])
+    helper.tryReturnJson(res, queryString, [mapId, userId]);
   });
-}
+};

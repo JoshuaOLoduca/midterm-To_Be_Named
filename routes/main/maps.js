@@ -1,15 +1,15 @@
 const { Template } = require("ejs");
 
-module.exports = function (router, db) {
+module.exports = function(router, db) {
 
   router.get('/maps', (req, res) => {
 
-    const userId = req.session.user_id
+    const userId = req.session.user_id;
 
     const templatevars = {
       renderType: 'allMaps',
       userId
-    }
-    res.render("userReleventMaps", templatevars)
+    };
+    res.render("userReleventMaps", templatevars);
   });
 };

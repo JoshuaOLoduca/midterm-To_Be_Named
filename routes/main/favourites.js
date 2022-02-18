@@ -4,14 +4,14 @@ module.exports = function(router, db) {
     // cookie credentials
     const userId = req.session.user_id;
 
-    if (!userId) return res.send('Login nerd')
+    if (!userId) return res.send('Login nerd');
 
     const templateVars = {
       renderType: 'favourites',
       userId
-    }
+    };
 
-    console.log(templateVars)
+    console.log(templateVars);
 
     // redirect to homepage
     res.render('userReleventMaps', templateVars);
@@ -19,4 +19,4 @@ module.exports = function(router, db) {
 
   // redirect to proper spelling
   router.get('/users/favorites', (req, res) => res.redirect('/users/favourites'));
-}
+};

@@ -18,13 +18,13 @@ module.exports = function(router, db) {
     const map_id = req.body.id;
     const user_id = req.session.user_id;
 
-    const insertString =`
+    const insertString = `
     INSERT INTO user_favourites(user_id, map_id)
     VALUES ($1, $2)
     RETURNING *;`;
 
     helper.tryReturnJson(res, insertString, [user_id, map_id]);
-  })
+  });
 };
 
 

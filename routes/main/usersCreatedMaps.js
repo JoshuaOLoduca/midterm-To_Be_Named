@@ -4,13 +4,13 @@ module.exports = function(router, db) {
     // cookie credentials
     const userId = req.session.user_id;
 
-    if (!userId) return res.send('Login nerd')
+    if (!userId) return res.send('Login nerd');
 
     const templateVars = {
       userId
-    }
+    };
 
     // redirect to homepage
     res.render('usersMaps', templateVars);
   });
-}
+};

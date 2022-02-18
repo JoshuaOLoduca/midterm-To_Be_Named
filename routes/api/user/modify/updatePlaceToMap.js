@@ -1,4 +1,4 @@
-module.exports = function(router, db){
+module.exports = function(router, db) {
   const helper = require('../../helpers')(db);
 
   router.post('/maps/:id/place', (req, res) => {
@@ -13,11 +13,11 @@ module.exports = function(router, db){
     `;
 
     helper.checkRights(res, checkRightsQuery, [user_id, map_id])
-    .then(() => postPlace())
-    .catch(err => {
-      console.log(err);
-      res.status(500).send('Something went wrong on our end')
-    });
+      .then(() => postPlace())
+      .catch(err => {
+        console.log(err);
+        res.status(500).send('Something went wrong on our end');
+      });
 
     function postPlace() {
       const queryString = `
@@ -32,9 +32,9 @@ module.exports = function(router, db){
         req.body.description,
         req.body.img_url,
         req.params.id
-      ]
+      ];
 
-      helper.tryReturnJson(res, queryString, params)
+      helper.tryReturnJson(res, queryString, params);
     }
   });
 
@@ -52,11 +52,11 @@ module.exports = function(router, db){
     `;
 
     helper.checkRights(res, checkRightsQuery, [user_id, map_id])
-    .then(() => patchPlace())
-    .catch(err => {
-      console.log(err);
-      res.status(500).send('Something went wrong on our end')
-    });
+      .then(() => patchPlace())
+      .catch(err => {
+        console.log(err);
+        res.status(500).send('Something went wrong on our end');
+      });
 
     function patchPlace() {
       const params = [
@@ -67,7 +67,7 @@ module.exports = function(router, db){
         req.body.img_url,
         map_id,
         req.body.place
-      ]
+      ];
 
       const updateString = `
       UPDATE places
@@ -76,9 +76,9 @@ module.exports = function(router, db){
       title = $3,
       description = $4,
       img_url = $5
-      WHERE map_id = $6 AND places.id = $7;`
+      WHERE map_id = $6 AND places.id = $7;`;
 
-      helper.tryReturnJson(res, updateString, params)
+      helper.tryReturnJson(res, updateString, params);
     }
-  })
-}
+  });
+};

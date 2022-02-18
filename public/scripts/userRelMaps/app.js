@@ -4,29 +4,29 @@ const $mapContainer = $('#mapContainer');
 
 let ajaxUrl = '';
 
-switch(renderType) {
-  case 'allMaps':
-    ajaxUrl = '/api/maps';
-    break;
-  case 'favourites':
-    ajaxUrl = `/api/users/${userId}/maps/favourites`;
-    break;
-  case 'collaborator':
-    ajaxUrl = `/api/users/${userId}/maps/collaborate`;
-    break;
+switch (renderType) {
+case 'allMaps':
+  ajaxUrl = '/api/maps';
+  break;
+case 'favourites':
+  ajaxUrl = `/api/users/${userId}/maps/favourites`;
+  break;
+case 'collaborator':
+  ajaxUrl = `/api/users/${userId}/maps/collaborate`;
+  break;
 }
 
 $.ajax({
   method: "GET",
   url: ajaxUrl
 })
-.done(function( msg ) {
-  msg.forEach(element => {
-    allMaps.unshift(element);
-  });
+  .done(function(msg) {
+    msg.forEach(element => {
+      allMaps.unshift(element);
+    });
 
-  renderMaps();
-});
+    renderMaps();
+  });
 
 function renderMaps(howManyToShowPerRender = 10) {
   for (let i = 0; i < howManyToShowPerRender; i++) {
@@ -61,12 +61,12 @@ function renderMapToScreen(mapData) {
   `);
 
   $element.on('click', 'section', e => {
-    window.location.assign("/maps/"+mapData.id);
-  })
+    window.location.assign("/maps/" + mapData.id);
+  });
 
   $mapContainer.append($element);
 }
 
 $('#loadMoar').on('click', e => {
   renderMaps();
-})
+});

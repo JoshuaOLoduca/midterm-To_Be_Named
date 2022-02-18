@@ -1,17 +1,17 @@
-module.exports = function (db) {
+module.exports = function(db) {
 
   function tryReturnJson(res, queryString, params) {
     db.query(queryString, params)
-    .then(response => {
-      const result = response.rows;
-      if (result) return res.status(200).json(result);
+      .then(response => {
+        const result = response.rows;
+        if (result) return res.status(200).json(result);
 
-      res.status(500).send("Something went wrong on our end");
-    })
-    .catch(err => {
-      console.log(err);
-      res.status(500).send("Something went wrong on our end");
-    });
+        res.status(500).send("Something went wrong on our end");
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(500).send("Something went wrong on our end");
+      });
   }
 
   function tryDeleteEntity(res, deleteString, params) {
@@ -29,15 +29,15 @@ module.exports = function (db) {
 
   function checkRights(res, checkRightsQuery, params) {
     return db.query(checkRightsQuery, params)
-    .then(response => {
-      const result = response.rows;
-      if (!result.length) return res.status(403).send('You dont have rights')
-      return result;
-    })
-    .catch(err => {
-      console.log(err);
-      res.status(500).send("Something went wrong on our end");
-    })
+      .then(response => {
+        const result = response.rows;
+        if (!result.length) return res.status(403).send('You dont have rights');
+        return result;
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(500).send("Something went wrong on our end");
+      });
   }
 
   function checkIfOwner(res, user_id, map_id) {
@@ -49,16 +49,16 @@ module.exports = function (db) {
     `;
 
     return db.query(checkRightsQuery, params)
-    .then(response => {
-      const result = response.rows;
-      if (!result.length) throw new Error('You dont have rights')
-      return result;
-    })
-    .catch(err => {
-      console.log(err);
-      res.status(403).send(err.message);
-    })
+      .then(response => {
+        const result = response.rows;
+        if (!result.length) throw new Error('You dont have rights');
+        return result;
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(403).send(err.message);
+      });
   }
 
   return { tryReturnJson, tryDeleteEntity, checkRights,checkIfOwner };
-}
+};

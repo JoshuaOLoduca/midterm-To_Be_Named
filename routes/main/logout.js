@@ -7,4 +7,4 @@ module.exports = function(router, db) {
     // redirect to homepage
     res.redirect('/');
   });
-}
+};

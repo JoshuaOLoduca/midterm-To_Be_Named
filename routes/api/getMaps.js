@@ -1,4 +1,4 @@
-module.exports = function (router, db) {
+module.exports = function(router, db) {
   const helper = require('./helpers')(db);
 
   router.get('/maps', (req, res) => {
@@ -8,7 +8,7 @@ module.exports = function (router, db) {
     WHERE public = true;
     `;
 
-    helper.tryReturnJson(res, queryString)
+    helper.tryReturnJson(res, queryString);
   });
 
   router.get('/maps/mostViewed', (req, res) => {
@@ -19,7 +19,7 @@ module.exports = function (router, db) {
     ORDER BY views DESC;
     `;
 
-    helper.tryReturnJson(res, queryString)
+    helper.tryReturnJson(res, queryString);
   });
 
   router.get('/maps/mostLiked', (req, res) => {
@@ -32,6 +32,6 @@ module.exports = function (router, db) {
     ORDER BY COUNT(uf) DESC;
     `;
 
-    helper.tryReturnJson(res, queryString)
+    helper.tryReturnJson(res, queryString);
   });
-}
+};
