@@ -13,7 +13,6 @@ module.exports = function (router, db) {
       JOIN collaborators c ON c.map_id = m.id
       WHERE p.id = $2 AND (m.owner_id = $1 OR c.user_id = $1);
     `;
-
     helper.checkRights(res, checkRightsQuery, [user_id, place_id])
     .then(() => deletePlace())
     .catch(err => {

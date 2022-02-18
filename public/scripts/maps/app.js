@@ -1,6 +1,7 @@
 // Client facing scripts here
 
 let currentPlaceEditId = null;
+let currentPlaceEditElement = null;
 
 const $addPopUp = $('.addPopUp');
 const $poppyUp = $('.poppyUp');
@@ -10,6 +11,7 @@ const $bookmarkBtn = $('#bookmarkBtn');
 const $editPopUp = $('.editPopUp');
 const $editPoppyUp = $('.editPoppyUp');
 const $editForm = $('#editForm')
+const $deletePlaceBtn = $('#deletePlaceBtn')
 let map;
 
 // location for the map in the html
@@ -38,6 +40,18 @@ for (const place of places) {
 }
 
 
+$deletePlaceBtn.on('click', e => {
+  $.ajax({
+    method: 'DELETE',
+    url: `/api/places/${currentPlaceEditId}`
+  })
+  .done(result => {
+    currentPlaceEditElement.remove();
+    currentPlaceEditElement = null;
+    $editPopUp.toggleClass('displayFlex')
+  })
+})
+
 
 function createElementPlaces(places) {
 
@@ -58,7 +72,7 @@ function createElementPlaces(places) {
     `);
     $element.on('click','button', e => {
       currentPlaceEditId = places.id
-      console.log("places:", currentPlaceEditId);
+      currentPlaceEditElement = $element;
       $editPopUp.toggleClass('displayFlex')
     });
 
