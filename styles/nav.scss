@@ -35,7 +35,7 @@ nav > div {
 
 
 
-.btn {
+nav .btn {
   background-color: $colour-mustard-shade-4;
   border-radius: 12px;
   color: #000;
@@ -54,14 +54,14 @@ nav > div {
   padding: 1rem 2rem;
 }
 
-.btn:not(:disabled):hover,
-.btn:not(:disabled):focus {
+nav .btn:not(:disabled):hover,
+nav .btn:not(:disabled):focus {
   outline: 0;
   background: $colour-mustard-shade-4;
   box-shadow: 0 0 0 2px rgba(0,0,0,.2), 0 3px 8px 0 rgba(0,0,0,.15);
 }
 
-.btn:disabled {
+nav .btn:disabled {
   filter: saturate(0.2) opacity(0.5);
   cursor: not-allowed;
 }

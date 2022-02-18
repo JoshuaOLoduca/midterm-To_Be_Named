@@ -3,7 +3,7 @@
 
 <head>
   <title>Home Page</title>
-  <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet"/>
   <%- include('partials/_stylesAndScripts') %>
   <link rel="stylesheet" href="/styles/map.css" type="text/css" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
@@ -28,15 +28,15 @@
   <div class="editPopUp">
     <div class="editPoppyUp">
       <form method="PATCH" id="editForm">
-        <label for="longitude">Longitude:</label><br>
+        <label for="longitude">Longitude:</label>
         <input type="number" id="lng" name="longitude" min="-180" max="180" ><br>
-        <label for="latitude">Latitude:</label><br>
+        <label for="latitude">Latitude:</label>
         <input type="number" id="lat" name="latitude" min="-90" max="90"><br>
-        <label for="title">Title:</label><br>
+        <label for="title">Title:</label>
         <input type="text" id="title" name="title"><br>
-        <label for="description">Description:</label><br>
+        <label for="description">Description:</label>
         <input type="text" id="description" name="description"><br>
-        <label for="imgURL">Image URL:</label><br>
+        <label for="imgURL">Image URL:</label>
         <input type="url" id="imgURL" name="img_url"><br>
 
         <button type="submit">Edit Place</button>
@@ -46,15 +46,15 @@
   <div class="addPopUp">
     <div class="poppyUp">
       <form method="POST" id="popUpForm">
-        <label for="longitude">Longitude:</label><br>
+        <label for="longitude">Longitude:</label>
         <input type="number" id="lng" name="longitude" min="-180" max="180" step="any" ><br>
-        <label for="latitude">Latitude:</label><br>
+        <label for="latitude">Latitude:</label>
         <input type="number" id="lat" name="latitude" min="-90" max="90" step="any"><br>
-        <label for="title">Title:</label><br>
+        <label for="title">Title:</label>
         <input type="text" id="title" name="title"><br>
-        <label for="description">Description:</label><br>
+        <label for="description">Description:</label>
         <input type="text" id="description" name="description"><br>
-        <label for="imgURL">Image URL:</label><br>
+        <label for="imgURL">Image URL:</label>
         <input type="url" id="imgURL" name="img_url"><br>
 
         <button type="submit">Add Place</button>
