@@ -1,21 +1,26 @@
-module.exports = function (router, db) {
+module.exports = function(router, db) {
   const helper = require('../../helpers')(db);
 
   router.delete('/maps/:id/collaborators', (req, res) => {
-    // const userId = req.session.user_id;
+    // Initializing Vars
     const userToRemove = req.body.toRemoveId;
     const map_id = req.params.id;
-    // to be used to verify editing rights
     const user_id = req.session.user_id;
 
+    // Checks to see if user owns map
     helper.checkIfOwner(res, user_id, map_id)
-    .then(() => deleteCollaborator())
-    .catch(err => {
-      console.log(err);
-      res.status(500).send('Something went wrong on our end')
-    });
+      // If they do, delete collaborator
+      .then(() => deleteCollaborator())
+      // catching server errors
+      .catch(err => {
+        console.log(err);
+        // Letting user know we oopsied
+        res.status(500).send('Something went wrong on our end');
+      });
 
+    // Delete Collaborator from FB
     function deleteCollaborator() {
+      // Initializing Query
       const queryString = `
       DELETE
       FROM collaborators
@@ -23,7 +28,8 @@ module.exports = function (router, db) {
       RETURNING *;
       `;
 
-      helper.tryDeleteEntity(res, queryString, [map_id, userToRemove])
+      // Send Delete to db
+      helper.tryDeleteEntity(res, queryString, [map_id, userToRemove]);
     }
   });
-}
+};

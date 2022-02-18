@@ -1,4 +1,11 @@
+// Link to colour pallete
+  // Is dora the explorer themed
 // https://coolors.co/fddd42-ee4266-fad19e-6b719e-1a535c
+
+
+// ///////////////
+// COLOURS
+// ///////////////
 $colour-mustard: #FDDD42;
 $colour-mustard-shade-4: #F2CA02;
 $colour-paradise-pink: #EE4266;
@@ -11,7 +18,12 @@ $colour-midnight-green-eagle-tint-4: #2D909F;
 $huh: #a3d0db;
 
 
+// ///////////////
+// SIZING
+// ///////////////
+
 // extremely small
+$rem-very-x10-small: .21rem;
 $rem-very-x7-small: .328rem;
 $rem-very-x4-small: .64rem;
 $rem-very-x3-small: .8rem;
@@ -19,6 +31,7 @@ $rem-very-x2-small: 1rem;
 
 // small
 $rem-very-small: 1.25rem;
+$rem-sorta-small: 1.563rem;
 $rem-small: 1.953rem;
 
 // Regular

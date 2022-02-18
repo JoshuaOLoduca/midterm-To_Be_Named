@@ -2,21 +2,28 @@ const homePage = require('./homePage');
 const login = require('./login');
 const logout = require('./logout');
 const allMaps = require('./maps');
-const getMapsId = require('./getMapsId')
-const favourites = require('./favourites')
-const canEdit = require('./canEdit')
+const getMapsId = require('./getMapsId');
+const favourites = require('./favourites');
+const canEdit = require('./canEdit');
 const usersCreatedMaps = require('./usersCreatedMaps');
 
-module.exports = function (router, db) {
+module.exports = function(router, db) {
 
-  //  render index page
+  // All routes here renders a page
+
+  // GET /
   homePage(router, db);
-  getMapsId(router, db)
+
+  // GET /maps/:id
+  getMapsId(router, db);
+
   // GET /users/login
   login(router, db);
+
+  // GET /maps
   allMaps(router, db);
 
-  // POST /users/logout
+  // GET /users/logout
   logout(router, db);
 
   // GET /users/favourites
@@ -28,5 +35,5 @@ module.exports = function (router, db) {
   // GET /users/myMaps
   usersCreatedMaps(router, db);
   return router;
-}
+};
 

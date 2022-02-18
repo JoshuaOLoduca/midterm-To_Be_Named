@@ -7,7 +7,7 @@ nav {
   display:flex;
   align-items: center;
   flex-direction: row;
-  padding: 2rem;
+  padding: $rem-small;
   width: 100%;
   height: 8rem;
   display: flex;
@@ -29,8 +29,8 @@ nav > span{
 
 nav > div {
   display: flex;
-  height: 3rem;
-  gap: 1rem;
+  height: $rem-medium-large;
+  gap: $rem-very-x2-small;
 }
 
 
@@ -47,11 +47,11 @@ nav .btn {
   width: 100%;
   box-sizing: border-box;
   border: 0;
-  font-size: 16px;
+  font-size: $rem-very-x2-small;
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
-  padding: 1rem 2rem;
+  padding: $rem-very-x2-small $rem-small;
 }
 
 nav .btn:not(:disabled):hover,

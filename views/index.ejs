@@ -4,29 +4,38 @@
 <head>
   <title>Home Page</title>
 
+  <!-- Styles and Scripts -->
   <%- include('partials/_stylesAndScripts') %>
+
+  <!-- index.scss -->
   <link rel="stylesheet" href="/styles/index.css" type="text/css" />
+
+  <!-- index.js -->
   <script type="text/javascript" src="/scripts/index/app.js" defer></script>
 </head>
 
 <body>
+  <!-- Navbar -->
   <%- include('partials/_header', {userId}) %>
+
   <header>
     <h1>Share Popular Locations with Users :D</h1>
-
   </header>
 
   <main>
+    <!-- Most Liked and sub container -->
     <div id="most-liked">
       <h2>Most Liked</h2>
-      <div class="map-container">
 
+      <div class="map-container">
       </div>
     </div>
+
+    <!-- Most Viewed and sub container -->
     <div id="most-viewed">
       <h2>Most Viewed</h2>
-      <div class="map-container">
 
+      <div class="map-container">
       </div>
     </div>
   </main>

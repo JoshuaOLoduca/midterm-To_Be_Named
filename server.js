@@ -46,11 +46,11 @@ app.use(express.static("public"));
 // Note: Feel free to replace the example routes below with your own
 const mainRoutes = require("./routes/main/index");
 const mainRouter = express.Router();
-mainRoutes(mainRouter, db)
+mainRoutes(mainRouter, db);
 
 const apiRoutes = require("./routes/api/index");
 const apiRouter = express.Router();
-apiRoutes(apiRouter, db)
+apiRoutes(apiRouter, db);
 
 // Register Routers
 app.use("/", mainRouter);

@@ -1,11 +1,11 @@
-module.exports = function (router, db) {
+module.exports = function(router, db) {
   const helper = require('../../helpers')(db);
 
-  //  render index page
+  // Deletes place from map
   router.delete('/places/:id', (req, res) => {
-    const place_id = req.params.id
+    // Initializing Vars
+    const place_id = req.params.id;
     const user_id = req.session.user_id;
-
     const checkRightsQuery = `
       SELECT *
       FROM maps m
@@ -14,14 +14,21 @@ module.exports = function (router, db) {
       WHERE p.id = $2 AND (m.owner_id = $1 OR c.user_id = $1);
     `;
 
+    // Checking to see if user is owner or collaboratos
     helper.checkRights(res, checkRightsQuery, [user_id, place_id])
-    .then(() => deletePlace())
-    .catch(err => {
-      console.log(err);
-      res.status(500).send('Something went wrong on our end')
-    });
+      // Delete place if they are
+      .then(() => deletePlace())
+      // Catch server errors
+      .catch(err => {
+        console.log(err);
+        // Let user know we oopsied
+        res.status(500).send('Something went wrong on our end');
+      });
 
+    // Deletes place
     function deletePlace() {
+      // Initializing delete query
+        // (Yeah, we sorta double check to see if they have rights. not efficient)
       const deleteString = `
       DELETE
       FROM places p
@@ -39,7 +46,8 @@ module.exports = function (router, db) {
         RETURNING *;
         `;
 
-        helper.tryDeleteEntity(res, deleteString, [place_id, user_id])
-      }
+      // Try to delete place from Database
+      helper.tryDeleteEntity(res, deleteString, [place_id, user_id]);
+    }
   });
-}
+};
