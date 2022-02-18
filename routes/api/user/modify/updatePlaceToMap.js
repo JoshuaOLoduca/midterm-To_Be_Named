@@ -3,6 +3,7 @@ module.exports = function(router, db){
 
   router.post('/maps/:id/place', (req, res) => {
     const user_id = req.session.user_id;
+    const map_id = req.params.id;
 
     const checkRightsQuery = `
     SELECT *
