@@ -29,6 +29,7 @@ body {
 
 .editPoppyUp, .poppyUp {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 40%;
@@ -43,8 +44,15 @@ body {
     align-items: center;
     display: flex;
     justify-content: center;
+    padding: $rem-very-x3-small 0;
   }
 
+}
+
+#deletePlaceBtn {
+  margin-top: $rem-medium;
+  background-color: $colour-paradise-pink;
+  padding: $rem-very-x3-small $rem-medium;
 }
 
 #editForm, #popUpForm {
