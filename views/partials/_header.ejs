@@ -1,10 +1,11 @@
 
 <nav class="nav">
 
-    <span>Wiki-Maps</span>
+    <span id="logo">Wiki-Maps</span>
 
   <div>
     <% if (userId) { %>
+      <button type="submit" id="userMappino" class="btn"><i class="fa-solid fa-book-atlas"></i></button>
       <button type="submit" id="pubMaps" class="btn"><i class="fa-solid fa-map"></i></button>
       <button type="submit" id="favBtn" class="btn"><i class="fa-solid fa-star"></i></button>
       <button type="submit" class="btn" id="logout">Logout</button>

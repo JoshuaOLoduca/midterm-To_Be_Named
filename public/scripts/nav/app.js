@@ -3,6 +3,8 @@ const $login = $('#login');
 const $favBtn = $('#favBtn');
 const $logout = $('#logout');
 const $pubMaps = $('#pubMaps');
+const $userMaps = $('#userMappino');
+const $logo = $('#logo')
 
 // redirect on login
 $login.on('click', e => {
@@ -34,3 +36,7 @@ $logout.on('click', e => {
 })
 
 $pubMaps.on('click', e => window.location.href='/maps');
+
+$userMaps.on('click', e => window.location.href='/users/mymaps')
+
+$logo.on('click', e => window.location.href='/')
