@@ -1,43 +1,71 @@
-console.log('Bugle Rick')
+console.log('Bugle Rick');
 
-const $mostLikedDiv = $('#most-liked')
-const $mostViewedDiv = $('#most-viewed')
+// Find elements and store them in variables
+const $mostLikedDiv = $('#most-liked');
+const $mostViewedDiv = $('#most-viewed');
 
+// Initialize array
+// Global so we have persistant memory
+// (Should be a closure)
 const mostLikedMaps = [];
 const mostViewedMaps = [];
-updatePage()
 
+// Updates page to have maps on it
+updatePage();
+
+// Gets maps sorted by favourites
+// and renders them to page
 function loadMostLiked() {
+
+  // Send request for data
   $.ajax({
     method: 'GET',
     url: '/api/maps/mostLiked',
   })
-  .done(function(data) {
-    data.forEach(element => mostLikedMaps.push(element));
-    renderMaps($mostLikedDiv, mostLikedMaps, mapData => `<h2>Likes: ${mapData.likes}</h2>`);
-  });
+    // On success, push to array and render
+    .done(function(data) {
+      // Push to array
+      data.forEach(element => mostLikedMaps.push(element));
+
+      // Render to page with list of likes
+      renderMaps($mostLikedDiv, mostLikedMaps, mapData => `<h2>Likes: ${mapData.likes}</h2>`);
+    });
 }
 
+// Get maps sorted by views
+// And render them to page
 function loadMostViewed() {
+
+  // Send request for data
   $.ajax({
     method: 'GET',
     url: '/api/maps/mostViewed',
   })
-  .done(function(data) {
-    data.forEach(element => mostViewedMaps.push(element));
-    renderMaps($mostViewedDiv, mostViewedMaps, mapData => `<h2>Views: ${mapData.views}</h2>`);
-  });
+    // on success, push data to array and render to page
+    .done(function(data) {
+      // Push to array
+      data.forEach(element => mostViewedMaps.push(element));
+      // Render them to page and show views count
+      renderMaps($mostViewedDiv, mostViewedMaps, mapData => `<h2>Views: ${mapData.views}</h2>`);
+    });
 }
 
+// Renders multiple maps to page
 function renderMaps($element, listOfMaps, special, howManyToShow = 10) {
-  for(let i = 0; i < howManyToShow; i++) {
-    if(!listOfMaps.length) return;
+
+  // Render 10 maps at a time
+  for (let i = 0; i < howManyToShow; i++) {
+    // If no maps are left, exit function
+    if (!listOfMaps.length) return;
+
+    // Render map to element along with its special heading
     renderMap($element, listOfMaps.shift(), special);
   }
 }
 
-
+// renders 1 map element
 function renderMap($containerElement, mapData, special) {
+  // Create jquery object with populated values
   const $element = $(`
   <article>
       ${special(mapData)}
@@ -54,20 +82,26 @@ function renderMap($containerElement, mapData, special) {
     </article>
   `);
 
+  // Register on click to direct user to that maps page
   $element.on('click','section', e => {
-    window.location.assign("/maps/"+mapData.id);
-  })
+    window.location.assign("/maps/" + mapData.id);
+  });
 
+  // Render map to container
   $containerElement.find('.map-container').append($element);
 }
 
+// Preps page and renders maps to them
 function updatePage() {
+  // Empties containers
   $mostLikedDiv.find('.map-container').empty();
   $mostViewedDiv.find('.map-container').empty();
 
+  // Empty Arrays
   mostLikedMaps.length = 0;
   mostViewedMaps.length = 0;
-  console.log(mostLikedMaps);
-  loadMostLiked()
-  loadMostViewed()
+
+  // Fetch and render maps to page
+  loadMostLiked();
+  loadMostViewed();
 }

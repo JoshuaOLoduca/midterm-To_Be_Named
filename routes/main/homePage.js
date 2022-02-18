@@ -1,12 +1,14 @@
-module.exports = function (router, db) {
-  //  render index page
+module.exports = function(router, db) {
+  //  Render Main website page
   router.get('/', (req, res) => {
-    const userId = req.session.user_id
+    // Get user ID
+    const userId = req.session.user_id;
 
-    const templatevars = {
-      userId
-    }
+    // Prepare user Id to be sent to EJS
+    // so the nav bar renders right
+    const templatevars = { userId };
 
+    // Render / and send it to client
     res.render('index', templatevars);
   });
-}
+};

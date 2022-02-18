@@ -1,10 +1,12 @@
 module.exports = function(router, db) {
-  // POST /users/logout
+  // GET /users/logout
+  // Deletes cookie and redirects to main page
   router.get('/logout', (req, res) => {
     // clear cookies
+    // AKA logs em out
     req.session = null;
 
-    // redirect to homepage
+    // redirect to main page
     res.redirect('/');
   });
-}
+};

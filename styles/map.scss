@@ -23,6 +23,9 @@ body {
  display: flex !important;
 }
 
+.displayMe {
+  display: none !important;
+}
 
 .editPoppyUp, .poppyUp {
   display: flex;
@@ -35,8 +38,8 @@ body {
 
   button {
     background-color: $colour-mustard;
-    border: 0.1rem solid;
-    border-radius: 1rem;
+    border: 0.$rem-very-x2-small solid;
+    border-radius: $rem-very-x2-small;
     align-items: center;
     display: flex;
     justify-content: center;
@@ -69,21 +72,21 @@ body {
 #titleRow {
   display:flex;
   justify-content: flex-end;
-  gap: 1rem;
+  gap: $rem-very-x2-small;
   align-items: center;
 
   > button {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0.5rem auto;
+    margin: $rem-very-x4-small auto;
     padding: 0.3;
   }
 }
 #buttons {
   display: flex;
-  gap: 1rem;
-  height: 3rem;
+  gap: $rem-very-x2-small;
+  height: $rem-medium-large;
 }
 
 
@@ -110,7 +113,7 @@ body {
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
-  padding: 1rem 2rem;
+  padding: $rem-very-x2-small $rem-small;
 }
 
 .btn:not(:disabled):hover,
@@ -132,10 +135,10 @@ body {
 container {
 
   display: flex;
-  border: 0.2rem solid;
-  padding: 1rem;
+  border: $rem-very-x10-small solid;
+  padding: $rem-very-x2-small;
   width: 90%;
-  margin-bottom: 1.5rem;
+  margin-bottom: $rem-sorta-small;
   flex-direction: column;
   }
 
@@ -161,9 +164,9 @@ article {
     width: 38%;
     flex-shrink: 0;
     border: 1px solid;
-    padding: 1rem;
-    margin-right: 2rem;
-    margin-bottom: 1rem;
+    padding: $rem-very-x2-small;
+    margin-right: $rem-small;
+    margin-bottom: $rem-very-x2-small;
     align-items: center;
     background-color: $colour-midnight-green-eagle-tint-4;
     border-radius: $rem-very-x4-small;

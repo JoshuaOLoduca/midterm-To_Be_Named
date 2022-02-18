@@ -7,14 +7,14 @@ const userMaps = require('./user/maps');
 const updateMap = require('./user/modify/updateMap');
 const addPlace = require('./user/modify/updatePlaceToMap');
 const postFavourites = require('./user/modify/updateFavourites');
-const isFavourites = require('./user/isFavourites')
+const isFavourites = require('./user/isFavourites');
 const createMap = require('./user/modify/createMap');
 const getCollaborators = require('./getCollaborators');
 const deleteCollaborator = require('./user/modify/deleteCollaborator');
 const addCollaboratorToMap = require('./user/modify/addCollaboratorToMap');
+const isCollaborator = require('./user/isCollaborator');
 
-
-module.exports = function (router, db) {
+module.exports = function(router, db) {
 
   // DELETE /maps/:id
   // Deletes map
@@ -68,12 +68,18 @@ module.exports = function (router, db) {
   // POST api/maps/create
   createMap(router, db);
 
+  //checks if user is a collaborator
+  isCollaborator(router, db);
+
 
   // User stuff
+  // Route to get list of maps user can collaborate on
   userCollaborateAccess(router, db);
+  // Route to get list of users favourites
   userFavourites(router, db);
+  // Route to get users maps
   userMaps(router, db);
 
   return router;
-}
+};
 

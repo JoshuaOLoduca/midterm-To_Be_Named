@@ -2,23 +2,33 @@
 <html lang="en">
 
 <head>
-  <title>Home Page</title>
+  <title>My Maps</title>
 
+  <!-- Styles and Scripts -->
   <%- include('partials/_stylesAndScripts') %>
 
+  <!-- userRelMaps.scss -->
   <link rel="stylesheet" href="/styles/userRelMapsLayout.css" type="text/css"/>
+
+  <!-- usersMaps.scss -->
   <link rel="stylesheet" href="/styles/usersMaps.css" type="text/css"/>
 
+  <!-- Pass EJS template to front end -->
   <script>
     const userId = '<%= userId %>';
   </script>
 
+  <!-- usersMaps.js -->
+  <!-- Is script to render page -->
   <script type="text/javascript" src="/scripts/usersMaps/app.js" defer></script>
 </head>
 
 
 <body>
+  <!-- Navbar -->
   <%- include('partials/_header', {userId}) %>
+
+  <!-- Popup to edit map -->
   <div id="pop-up-background-edit-map" class="pop-up-background">
     <div class="pop-up">
       <section>
@@ -54,6 +64,7 @@
     </div>
   </div>
 
+  <!-- Popup to add map -->
   <div id="pop-up-background-add-map" class="pop-up-background">
     <div class="pop-up">
       <section>
@@ -77,9 +88,12 @@
     </div>
   </div>
 
-
+  <!-- Button to show add new map popup -->
   <button id="addMapBtn">ADD NEW MAP</button>
   <h1>List of My Maps</h1>
+
+  <!-- Container for maps -->
+  <!-- Used for script -->
   <div id="mapContainer"></div>
 </body>
 
