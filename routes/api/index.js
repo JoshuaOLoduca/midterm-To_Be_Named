@@ -70,8 +70,11 @@ module.exports = function(router, db) {
 
 
   // User stuff
+  // Route to get list of maps user can collaborate on
   userCollaborateAccess(router, db);
+  // Route to get list of users favourites
   userFavourites(router, db);
+  // Route to get users maps
   userMaps(router, db);
 
   return router;

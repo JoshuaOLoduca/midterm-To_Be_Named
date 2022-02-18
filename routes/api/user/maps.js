@@ -3,7 +3,7 @@ module.exports = function(router, db) {
 
   router.get('/users/:user_id/maps', (req, res) => {
 
-    const {user_id} = req.params;
+    const user_id = req.params.user_id;
 
     const queryString = `
     SELECT *

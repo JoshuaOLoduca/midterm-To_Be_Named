@@ -2,9 +2,9 @@ module.exports = function(router, db) {
   const helper = require('./helpers')(db);
 
   router.get('/maps/:id/collaborators', (req, res) => {
+    // Initialize Vars
     const userId = req.session.user_id || 0;
     const mapId = req.params.id;
-
     const queryString = `
     SELECT user_id, name, map_id
     FROM collaborators c
@@ -13,6 +13,9 @@ module.exports = function(router, db) {
     GROUP BY user_id, name, map_id;
     `;
 
+    // Return user_id, name of user and map_id
+    // Of all collaborators (except yourself ?)
+    // Of map
     helper.tryReturnJson(res, queryString, [mapId, userId]);
   });
 };
