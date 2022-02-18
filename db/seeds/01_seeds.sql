@@ -91,13 +91,49 @@ VALUES
 (3, 1),
 (3, 18),
 (4, 20),
-(4, 12)
+(4, 12);
 
 INSERT INTO places (latitude,longitude,title,description,img_url,map_id)
 VALUES (43.647690, -79.386436, 'Minami Toronto','cool restaurant', 'https://lh5.googleusercontent.com/p/AF1QipPsQJ0VVWENf5JFRidIigmbotj5ZlJqhMFlVxBS=w90-h90-n-k-no', 1),
 (43.646470, -79.396890, 'Figo Toronto', 'soccer player name', 'https://lh5.googleusercontent.com/p/AF1QipMqLbbk3n4IeRZlndlZAPoHrHKQD1jc1aL9-5b-=w90-h90-n-k-no', 1),
 (43.648520, -79.395880, 'Aloette Restaurant', 'sounds italia', 'https://lh5.googleusercontent.com/p/AF1QipOedfVO3erki6JjrKvEArQACysFG0pesXiMk3zu=w90-h90-n-k-no',1),
-(43.648610, -79.390860, 'MARKED restaurant', 'marked for death' , 'https://lh5.googleusercontent.com/p/AF1QipOsKLJxMsVVhtUarSslUdNfXkQuv3VKccEvsdHA=w90-h90-n-k-no',1);
+(43.648610, -79.390860, 'MARKED restaurant', 'marked for death' , 'https://lh5.googleusercontent.com/p/AF1QipOsKLJxMsVVhtUarSslUdNfXkQuv3VKccEvsdHA=w90-h90-n-k-no',1),
 (43.654149, -79.397721, 'Cute Cat', 'might be aggro', 'https://th-thumbnailer.cdn-si-edu.com/bZAar59Bdm95b057iESytYmmAjI=/1400x1050/filters:focal(594x274:595x275)/https://tf-cmsv2-smithsonianmag-media.s3.amazonaws.com/filer/95/db/95db799b-fddf-4fde-91f3-77024442b92d/egypt_kitty_social.jpg', 2),
-(43.656199, -79.415660, 'Man Cat', 'Manly Cat', 'https://upload.wikimedia.org/wikipedia/en/thumb/9/94/StalkingCat.jpg/220px-StalkingCat.jpg,', 2);
+(43.656199, -79.415660, 'Man Cat', 'Manly Cat', 'https://upload.wikimedia.org/wikipedia/en/9/94/StalkingCat.jpg', 2),
+(43.656199, -79.455660, 'Magnificent Cat', 'Most Magnificent of Them All', 'https://cdn.vox-cdn.com/uploads/chorus_image/image/65936299/cats4.0.jpg',2),
+(43.684186, -79.416306, 'Shoppers Cat', 'Loves Shopping', 'https://assets3.thrillist.com/v1/image/2957566/792x1502/flatten;scale;webp=auto;jpeg_quality=70',2),
+(43.63992262814454, -79.392865016172, 'Music Garden Café', 'Music', 'https://lh5.googleusercontent.com/p/AF1QipPNpY4C0Ucs1jNJckymALrzUutKch3oUqMLAxLo=w426-h240-k-no',3),
+(43.65778154163094, -79.40226711774369, 'The Arch Café', 'archy', 'https://lh5.googleusercontent.com/p/AF1QipPMBCAoDg5hzMdrVMDBEOI9CVhaoW_evkyhjobD=w426-h240-k-no', 3),
+(43.64785732903048, -79.40918594390718, 'Cafe 23', 'it''s number 23', 'https://lh5.googleusercontent.com/p/AF1QipMl8rd0-_-zSIsPlQhSs-quhvVyz6Jci59UMuU7=w408-h483-k-no',3),
+(43.66471873390761, -79.42096008667663, 'Christie Pits Park', 'christie''s park!', 'https://lh5.googleusercontent.com/p/AF1QipOU1GbeFAxcolSMb1CIfIS2oxUATBszAgxQnDcn=w408-h306-k-no', 4),
+(43.660717955540704, -79.41887129477891, 'Bickford Park', 'great place for murder', 'https://lh5.googleusercontent.com/p/AF1QipPSWg2-ZpVFkau22rE6mfEZyXFQs6-yYcjCkHaH=w426-h240-k-no', 4),
+(43.66163382631529, -79.4215964189458, 'Charizard', '🔥BEST POKEMON🔥', 'https://static.wikia.nocookie.net/pokemon/images/7/7a/Ash_Charizard.png/revision/latest/scale-to-width-down/1000?cb=20151222015223', 5),
+(43.68163382631529, -79.4615964189458, 'Pikachu', '😲😲😲😲😲😲😲😲😲', 'https://c.tenor.com/ZhKMg4_yCTgAAAAC/surprised-pikachu.gif',5),
+(43.63163382631529, -79.4115964189458, 'infernape', 'monkay', 'https://static.wikia.nocookie.net/pokemonfanon/images/b/b9/Ryder%27s_Infernape_v4.png/revision/latest/scale-to-width-down/250?cb=20211211013011', 5),
+(43.12434, -79.4243, 'Mew', 'Cool rare missingno', 'https://i.imgur.com/HaGnsHF.jpg', 5),
+(43.662076537735814, -79.42741850030879, 'The Black Horse', 'Horses', 'https://lh5.googleusercontent.com/p/AF1QipMUav5cIvQEJWjjSyCvvF-0Hgt9XJpb_QmAqTEs=w408-h303-k-no', 6),
+(43.66305447880841, -79.42271927044618, 'Christie Pits Pubs', 'You''ve heard of the park here''s the pub', 'https://lh5.googleusercontent.com/p/AF1QipO2mBD00bhScTi7mTgRzmAS4pabYtK61d4iHSiC=w408-h306-k-no', 6),
+(43.64781392113086, -79.39286773029355, 'Orchid Nightclub', 'flowers maybe', 'https://lh5.googleusercontent.com/p/AF1QipOua8xi9xEGAo84Z5y3HI9JhWTnVfgTNJznA8hP=w408-h306-k-no', 7),
+(43.645051695097, -79.39929977532377, 'Everleigh', 'looks bad', 'https://lh5.googleusercontent.com/p/AF1QipMAU5Tnw8YKaqDyc_8UzwYo8-mt6Zio7Co2leX2=w408-h240-k-no-pi-0-ya74.5128-ro-0-fo100', 7);
+INSERT INTO places (latitude,longitude,title,description,img_url,map_id)
+VALUES (43.65844169952611, -79.4439522315782, 'Club Paradise', 'might be a strip club', 'https://lh5.googleusercontent.com/p/AF1QipMg2wvP40cjeKv-VtQfajFNF1OF80vFvO2rFSA9=w408-h306-k-no', 7),
+(43.665799530034256, -79.4539381967033, 'Toronto Public Library - Perth/Dupont Branch', 'GoodStuff', 'https://lh5.googleusercontent.com/p/AF1QipNDu5KP51K80tiCbWt9g0NTqQqiBH2pfiOijAOo=w412-h240-k-no', 8),
+(43.66033552402384, -79.43389673235777, 'Toronto Public Library - Bloor/Gladstone Branch', 'lololo', 'https://lh5.googleusercontent.com/p/AF1QipMsoeUqzpmZBKyl1kaSiONa6QFLhLv-I9u2dyM4=w412-h240-k-no', 8),
+(43.65797524502455, -79.44805879548753, 'Bloor Gift & Smoke', 'poooper', 'https://lh5.googleusercontent.com/p/AF1QipP5qpaaEiCYRFTqzUPf0_ERj2MeIUsW-GbrBjrL=w425-h240-k-no', 9),
+(43.6620113652221, -79.42793150045956, 'Stop''n Shop', 'reeeeeeeeee', 'https://lh5.googleusercontent.com/p/AF1QipONglwkDl1JpijvM_g3-txoZ6xPERnoEKUpwJGM=w408-h273-k-no', 9),
+(43.655538516313385, -79.42080703068355, 'The Monocle Shop Toronto', 'Who buys monocles', 'https://lh5.googleusercontent.com/p/AF1QipNhy692qPcPxRPexfB0g6QpxWTmY63re_Svn-B_=w426-h240-k-no', 9),
+(43.63037756948579, -79.3958305991716, 'Billy Bishop Toronto City Airport', 'airport', 'https://lh5.googleusercontent.com/p/AF1QipPbx63K3h0uWEPrYB599LA6zKtKjjNrkVo6ksxX=w426-h240-k-no', 10),
+(43.67989021448427, -79.6251630247464, 'Toronto Pearson International Airport', 'mikyu airport', 'https://lh5.googleusercontent.com/p/AF1QipOOP4sQUq2JQL6fmF9ViPk_Q-8Egu6QdeRQDWI6=w426-h240-k-no', 10),
+(45.50535058009992, -73.6897916462807, 'Montreal', 'that''s a city', 'https://lh5.googleusercontent.com/p/AF1QipPPkCA6R6y0ZMVeA--3bbqmjMZpYjs57YVwX1EI=w450-h240-k-no', 11),
+(41.891140106550054, 12.476945098980998, 'Rome', 'Pasta City', 'https://lh5.googleusercontent.com/p/AF1QipMAobJv8oE32VMVi4KfgIq0pgctCToxophekhZ8=w520-h240-k-no', 11),
+(48.85692955130069, 2.3403399119873507, 'Paris', 'Croissant', 'https://lh5.googleusercontent.com/p/AF1QipPSqJhEkbBMLIbQ7hzEL04Mx8uAaO2_jzLP9OF_=w426-h240-k-no', 11),
+(51.498853256628955, -0.1300018096705632, 'London', 'The England One Or Monocle Wearing One', 'https://lh5.googleusercontent.com/p/AF1QipOGaw6tXgMSz2VwifyPJ2enTn59j6gN7CRUe3lN=w408-h544-k-no', 11),
+(23.07691331416053, -80.7735031193244, 'La Teja', 'it''s somewhere in cuba and there''s sand', 'https://lh5.googleusercontent.com/p/AF1QipMavmg-RWARDUGwOT0T4-qXaivdPojmO4YTg_3p=w408-h318-k-no', 12),
+(43.62144783698434, -79.3961083359115, 'hanlan''s point beach', 'nude people', 'https://lh5.googleusercontent.com/p/AF1QipMhKk1hrP36V2YgYWnTabwMik7Xb-veqLvMfn0D=w408-h271-k-no', 12),
+(43.62144783698434, -79.3961083359115, 'hanlan''s point beach', 'not clothed people with a view', 'https://lh5.googleusercontent.com/p/AF1QipMhKk1hrP36V2YgYWnTabwMik7Xb-veqLvMfn0D=w408-h271-k-no', 13),
+(43.6409835866911, -79.44133406039191, 'Glory Hole Doughnuts', 'It''s not what you think', 'https://lh5.googleusercontent.com/p/AF1QipO_GPdSBs79F4YLByJcpx9Y2BdKEjiU6l_B63wu=w426-h240-k-no', 14),
+(43.64688410919249, -79.39893370272085, 'COPS', 'dont''t go there if you are a criminal', 'https://lh5.googleusercontent.com/p/AF1QipPE7j1wvvCkapZ4bC9_jpGF6vllaTLQphUx11Fh=w408-h544-k-no', 14);
+
+
+
 
