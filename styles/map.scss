@@ -27,6 +27,10 @@ body {
   display: none !important;
 }
 
+.editBtn {
+  margin-top: auto;
+}
+
 .editPoppyUp, .poppyUp {
   display: flex;
   flex-direction: column;
@@ -163,7 +167,7 @@ span {
 
 #mapDetails {
   display: flex;
-  overflow-x: scroll;
+  overflow-x: auto;
 }
 
 article {
