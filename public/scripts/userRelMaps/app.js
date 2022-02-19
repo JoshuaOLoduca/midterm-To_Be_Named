@@ -1,50 +1,79 @@
-const allMaps = [];
-
+// Get mapContainer Element
 const $mapContainer = $('#mapContainer');
 
-let ajaxUrl = '';
+// Initialize array to store maps in
+const allMaps = [];
 
-switch(renderType) {
-  case 'allMaps':
-    ajaxUrl = '/api/maps';
-    break;
-  case 'favourites':
-    ajaxUrl = `/api/users/${userId}/maps/favourites`;
-    break;
-  case 'collaborator':
-    ajaxUrl = `/api/users/${userId}/maps/collaborate`;
-    break;
-}
+// Gets and renders maps to page
+getAndLoadMaps();
 
-$.ajax({
-  method: "GET",
-  url: ajaxUrl
-})
-.done(function( msg ) {
-  msg.forEach(element => {
-    allMaps.unshift(element);
-  });
-
+// On button click, render 10 more maps (from memory) to page
+$('#loadMoar').on('click', () => {
   renderMaps();
 });
 
+/**
+ * fetchs maps from api based on a var passed by the ejs templateVars
+ * and renders a batch of them to the page
+ */
+function getAndLoadMaps() {
+
+  // define api url for ajax within scope of switch case and $.ajax
+  let ajaxUrl = '';
+
+  // renderType is passed to and defined by userRelMaps.ejs
+  switch (renderType) {
+  case 'allMaps':
+    // Get all public maps
+    ajaxUrl = '/api/maps';
+    break;
+  case 'favourites':
+    // Get all favourites of a particular user
+    ajaxUrl = `/api/users/${userId}/maps/favourites`;
+    break;
+  case 'collaborator':
+    // get all maps user can edit
+    ajaxUrl = `/api/users/${userId}/maps/collaborate`;
+    break;
+  }
+
+  // Jquery ajax to get all maps from url
+  $.ajax({
+    method: "GET",
+    url: ajaxUrl
+  })
+    .done(function(msg) {
+    // Push each map into memory
+      msg.forEach(element => {
+        allMaps.unshift(element);
+      });
+
+      // Render a batch of maps
+      renderMaps();
+    });
+}
+
+/**
+ * Renders
+ * @param {Nummber} howManyToShowPerRender how big of a batch to render
+ * @returns {undefined} undefined
+ */
 function renderMaps(howManyToShowPerRender = 10) {
   for (let i = 0; i < howManyToShowPerRender; i++) {
+    // If there are no maps, exit function
     if (!allMaps.length) return;
+    // Remove map from array and render it to screen
     renderMapToScreen(allMaps.pop());
   }
 }
 
-// title:
-// city:
-// cover_img:
-// description:
-
-// id:
-// owner_id:
-// public:
-
+/**
+ * Creates, adds listeners and renders a jquery element map to screen
+ * @param {Object} mapData key/value pair object of map Data
+ */
 function renderMapToScreen(mapData) {
+
+  // Create JQeury element with relevent data
   const $element = $(`
     <article>
       <section>
@@ -60,13 +89,12 @@ function renderMapToScreen(mapData) {
     </article>
   `);
 
-  $element.on('click', 'section', e => {
-    window.location.assign("/maps/"+mapData.id);
-  })
+  // Register click listerner on card
+  // Redirect user to that maps page
+  $element.on('click', 'section', () => {
+    window.location.assign("/maps/" + mapData.id);
+  });
 
+  // Render it to page
   $mapContainer.append($element);
 }
-
-$('#loadMoar').on('click', e => {
-  renderMaps();
-})
