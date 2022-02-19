@@ -6,27 +6,24 @@ module.exports = function (router, db) {
     const place_id = req.params.id
     const user_id = req.session.user_id;
 
-    // const checkRightsQuery = `
-    //   SELECT m.owner_id, m.id
-    //   FROM maps m
-    //   JOIN places p ON p.map_id = m.id
-    //   JOIN collaborators c ON c.map_id = m.id
-    //   WHERE p.id = $2 AND m.owner_id = $1
-    //   UNION
-    //   SELECT c.user_id, c.map_id
-    //   FROM maps m
-    //   JOIN places p ON p.map_id = m.id
-    //   JOIN collaborators c ON c.map_id = m.id
-    //   WHERE p.id = $2 AND c.user_id = $1;
-    // `;
-    // helper.checkRights(res, checkRightsQuery, [user_id, place_id])
-    // .then(() => deletePlace())
-    // .catch(err => {
-    //   console.log(err);
-    //   res.status(500).send('Something went wrong on our end')
-    // });
-
-    deletePlace()
+    const checkRightsQuery = `
+      SELECT m.owner_id AS user_id, m.id AS map_id
+      FROM maps m
+      JOIN places p ON p.map_id = m.id
+      WHERE p.id = $2 AND m.owner_id = $1
+      UNION
+      SELECT c.user_id, c.map_id
+      FROM maps m
+      JOIN places p ON p.map_id = m.id
+      JOIN collaborators c ON c.map_id = m.id
+      WHERE p.id = $2 AND c.user_id = $1;
+    `;
+    helper.checkRights(res, checkRightsQuery, [user_id, place_id])
+    .then(() => deletePlace())
+    .catch(err => {
+      console.log(err);
+      res.status(500).send('Something went wrong on our end')
+    });
 
     function deletePlace() {
       const deleteString = `
