@@ -15,6 +15,7 @@ const $deletePlaceBtn = $('#deletePlaceBtn')
 
 const mapClickZoomLevel = 15;
 const mapPageLoadZoomLevel = 13;
+const mapMarkers = {};
 let map;
 
 // location for the map in the html
@@ -39,7 +40,7 @@ L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
 
 
 for (const place of places) {
-  L.marker([place.latitude, place.longitude]).addTo(map)
+  mapMarkers[place.id] = L.marker([place.latitude, place.longitude]).addTo(map)
 }
 
 
@@ -50,6 +51,7 @@ $deletePlaceBtn.on('click', e => {
   })
   .done(result => {
     currentPlaceEditElement.remove();
+    mapMarkers[currentPlaceEditId].remove();
     currentPlaceEditElement = null;
     $editPopUp.toggleClass('displayFlex')
   })
@@ -75,9 +77,11 @@ function createElementPlaces(places) {
 
     </article>
     `);
+
     $element.on('click','button', e => {
       currentPlaceEditId = places.id
       currentPlaceEditElement = $element;
+      updateEditPopup(places);
       $editPopUp.toggleClass('displayFlex')
     });
 
@@ -138,7 +142,7 @@ $popUpForm.submit(function(e) {
   })
   .done(function( content ) {
     renderPlaces(content);
-
+    $addPopUp.toggleClass('displayFlex')
   });
 })
 
@@ -240,4 +244,29 @@ $.ajax({
 
 if (!userId) {
   $bookmarkBtn.remove()
+}
+
+function updateEditPopup(placeData) {
+  console.log(placeData);
+  const formInputs = $editForm.find('input')
+
+  formInputs.each(function() {
+    switch(this.name) {
+      case 'longitude':
+        $(this).val(placeData.longitude)
+        break;
+      case 'latitude':
+        $(this).val(placeData.latitude)
+        break;
+      case 'title':
+        $(this).val(placeData.title)
+        break;
+      case 'description':
+        $(this).val(placeData.description)
+        break;
+      case 'img_url':
+        $(this).val(placeData.img_url)
+        break;
+    }
+  })
 }
