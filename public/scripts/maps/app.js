@@ -12,6 +12,9 @@ const $editPopUp = $('.editPopUp');
 const $editPoppyUp = $('.editPoppyUp');
 const $editForm = $('#editForm')
 const $deletePlaceBtn = $('#deletePlaceBtn')
+
+const mapClickZoomLevel = 15;
+const mapPageLoadZoomLevel = 13;
 let map;
 
 // location for the map in the html
@@ -20,7 +23,7 @@ const $mapDetails = $('#mapDetails');
 if (places.length) {
   map = L.map('map').setView([places[0].latitude, places[0].longitude], 13);
 } else {
-  map = L.map('map').setView([ 0 ,0 ], 13);
+  map = L.map('map').setView([ 0 ,0 ], mapPageLoadZoomLevel);
 }
 
 
@@ -55,6 +58,8 @@ $deletePlaceBtn.on('click', e => {
 
 function createElementPlaces(places) {
 
+    const editButtonElement = `<button type="submit" class="btn editBtn"><i class="fa-solid fa-pen-to-square"></i></button>`
+
     const $element = $(`
 
     <article>
@@ -66,7 +71,7 @@ function createElementPlaces(places) {
     <p>${places.description}</p>
     </content>
 
-    <button type="submit" class="btn editBtn"><i class="fa-solid fa-pen-to-square"></i></button>
+    ${editButtonElement}
 
     </article>
     `);
@@ -76,9 +81,13 @@ function createElementPlaces(places) {
       $editPopUp.toggleClass('displayFlex')
     });
 
-    $element.on('click', "img" , e => {
-      map.flyTo([places.latitude, places.longitude], 12);
+    $element.on('click' , e => {
+      if($(e.target).hasClass('editBtn')) return;
+      map.flyTo([places.latitude, places.longitude], mapClickZoomLevel);
 
+      $([document.documentElement, document.body]).animate({
+        scrollTop: $("#map").offset().top
+    }, 500);
     })
 
     return $element
