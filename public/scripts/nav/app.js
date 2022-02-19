@@ -1,4 +1,6 @@
-
+// //////////
+// Fetching elements as vars
+// //////////
 const $login = $('#login');
 const $favBtn = $('#favBtn');
 const $logout = $('#logout');
@@ -6,38 +8,47 @@ const $pubMaps = $('#pubMaps');
 const $userMaps = $('#userMappino');
 const $logo = $('#logo')
 
-// redirect on login
+// Logs user in and reloads page
 $login.on('click', e => {
 
+  // Get encrypted cookie for user 1
   $.ajax({
     method: "GET",
     url: `/login/1`,
   })
   .done(function( ) {
-    window.location.href='/users/myMaps';
+    // Reloads pages
+    window.location.reload();
   })
 })
 
 
 // click fave button to redirect to users favourites
 $favBtn.on('click', e => window.location.href='/users/favourites');
+
+// click collaborate button to redirect to maps they can edit places on
 $('#colBtn').on('click', e => window.location.href='/users/collaborate');
 
 
-// redirect to index
+// Logs user out and reloads page
 $logout.on('click', e => {
 
+  // Deletes encrypted cookie
   $.ajax({
     method: "GET",
     url: `/logout`,
   })
   .done(function() {
-    window.location.href='/';
+    // reloads pages
+    window.location.reload();
   })
 })
 
+// click maps page to view all public maps
 $pubMaps.on('click', e => window.location.href='/maps');
 
+// click my maps to view all maps user has created
 $userMaps.on('click', e => window.location.href='/users/mymaps')
 
+// Click logo to go to home page
 $logo.on('click', e => window.location.href='/')
