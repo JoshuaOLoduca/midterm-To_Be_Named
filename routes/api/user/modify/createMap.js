@@ -3,16 +3,9 @@ module.exports = function(router, db) {
   const helper = require("../../helpers")(db);
   // POST /maps/create
   router.post('/maps', (req, res) => {
-
     const user_id = req.session.user_id;
 
-    const checkUserIsRegistered = `
-    SELECT id
-    FROM users
-    WHERE id = $1;
-    `;
-
-    helper.checkRights(res, checkUserIsRegistered, [user_id])
+    helper.checkIfUserExists(res, user_id)
     .then(() => createMap())
     .catch(err => {
       console.log(err);

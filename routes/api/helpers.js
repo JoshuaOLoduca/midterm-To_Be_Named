@@ -61,5 +61,25 @@ module.exports = function (db) {
     })
   }
 
-  return { tryReturnJson, tryDeleteEntity, checkRights,checkIfOwner };
+  function checkIfUserExists(res, user_id) {
+    const params = [user_id];
+    const checkUserIsRegistered = `
+    SELECT id
+    FROM users
+    WHERE id = $1;
+    `;
+
+    return db.query(checkUserIsRegistered, params)
+    .then(response => {
+      const result = response.rows;
+      if (!result.length) throw new Error('Your account doesnt exist')
+      return result;
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(403).send(err.message);
+    })
+  }
+
+  return { tryReturnJson, tryDeleteEntity, checkRights, checkIfOwner, checkIfUserExists };
 }
