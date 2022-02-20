@@ -1,6 +1,26 @@
 Wiki-maps
 =========
 
+## Table Of Contents
+- [Project Overview](#project-overview)
+  - [Overview](#what-it-is)
+  - [Technical Details](#technical-details)
+  - [Features](#features)
+  - [History](#history)
+- [Pictures](#pictures)
+  - [Main Page](#main-page)
+  - [Public Maps](#public-maps)
+  - [Map Page](#map-page)
+  - [Add Place To Map Popup](#add-place-to-map-popup)
+  - [Edit Place On Map Popup](#edit-place-on-map-popup)
+  - [Maps User Can Contribute To](#maps-user-is-contributer-on)
+  - [Users Favourites](#users-favourites)
+  - [Users Created Maps](#users-created-maps)
+  - [Add Map Popup](#add-map-popup)
+  - [Edit Map Popup](#edit-map-popup)
+- [Getting Started](#getting-started)
+- [Dependencies](#dependencies) 
+
 ## Project Overview
 ### What it is
 A full stack web app that serves user created maps.
@@ -15,12 +35,65 @@ Things that can be defined are, title, image, description and long/lat.
 * The [relevent API routes](/tree/main/routes/api/user) do check the users rights (using encrypted cookies) before performing any actions
 * This app is functionally complete (This doesnt mean its deployable)
 * App was created as a 3 man group. We used github pages to assign tasks
+* App was designed with mobile first in mind
+
+## Features
+- Main Page Shows Popular Maps
+  - Shows Most Liked(Favourite count) Maps
+  - Shows Most Viewed Maps
+- Public Maps Page
+- User account support
+  - Create maps
+  - Edit/Delete Maps
+  - Add/Edit/Delete Places Created Maps
+  - Can give editor access to other users
+    - Editors can Add, Edit and Delete Places from maps
+  - Profile Pages access
+    - Can view all Created maps
+    - Can view all Favourited maps
+    - Can view all maps they are editors on
 
 
 ### History
 >Wiki maps is a midterm project done for [Lighthouse Labs full time web dev course](https://www.lighthouselabs.ca/en/web-development-bootcamp?gclid=CjwKCAiAx8KQBhAGEiwAD3EiP9K5uhrRFugeZydQWBfMfKlzszrgM5eBmYdxEhY6g8nt6hOxNGgqkxoCkQEQAvD_BwE)\
 We had 10 topics to choose from.
 Each one had their own requirements
+
+## Pictures
+
+***
+### Main Page
+> ![Main Page](/ReadMeData/Main%20Page.png)
+***
+### Public Maps
+> ![Public Maps](/ReadMeData/Public%20Maps.png)
+***
+### Map Page
+> ![Map Page](/ReadMeData/Map.png)
+***
+### Add Place to Map Popup
+> ![Add Place To Map Popup](/ReadMeData/Add%20Place.png)
+***
+### Edit Place on Map Popup
+> ![Edit Place On Map Popup](/ReadMeData/Edit%20Place.png)
+***
+### Maps User is Contributer on
+> ![Maps User Can Contribute To](/ReadMeData/Maps%20user%20can%20Collaborate%20On.png)
+***
+### Users Favourites
+> ![Users Favourites](/ReadMeData/Users%20Favourites.png)
+***
+### Users Created Maps
+> ![Users Created Maps](/ReadMeData/Users%20Maps.png)
+***
+### Add Map Popup
+> ![Add Map Popup](/ReadMeData/Users%20Maps%20Add.png)
+***
+### Edit Map Popup
+> ![Edit Map Popup](/ReadMeData/Users%20Maps%20Edit.png)
+***
+
+
 
 
 ## Getting Started
