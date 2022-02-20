@@ -27,11 +27,11 @@ module.exports = function(router, db) {
     function deleteMap() {
       // Add RETURNING so we can verify if there was anything deleted
       const deleteString = `
-      DELETE
-      FROM maps
-      WHERE id = $1
-        AND owner_id = $2
-      RETURNING *;
+        DELETE
+        FROM maps
+        WHERE id = $1
+          AND owner_id = $2
+        RETURNING *;
       `;
 
       helper.tryDeleteEntity(res, deleteString, [map_id, user_id]);
