@@ -69,7 +69,15 @@ function renderMaps(howManyToShowPerRender = 10) {
 
 /**
  * Creates, adds listeners and renders a jquery element map to screen
- * @param {Object} mapData key/value pair object of map Data
+ * @param {Object} mapData Key/val pair of map data
+ * @param {Number} mapData.id unique id of map
+ * @param {Number} mapData.owner_id unique id of user who created it
+ * @param {String} mapData.city Name of city map is of (global map if null)
+ * @param {String} mapData.title Title of Map
+ * @param {String} mapData.description description of Map
+ * @param {String} mapData.cover_img url to image for map
+ * @param {number} mapData.views Total view count for map
+ * @param {boolean} mapData.public If map is viewable by
  */
 function renderMapToScreen(mapData) {
 

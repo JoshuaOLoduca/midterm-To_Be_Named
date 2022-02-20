@@ -76,7 +76,15 @@ function renderMaps($element, listOfMaps, setHeaderArea, howManyToShow = 10) {
 /**
  * Prepares map as jquery object with event listerners and renders it to $containerElement
  * @param {JQuery} $containerElement
- * @param {Object} mapData
+ * @param {Object} mapData Key/val pair of map data
+ * @param {Number} mapData.id unique id of map
+ * @param {Number} mapData.owner_id unique id of user who created it
+ * @param {String} mapData.city Name of city map is of (global map if null)
+ * @param {String} mapData.title Title of Map
+ * @param {String} mapData.description description of Map
+ * @param {String} mapData.cover_img url to image for map
+ * @param {number} mapData.views Total view count for map
+ * @param {boolean} mapData.public If map is viewable by
  * @param {function} setHeaderArea
  * @returns {undefined} undefined
  */
