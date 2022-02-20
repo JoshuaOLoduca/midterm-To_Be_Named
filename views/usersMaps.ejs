@@ -2,23 +2,31 @@
 <html lang="en">
 
 <head>
-  <title>Home Page</title>
+  <title>Wiki Maps: My Maps</title>
 
+  <%# Import styles and scripts for every page %>
   <%- include('partials/_stylesAndScripts') %>
 
+  <%# Page specific Styles %>
   <link rel="stylesheet" href="/styles/userRelMapsLayout.css" type="text/css"/>
   <link rel="stylesheet" href="/styles/usersMaps.css" type="text/css"/>
 
+  <%# Pass EJS vars to front end %>
   <script>
     const userId = '<%= userId %>';
   </script>
 
+  <%# Page Specific script %>
+  <%# MUST BE AFTER <script> Tags %>
   <script type="text/javascript" src="/scripts/usersMaps/app.js" defer></script>
 </head>
 
 
 <body>
-  <%- include('partials/_header', {userId}) %>
+  <%# Import Navbar %>
+  <%- include('partials/_nav', {userId}) %>
+
+  <%# Edit Map Popup %>
   <div id="pop-up-background-edit-map" class="pop-up-background">
     <div class="pop-up">
       <section>
@@ -54,6 +62,7 @@
     </div>
   </div>
 
+  <%# Add Map Popup %>
   <div id="pop-up-background-add-map" class="pop-up-background">
     <div class="pop-up">
       <section>
@@ -80,6 +89,8 @@
 
   <button id="addMapBtn">ADD NEW MAP</button>
   <h1>List of My Maps</h1>
+
+  <%# id is used to target with jquery to render places to page %>
   <div id="mapContainer"></div>
 </body>
 
