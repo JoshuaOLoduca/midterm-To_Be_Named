@@ -1,5 +1,6 @@
 
 module.exports = function(router, db) {
+  // Import helper and initialize it with the database connection
   const helper = require("../../helpers")(db);
   // POST /maps/create
   router.post('/maps', (req, res) => {

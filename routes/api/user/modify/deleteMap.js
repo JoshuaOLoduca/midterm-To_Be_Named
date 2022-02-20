@@ -1,4 +1,5 @@
 module.exports = function (router, db) {
+  // Import helper and initialize it with the database connection
   const helper = require('../../helpers')(db);
 
   //  render index page
