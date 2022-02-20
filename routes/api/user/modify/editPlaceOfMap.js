@@ -23,7 +23,7 @@ module.exports = function(router, db) {
 
     // Check if user has rights for place
     // helper will let user know if they dont have perms
-    helper.checkRights(res, checkRightsQuery, [user_id, place_id])
+    helper.checkRights(res, checkRightsQuery, [user_id, map_id])
       // If they do, create it it
       .then(() => createPlace())
       // General Error Catcher
@@ -56,7 +56,7 @@ module.exports = function(router, db) {
     }
   });
 
-  // PATCH /api/{id}/place
+  // PATCH /api/maps/{id}/place
   // Takes in no body
   // Updates place with new params if logged in user has perms
   router.patch('/maps/:id/place', (req, res) => {
@@ -78,7 +78,7 @@ module.exports = function(router, db) {
 
     // Check if user has rights for place
     // helper will let user know if they dont have perms
-    helper.checkRights(res, checkRightsQuery, [user_id, place_id])
+    helper.checkRights(res, checkRightsQuery, [user_id, map_id])
       // If they do, create it it
       .then(() => updatePlace())
       // General Error Catcher
