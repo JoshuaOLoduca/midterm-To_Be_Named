@@ -4,7 +4,7 @@ module.exports = function(router, db) {
   // Gets maps user can edit places on
   router.get('/users/collaborate', (req, res) => {
     // Get logged in user
-    const userId = req.session.user_id;
+    const userId = req.session.user_id || 0;
 
     // If they arent logged in, tell them too
     if (!userId) return res.send('Login nerd');

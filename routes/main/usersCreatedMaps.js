@@ -4,7 +4,7 @@ module.exports = function(router, db) {
   // Gets all maps of logged in user and renders the page for user
   router.get('/users/mymaps', (req, res) => {
     // Get logged in user
-    const userId = req.session.user_id;
+    const userId = req.session.user_id || 0;
 
     // If not logged in, let them know
     if (!userId) return res.send('Login nerd');

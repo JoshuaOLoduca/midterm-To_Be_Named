@@ -5,7 +5,7 @@ module.exports = function(router, db) {
   router.get('/maps', (req, res) => {
 
     // Gets Logged in user
-    const userId = req.session.user_id;
+    const userId = req.session.user_id || 0;
 
     // Passes vars to EJS
     const templatevars = {

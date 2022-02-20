@@ -3,7 +3,7 @@ module.exports = function(router, db) {
   // Renders page of maps user has favourited
   router.get('/users/favourites', (req, res) => {
     // Get logged in user
-    const userId = req.session.user_id;
+    const userId = req.session.user_id || 0;
 
     // If they arent logged in, tell them to
     if (!userId) return res.send('Login nerd');
