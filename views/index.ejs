@@ -2,15 +2,20 @@
 <html lang="en">
 
 <head>
-  <title>Home Page</title>
+  <title>Wiki Maps: Home</title>
 
+  <%# Import styles and scripts for every page %>
   <%- include('partials/_stylesAndScripts') %>
+
+  <%# Page specific styles and scripts %>
   <link rel="stylesheet" href="/styles/index.css" type="text/css" />
   <script type="text/javascript" src="/scripts/index/app.js" defer></script>
 </head>
 
 <body>
-  <%- include('partials/_header', {userId}) %>
+
+  <%# Import navbar %>
+  <%- include('partials/_nav', {userId}) %>
   <header>
     <h1>Share Popular Locations with Users :D</h1>
 

@@ -1,28 +1,20 @@
-const deleteMap = require('./user/modify/deleteMap');
-const deletePlace = require('./user/modify/deletePlace');
 const getMaps = require('./getMaps');
 const userCollaborateAccess = require('./user/collaborateAccess');
 const userFavourites = require('./user/favourites');
 const userMaps = require('./user/maps');
-const updateMap = require('./user/modify/updateMap');
-const addPlace = require('./user/modify/updatePlaceToMap');
+const editMap = require('./user/modify/editMap');
+const editPlaceOfMap = require('./user/modify/editPlaceOfMap');
 const postFavourites = require('./user/modify/updateFavourites');
-const isFavourites = require('./user/isFavourites')
-const createMap = require('./user/modify/createMap');
+const isFavourites = require('./user/isFavourites');
 const getCollaborators = require('./getCollaborators');
-const deleteCollaborator = require('./user/modify/deleteCollaborator');
-const addCollaboratorToMap = require('./user/modify/addCollaboratorToMap');
+const editMapCollaborators = require('./user/modify/editMapCollaborators');
 const isCollaborator = require('./user/isCollaborator');
 
-module.exports = function (router, db) {
+module.exports = function(router, db) {
 
-  // DELETE /maps/:id
-  // Deletes map
-  deleteMap(router, db);
-
-  // DELETE /places/:id
-  // Takes in place id and deletes it
-  deletePlace(router, db);
+  // ///////////////
+  // Backend Editing Routes
+  // ///////////////
 
   // GET /maps
   // Gets list of all public maps
@@ -36,14 +28,23 @@ module.exports = function (router, db) {
 
   // PATCH /maps/:id
   // Takes in body of map and updates values
-  updateMap(router, db);
+  //
+  // DELETE /maps/:id
+  // Deletes map
+  //
+  // POST api/maps/create
+  // Adds new map to Database
+  editMap(router, db);
 
   // POST api/maps/:id/place
   // Takes in body of place info and adds it into map
   //
   // PATCH/maps/:id/place
   // Updates place with new info from body
-  addPlace(router, db);
+  //
+  // DELETE /places/:id
+  // Takes in place id and deletes it
+  editPlaceOfMap(router, db);
 
   // DELETE api/user/favourites
   // Takes in map id and looks at users cookie and deletes map
@@ -53,30 +54,39 @@ module.exports = function (router, db) {
   // gets all collaborators for map :id in url
   getCollaborators(router, db);
 
-  // DELETE api/maps/:id/collaborators
-  // takes in user ID and Map ID and removes user ID as collaborator
-  deleteCollaborator(router, db);
-
   // POST api/maps/:id/collaborators
   // takes in user ID and Map ID and registers user ID as collaborator
-  addCollaboratorToMap(router, db);
+  //
+  // DELETE api/maps/:id/collaborators
+  // takes in user ID and Map ID and removes user ID as collaborator
+  editMapCollaborators(router, db);
 
   // POST api/user/isFavourites
   // takes in body of user ID and map id and returns data IF they favourited the map
   isFavourites(router,db);
 
-  // POST api/maps/create
-  createMap(router, db);
-
-  //checks if user is a collaborator
+  // POST /api/user/isCollaborator
+  // Takes in body of map id to check access for
+  // Check to see if logged in user is collaborator for map
   isCollaborator(router, db);
 
 
-  // User stuff
+  // ///////////////
+  // User Data Routes
+  // ///////////////
+
+  // GET /api/users/{user Id}/maps/collaborate
+  // Gets all maps user can edit
   userCollaborateAccess(router, db);
+
+  // GET /api/users/{user id}/maps/favourites
+  // Get all favourite maps of user
   userFavourites(router, db);
+
+  // GET /api/users/{user id}/maps
+  // Gets maps made by user
   userMaps(router, db);
 
   return router;
-}
+};
 

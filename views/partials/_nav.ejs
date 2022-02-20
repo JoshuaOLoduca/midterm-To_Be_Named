@@ -1,0 +1,25 @@
+
+<nav class="nav">
+
+    <span id="logo">Wiki-Maps</span>
+
+  <div>
+
+    <button type="submit" id="pubMaps" class="btn"><i class="fa-solid fa-map"></i></button>
+
+    <%# If user is logged in, show them relevent buttons %>
+    <% if (userId) { %>
+      <button type="submit" id="userMappino" class="btn"><i class="fa-solid fa-book-atlas"></i></button>
+      <button type="submit" id="favBtn" class="btn"><i class="fa-solid fa-star"></i></button>
+      <button type="submit" id="colBtn" class="btn"><i class="fa-solid fa-address-book"></i></button>
+      <button type="submit" class="btn" id="logout">Logout</button>
+    <% } %>
+
+    <%# If they arent, show them Login/Signup buttons %>
+    <% if (!userId) { %>
+      <button type="submit" id="login" class="btn">Login</button>
+      <button type="submit" class="btn">Signup</button>
+    <% } %>
+</div>
+
+</nav>

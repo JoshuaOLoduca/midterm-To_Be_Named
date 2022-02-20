@@ -2,29 +2,41 @@
 <html lang="en">
 
 <head>
-  <title>Home Page</title>
-  <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet"/>
+  <title>Wiki Maps: <%= map.title %></title>
+
+  <%# Import styles and scripts for every page %>
   <%- include('partials/_stylesAndScripts') %>
+
+  <%# Page specific styles and scripts %>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="/styles/map.css" type="text/css" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
-  integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
-  crossorigin=""/>
+    integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+    crossorigin=""/>
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+    integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+    crossorigin="" defer></script>
 
+  <%# Pass ejs template vars to front it %>
+  <%# Shouldnt pass userId because thats sensitive information %>
   <script>
     const places = <%- JSON.stringify(places) %>;
     const myMap = <%- JSON.stringify(map) %>;
     const userId = <%- userId %>
   </script>
-  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
-  integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
-  crossorigin="" defer></script>
+
+  <%# Page specific script that uses the above vars %>
+  <%# Loads after dom is ready because of the DEFER attr %>
   <script type="text/javascript" src="/scripts/maps/app.js" defer></script>
-
-
 
 </head>
 
 <body>
+  <%# Import nav bar %>
+  <%- include('partials/_nav', {userId}) %>
+
+  <%# Edit Place popup %>
+  <%# Is hidden on page load %>
   <div class="editPopUp">
     <div class="editPoppyUp">
       <form method="PATCH" id="editForm">
@@ -44,6 +56,9 @@
       <button id="deletePlaceBtn">Delete</button>
     </div>
   </div>
+
+  <%# Add Place popup %>
+  <%# Is hidden on page load %>
   <div class="addPopUp">
     <div class="poppyUp">
       <form method="POST" id="popUpForm">
@@ -63,11 +78,6 @@
       </form>
     </div>
   </div>
-
-    <%- include('partials/_header', {userId}) %>
-
-
-  <!-- <div class="mapList"> -->
     <container>
 
     <div id="titleRow">
@@ -77,16 +87,19 @@
       <div id="buttons">
         <button type="submit" id="addPlacesBtn" class="btn"><i class="fa-solid fa-plus"></i></button>
         <button type="submit" id="bookmarkBtn" class="btn"><i class="fa-solid fa-bookmark"></i></i></button>
-        <!-- <button type="submit" class="btn"><i class="fa-solid fa-pen-to-square"></i></button> -->
       </div>
     </div>
-    <div class='placesDetails'>
-    <div id="mapDetails">
 
-    </div>
+    <%# id is used to target with jquery to render places to page %>
+    <div class='placesDetails'>
+      <div id="mapDetails">
+
+      </div>
     </div>
   </container>
-    <div id='map'></div>
+    <div id='map'>
+
+    </div>
 </body>
 
 </html>

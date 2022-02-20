@@ -1,12 +1,16 @@
-module.exports = function (router, db) {
-  //  render index page
+module.exports = function(router, db) {
+  // GET /
+  // Renders the main page to the user
   router.get('/', (req, res) => {
-    const userId = req.session.user_id
+    // Get logged in user (if there is one)
+    const userId = req.session.user_id || 0;
 
+    // Pass it to ejs
     const templatevars = {
       userId
-    }
+    };
 
+    // Render main page and send it to user
     res.render('index', templatevars);
   });
-}
+};

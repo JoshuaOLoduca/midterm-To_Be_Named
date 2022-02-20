@@ -2,33 +2,46 @@
 <html lang="en">
 
 <head>
-  <title>Home Page</title>
+  <%# Change title based on template vars renderType value %>
+  <title>Wiki Maps:
+    <% if (renderType === 'allMaps') { %>
+      Public Maps
+    <% } %>
 
+    <% if (renderType === 'favourites') { %>
+      Your Favourites
+    <% } %>
+
+    <% if (renderType === 'collaborator') { %>
+      Collaborator Access
+    <% } %>
+  </title>
+
+  <%# Import styles and scripts for every page %>
   <%- include('partials/_stylesAndScripts') %>
+
   <link rel="stylesheet" href="/styles/userRelMapsLayout.css" type="text/css"/>
 
-  <% if (renderType === 'allMaps') { %>
-    <link rel="stylesheet" href="/styles/allMaps.css" type="text/css"/>
-  <% } %>
-
-  <% if (renderType === 'favourites') { %>
-    <link rel="stylesheet" href="/styles/favourites.css" type="text/css"/>
-  <% } %>
-
+  <%# Import collaborator styles if renderType is collaborator %>
   <% if (renderType === 'collaborator') { %>
     <link rel="stylesheet" href="/styles/collaborator.css" type="text/css"/>
   <% } %>
 
+  <%# Pass template vars to fron end %>
   <script>
     const renderType = '<%= renderType %>';
-    const userId = '<%= userId %>';
+    const userId = <%- userId %>;
   </script>
 
+  <%# Page specifc script %>
   <script type="text/javascript" src="/scripts/userRelMaps/app.js" defer></script>
 </head>
 
  <body>
-  <%- include('partials/_header', {userId}) %>
+  <%# Import navbar %>
+  <%- include('partials/_nav', {userId}) %>
+
+  <%# Change h1 based on render type %>
   <h1>
     <% if (renderType === 'allMaps') { %>
       Public Maps
@@ -43,6 +56,7 @@
     <% } %>
   </h1>
 
+  <%# id is used to target with jquery to render maps to page %>
   <div id="mapContainer"></div>
   <button id="loadMoar">Can I haz maps</button>
  </body>
