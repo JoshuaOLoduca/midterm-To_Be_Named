@@ -184,6 +184,7 @@ $popUpForm.submit(function(e) {
 
 // edit place
 $editForm.submit(function(e) {
+  e.preventDefault();
   const inputs = $(this).serializeArray();
   let values = {};
   values.place = currentPlaceEditId;
@@ -199,7 +200,37 @@ $editForm.submit(function(e) {
     data: values
   })
     .done(function(content) {
-      renderPlaces(content);
+      // Set place to returned data of place from db
+      const place = content[0];
+
+      // Pin from map
+      mapMarkers[place.id].remove()
+
+      // Update content of place card to new data
+      currentPlaceEditElement.html(`
+      <img alt='cover image for place collection' src='${place.img_url}'/>
+
+      <content>
+        <header>
+          <h2>${place.title}</h2>
+        </header>
+
+        <p>${place.description}</p>
+      </content>
+
+      <button type="submit" class="btn editBtn"><i class="fa-solid fa-pen-to-square"></i></button>`);
+
+      // Set tracking for this element to null
+      currentPlaceEditElement = null;
+
+      // Updated marker tracker with new long,lat
+      mapMarkers[place.id] = L.marker([place.latitude, place.longitude]).addTo(map);
+
+      // Pan map to edited place pin
+      map.flyTo([mapMarkers[place.id]._latlng.lat, mapMarkers[place.id]._latlng.lng], mapClickZoomLevel);
+
+      // Close popup
+      $editPopUp.toggleClass('displayFlex');
     });
 });
 
@@ -252,7 +283,7 @@ function createElementPlaces(place) {
     if ($(e.target).hasClass('editBtn')) return;
 
     // Pan map view to this place's marker
-    map.flyTo([place.latitude, place.longitude], mapClickZoomLevel);
+    map.flyTo([mapMarkers[place.id]._latlng.lat, mapMarkers[place.id]._latlng.lng], mapClickZoomLevel);
 
     // Scroll window down to map
     $([document.documentElement, document.body]).animate({

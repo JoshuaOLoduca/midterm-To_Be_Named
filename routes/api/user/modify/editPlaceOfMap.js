@@ -107,7 +107,8 @@ module.exports = function(router, db) {
         title = $3,
         description = $4,
         img_url = $5
-        WHERE map_id = $6 AND places.id = $7;`;
+        WHERE map_id = $6 AND places.id = $7
+        RETURNING *;`;
 
       // Send update to database and return updated values
       helper.tryReturnJson(res, updateString, params);
