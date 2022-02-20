@@ -1,19 +1,21 @@
 module.exports = function(router, db) {
-  // GET /users/login
+
+  // GET /users/collaborate
+  // Gets maps user can edit places on
   router.get('/users/collaborate', (req, res) => {
-    // cookie credentials
+    // Get logged in user
     const userId = req.session.user_id;
 
-    if (!userId) return res.send('Login nerd')
+    // If they arent logged in, tell them too
+    if (!userId) return res.send('Login nerd');
 
+    // Assemble EJS vars
     const templateVars = {
       renderType: 'collaborator',
       userId
-    }
+    };
 
-    console.log(templateVars)
-
-    // redirect to homepage
+    // Render page of maps user can edit places on
     res.render('userReleventMaps', templateVars);
   });
-}
+};
