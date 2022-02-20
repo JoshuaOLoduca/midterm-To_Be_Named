@@ -29,20 +29,8 @@ $favBtn.on('click', e => window.location.href = '/users/favourites');
 // click collaborate button to redirect to maps they can edit places on
 $('#colBtn').on('click', e => window.location.href = '/users/collaborate');
 
-
-// Logs user out and reloads page
-$logout.on('click', e => {
-
-  // Deletes encrypted cookie
-  $.ajax({
-    method: "GET",
-    url: `/logout`,
-  })
-    .done(function() {
-    // reloads pages
-      window.location.reload();
-    });
-});
+// Redirects user to logout page
+$logout.on('click', e => window.location.href = '/logout');
 
 // click maps page to view all public maps
 $pubMaps.on('click', e => window.location.href = '/maps');
