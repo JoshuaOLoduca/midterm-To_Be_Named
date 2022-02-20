@@ -1,5 +1,3 @@
-const deleteMap = require('./user/modify/deleteMap');
-const deletePlace = require('./user/modify/deletePlace');
 const getMaps = require('./getMaps');
 const userCollaborateAccess = require('./user/collaborateAccess');
 const userFavourites = require('./user/favourites');
