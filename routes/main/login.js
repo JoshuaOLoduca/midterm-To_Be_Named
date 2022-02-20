@@ -1,10 +1,12 @@
 module.exports = function(router, db) {
-  // GET /users/login
+  // GET /login/{user Id}
+  // Logs in user by the id specified in the url
+  // ITS BAD BECAUSE ITS FOR DEVING
   router.get('/login/:id', (req, res) => {
-    // cookie credentials
+    // Set user cookie to id from url
     req.session.user_id = req.params.id;
 
-    // redirect to homepage
+    // Redirect to homepage
     res.redirect('/');
   });
-}
+};
