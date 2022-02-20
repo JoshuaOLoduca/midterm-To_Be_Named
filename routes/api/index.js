@@ -5,7 +5,7 @@ const userCollaborateAccess = require('./user/collaborateAccess');
 const userFavourites = require('./user/favourites');
 const userMaps = require('./user/maps');
 const updateMap = require('./user/modify/updateMap');
-const addPlace = require('./user/modify/updatePlaceToMap');
+const editPlaceOfMap = require('./user/modify/editPlaceOfMap');
 const postFavourites = require('./user/modify/updateFavourites');
 const isFavourites = require('./user/isFavourites')
 const createMap = require('./user/modify/createMap');
@@ -18,10 +18,6 @@ module.exports = function (router, db) {
   // DELETE /maps/:id
   // Deletes map
   deleteMap(router, db);
-
-  // DELETE /places/:id
-  // Takes in place id and deletes it
-  deletePlace(router, db);
 
   // GET /maps
   // Gets list of all public maps
@@ -38,11 +34,12 @@ module.exports = function (router, db) {
   updateMap(router, db);
 
   // POST api/maps/:id/place
-  // Takes in body of place info and adds it into map
-  //
+    // Takes in body of place info and adds it into map
   // PATCH/maps/:id/place
-  // Updates place with new info from body
-  addPlace(router, db);
+    // Updates place with new info from body
+  // DELETE /places/:id
+    // Takes in place id and deletes it
+  editPlaceOfMap(router, db);
 
   // DELETE api/user/favourites
   // Takes in map id and looks at users cookie and deletes map
