@@ -75,7 +75,7 @@ Each one had their own requirements
 > ![Add Place To Map Popup](/ReadMeData/Add%20Place.png)
 ***
 ### Edit Place on Map Popup
-> ![Edit Place On Map Popup](/ReadMeData/Edit%20Place.png)
+> ![Edit Place On Map Popup](/ReadMeData/Edit%20Place_fixed.png)
 ***
 ### Maps User is Contributer on
 > ![Maps User Can Contribute To](/ReadMeData/Maps%20user%20can%20Collaborate%20On.png)
