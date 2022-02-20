@@ -10,8 +10,7 @@ const postFavourites = require('./user/modify/updateFavourites');
 const isFavourites = require('./user/isFavourites')
 const createMap = require('./user/modify/createMap');
 const getCollaborators = require('./getCollaborators');
-const deleteCollaborator = require('./user/modify/deleteCollaborator');
-const addCollaboratorToMap = require('./user/modify/addCollaboratorToMap');
+const editMapCollaborators = require('./user/modify/editMapCollaborators');
 const isCollaborator = require('./user/isCollaborator');
 
 module.exports = function (router, db) {
@@ -53,13 +52,11 @@ module.exports = function (router, db) {
   // gets all collaborators for map :id in url
   getCollaborators(router, db);
 
-  // DELETE api/maps/:id/collaborators
-  // takes in user ID and Map ID and removes user ID as collaborator
-  deleteCollaborator(router, db);
-
   // POST api/maps/:id/collaborators
-  // takes in user ID and Map ID and registers user ID as collaborator
-  addCollaboratorToMap(router, db);
+    // takes in user ID and Map ID and registers user ID as collaborator
+  // DELETE api/maps/:id/collaborators
+    // takes in user ID and Map ID and removes user ID as collaborator
+  editMapCollaborators(router, db);
 
   // POST api/user/isFavourites
   // takes in body of user ID and map id and returns data IF they favourited the map

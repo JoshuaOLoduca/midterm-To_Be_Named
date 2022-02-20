@@ -16,7 +16,9 @@ module.exports = function(router, db) {
       .then(() => createMap())
       // General error catcher
       .catch(err => {
+        // Log error to server console
         console.log(err);
+        // Let user know the server oopsied
         res.status(500).send('Something went wrong on our end');
       });
 
@@ -42,7 +44,9 @@ module.exports = function(router, db) {
         })
         // General error catcher
         .catch((err) => {
+          // Log error to server console
           console.log(err);
+          // Let user know the server oopsied
           res.status(500).send('Something went wrong on our end');
         });
     }

@@ -19,12 +19,12 @@ module.exports = function(router, db) {
 
     // Check to see if the logged in user is owner of the map
     helper.checkIfOwner(res, user_id, map_id)
-    // If they are, add sent user id as collaborator to map id
+      // If they are, add sent user id as collaborator to map id
       .then(() => addCollaboratorToMap(userToAdd, map_id))
-    // General error catcher
+      // General error catcher
       // A more specific catch is in the helpers function
       .catch(err => {
-      // Log error to server console
+        // Log error to server console
         console.log(err);
         // Let user know the server oopsied
         res.status(500).send('Something went wrong on our end');
@@ -44,15 +44,15 @@ module.exports = function(router, db) {
 
       // Attempt to add user to database
       db.query(insertString, params)
-      //if successful, return user id, name and map id of collaborator
+        //if successful, return user id, name and map id of collaborator
         .then(result => {
           const queryString = `
-        SELECT user_id, name, map_id
-        FROM collaborators c
-        JOIN users u ON u.id = c.user_id
-        WHERE map_id = $2 AND u.id = $1
-        GROUP BY user_id, name, map_id;
-        `;
+            SELECT user_id, name, map_id
+            FROM collaborators c
+            JOIN users u ON u.id = c.user_id
+            WHERE map_id = $2 AND u.id = $1
+            GROUP BY user_id, name, map_id;
+            `;
           const moarParams = [
             result.rows[0].user_id,
             mapId,
@@ -62,12 +62,48 @@ module.exports = function(router, db) {
           helper.tryReturnJson(res, queryString, moarParams);
         })
         .catch(err => {
-        // Log error to server console
+          // Log error to server console
           console.log(err);
           // Let user know the server oopsied
           res.status(500).send('Something went wrong on our end');
         });
     }
+  });
 
+
+  // DELETE /api/maps/{id}/collaborators
+  // Takes in body of collaborators ID to be removed from map
+  router.delete('/maps/:id/collaborators', (req, res) => {
+    // Get logged in user
+    const user_id = req.session.user_id;
+
+    // Extract Data to use in query
+    const userToRemove = req.body.toRemoveId;
+    const map_id = req.params.id;
+
+    // Verifies logged in user owns the map
+    // Helper will let  user know if user doesnt have perms
+    helper.checkIfOwner(res, user_id, map_id)
+      // On success, delete collaborator
+      .then(() => deleteCollaborator())
+      // General Error Catcher
+      .catch(err => {
+      // Log error to server console
+        console.log(err);
+        // Let user know the server oopsied
+        res.status(500).send('Something went wrong on our end');
+      });
+
+    // Removes specified user as collaborator
+    function deleteCollaborator() {
+      const queryString = `
+      DELETE
+      FROM collaborators
+      WHERE map_id = $1 AND user_id = $2
+      RETURNING *;
+      `;
+
+      helper.tryDeleteEntity(res, queryString, [map_id, userToRemove]);
+    }
   });
 };
