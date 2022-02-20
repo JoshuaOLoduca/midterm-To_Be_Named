@@ -4,20 +4,15 @@ const getMaps = require('./getMaps');
 const userCollaborateAccess = require('./user/collaborateAccess');
 const userFavourites = require('./user/favourites');
 const userMaps = require('./user/maps');
-const updateMap = require('./user/modify/updateMap');
+const editMap = require('./user/modify/editMap');
 const editPlaceOfMap = require('./user/modify/editPlaceOfMap');
 const postFavourites = require('./user/modify/updateFavourites');
 const isFavourites = require('./user/isFavourites')
-const createMap = require('./user/modify/createMap');
 const getCollaborators = require('./getCollaborators');
 const editMapCollaborators = require('./user/modify/editMapCollaborators');
 const isCollaborator = require('./user/isCollaborator');
 
 module.exports = function (router, db) {
-
-  // DELETE /maps/:id
-  // Deletes map
-  deleteMap(router, db);
 
   // GET /maps
   // Gets list of all public maps
@@ -30,8 +25,12 @@ module.exports = function (router, db) {
   getMaps(router, db);
 
   // PATCH /maps/:id
-  // Takes in body of map and updates values
-  updateMap(router, db);
+    // Takes in body of map and updates values\
+  // DELETE /maps/:id
+    // Deletes map
+  // POST api/maps/create
+    // Adds new map to Database
+  editMap(router, db);
 
   // POST api/maps/:id/place
     // Takes in body of place info and adds it into map
@@ -58,9 +57,6 @@ module.exports = function (router, db) {
   // POST api/user/isFavourites
   // takes in body of user ID and map id and returns data IF they favourited the map
   isFavourites(router,db);
-
-  // POST api/maps/create
-  createMap(router, db);
 
   //checks if user is a collaborator
   isCollaborator(router, db);
